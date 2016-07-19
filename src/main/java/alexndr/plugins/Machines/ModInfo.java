@@ -2,9 +2,9 @@ package alexndr.plugins.Machines;
 
 import java.util.List;
 
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import com.google.common.collect.Lists;
+
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author AleXndrTheGr8st
@@ -12,7 +12,7 @@ import com.google.common.collect.Lists;
 public class ModInfo {
 	public static final String ID = "machines";
 	public static final String NAME = "Machines";
-	public static final String VERSION = "0.9.0";
+	public static final String VERSION = "1.0.0";
 	public static final String DESCRIPTION = "A plugin for SimpleCore API that adds a number of different machines.";
 	public static final String URL = "http://bit.ly/SimpleOres";
 	public static final List<String> AUTHORS = Lists.newArrayList("AleXndrTheGr8st");

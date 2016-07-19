@@ -1,0 +1,11 @@
+| | Mythril furnace texture is 1 pixel too high.
+| | Add Adamantium Furnace - Cooks faster, fuel efficient.
+| | Make Onyx Furnace smelt faster
+| | Sinisite Furnace - Cooks 2x as fast, fuel efficient, extra yield, and can use nether fuels.
+| | Thyrium Furnace - Combined abilities of Mythril and Adamantium Furnaces.
+| | Ashstone Furnace - Cooks a bit faster than a Nether Furnace
+
+
+========================= OR ==============================
+| | New "Better Furnaces" style furnaces with upgrades pertaining to the abilities above.
+| | Better furnaces, eg. Onyx, have more upgrade slots. 

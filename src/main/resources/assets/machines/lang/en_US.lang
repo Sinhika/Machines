@@ -1,0 +1,9 @@
+//blocks
+tile.mythril_furnace.name=Mythril Furnace
+tile.mythril_furnace_lit.name=Mythril Furnace
+tile.onyx_furnace.name=Onyx Furnace
+tile.onyx_furnace_lit.name=Onyx Furnace
+
+//Updater
+machines.updateMessage1=§3Machines §ris out of date. The latest version is §c
+machines.updateMessage2=§r. Please update from §9http://bit.ly/SimpleOres

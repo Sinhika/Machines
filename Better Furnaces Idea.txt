@@ -1,0 +1,29 @@
+===================================== UPGRADES =====================================
+|1 slots| 40% speed increase.
+|1 slots| 40% efficiency increase.
+|1 slots| 20% increased yield.
+
+|2 slots| 100% speed increase.
+|2 slots| 100% efficiency increase.
+|2 slots| 50% increased yield.
+
+|3 slots| 180% speed increase.
+|3 slots| 180% efficiency increase.
+|3 slots| 90% increased yield.
+
+|4 slots| 250% speed increase.
+|4 slots| 250% efficiency increase.
+|4 slots| 125% increased yield.
+
+Fuel upgrade, allows burning nether fuels.
+Solar upgrade
+
+===================================== FURNACES =====================================
+|0 slots| Vanilla Furnace
+|1 slots| Iron Furnace
+|2 slots| Gold Furnace
+|2 slots| Mythril Furnace
+|3 slots| Adamantium Furnacee
+|4 slots| Onyx Furnace
+|4 slots| Dragonstone Furnace
+|5 slots| Sinisite Furnace?

@@ -1,59 +1,49 @@
 package alexndr.plugins.Machines;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import alexndr.api.core.LogHelper;
 import alexndr.api.core.UpdateChecker;
-import alexndr.api.helpers.game.RenderItemHelper;
-import alexndr.api.logger.LogHelper;
-import alexndr.api.registry.ContentRegistry;
-import alexndr.api.registry.Plugin;
-import alexndr.plugins.Machines.furnaces.FurnaceTileEntity;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
-/**
- * @author AleXndrTheGr8st
- */
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:simplecore")
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies="required-after:simplecore")
 public class Machines {
-	public static Plugin plugin = new Plugin(ModInfo.ID, ModInfo.NAME);
-	public static Machines INSTANCE = new Machines();
-	
 	@SidedProxy(clientSide = "alexndr.plugins.Machines.ProxyClient", serverSide = "alexndr.plugins.Machines.ProxyCommon")
 	public static ProxyCommon proxy;
+	public static Machines INSTANCE = new Machines();
 	
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		LogHelper.info("Machines", "Loading...");
+	public void PreInit(FMLPreInitializationEvent event) {
+		LogHelper.info("Loading Machines...");
 		
 		//Configuration
-		ContentRegistry.registerPlugin(plugin);
 		ModInfo.setModInfoProperties(event);
 		Settings.createOrLoadSettings(event);
-		if(Settings.updateChecker.asBoolean()) {UpdateChecker checker = new UpdateChecker(ModInfo.ID, ModInfo.VERSION, ModInfo.VERSIONURL);}
+		if(Settings.updateChecker.asBoolean()) {UpdateChecker updateChecker = new UpdateChecker(ModInfo.ID, ModInfo.VERSION, ModInfo.VERSIONURL);}
 		
 		//Content
 		Content.preInitialize();
 	}
 	
 	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		INSTANCE = this;
-		RenderItemHelper.renderItemsAndBlocks(plugin);
-		
+	public void Init(FMLInitializationEvent event) {
 		//Registers
+		INSTANCE = this;
 		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, proxy);
-		GameRegistry.registerTileEntity(FurnaceTileEntity.class, "machines:iron_furnace");
+		GameRegistry.registerTileEntity(MythrilFurnaceTileEntity.class, "mythrilFurnace");
+		GameRegistry.registerTileEntity(OnyxFurnaceTileEntity.class, "onyxFurnace");
 		
 		//Content
+		Recipes.initialize();
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		LogHelper.info("Machines", "Loading Complete!");
+		LogHelper.info("Machines loaded");
 	}
 }
