@@ -1,0 +1,9 @@
+﻿//blocks
+tile.mythril_furnace.name=Fourneau de Mythril
+tile.mythril_furnace_lit.name=Fourneau de Mythril
+tile.onyx_furnace.name=Fourneau d'Onyx
+tile.onyx_furnace_lit.name=Fourneau d'Onyx
+
+//Updater
+machines.updateMessage1=§3Machines §rn'est pas à jour. La dernière version est §c
+machines.updateMessage2=§r. Mise à jour depuis §9http://bit.ly/SimpleOres
