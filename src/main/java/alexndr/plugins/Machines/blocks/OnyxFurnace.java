@@ -24,10 +24,34 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class OnyxFurnace extends SimpleFurnace
 {
+    public static int YieldChance = 33;
+    public static int YieldAmount = 1;
+    
     public OnyxFurnace(boolean is_active)
     {
         super(Machines.plugin, Material.IRON, ContentCategories.Block.MACHINE, is_active);
     } // end ctor
+
+
+    @Override
+    public void setAdditionalProperties()
+    {
+        super.setAdditionalProperties();
+        if (entry.getValueByName("onyxFurnaceYieldChance") != null
+            && entry.getValueByName("onyxFurnaceYieldChance").isActive())
+        {
+            OnyxFurnace.YieldChance = Integer.parseInt(
+                            entry.getValueByName("onyxFurnaceYieldChance")
+                            .getCurrentValue());
+        }
+        if (entry.getValueByName("onyxFurnaceYieldAmount") != null
+             && entry.getValueByName("onyxFurnaceYieldAmount").isActive())
+        {
+            OnyxFurnace.YieldAmount = Integer.parseInt(
+                            entry.getValueByName("onyxFurnaceYieldAmount")
+                            .getCurrentValue());
+        }
+    } // end setAdditionalProperties
 
 
     /* must be customized for children of SimpleFurnace */

@@ -24,12 +24,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MythrilFurnace extends SimpleFurnace
 {
-
+    public static int FuelMultiplier = 2;
+    
     public MythrilFurnace(boolean is_active)
     {
         super(Machines.plugin, Material.IRON, ContentCategories.Block.MACHINE, is_active);
     } // end ctor
 
+    @Override
+    public void setAdditionalProperties()
+    {
+        super.setAdditionalProperties();
+        if (entry.getValueByName("mythrilFurnaceFuelMultiplier") != null
+            && entry.getValueByName("mythrilFurnaceFuelMultiplier").isActive())
+        {
+            MythrilFurnace.FuelMultiplier = Integer.parseInt(
+                            entry.getValueByName("mythrilFurnaceFuelMultiplier")
+                                 .getCurrentValue());
+        }
+    } // end setAdditionalProperties
 
     /* must be customized for children of SimpleFurnace */
     public static SimpleFurnace getUnlit_furnace()
