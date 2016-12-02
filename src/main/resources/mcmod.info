@@ -1,0 +1,14 @@
+[
+{
+"modid": "machines",
+"name": "Machines",
+"description": "A plugin for SimpleCore API that adds improved machines using materials from SimpleOres mods",
+"version": "${version}",
+"credits": "Created by AleXndrTheGr8st, updated by Sinhika",
+"logoFile": "assets/machines/logos/machines.png",
+"mcversion": "${mcversion}",
+"url": "http://minecraft.curseforge.com/projects/machines",
+"updateUrl": "",
+"authorList": [ "AleXndrTheGr8st", "Sinhika" ]
+}
+]
