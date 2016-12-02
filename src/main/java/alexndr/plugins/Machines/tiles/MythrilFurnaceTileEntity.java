@@ -1,4 +1,4 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.Machines.tiles;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +16,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import alexndr.plugins.Machines.Settings;
+import alexndr.plugins.Machines.blocks.MythrilFurnace;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

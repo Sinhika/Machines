@@ -1,4 +1,4 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.Machines.blocks;
 
 import java.util.Random;
 
@@ -21,6 +21,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import alexndr.api.config.types.ConfigBlock;
 import alexndr.api.helpers.game.TabHelper;
+import alexndr.plugins.Machines.Content;
+import alexndr.plugins.Machines.Machines;
+import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

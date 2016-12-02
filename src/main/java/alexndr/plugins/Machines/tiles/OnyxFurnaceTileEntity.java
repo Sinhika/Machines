@@ -1,7 +1,9 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.Machines.tiles;
 
 import java.util.Random;
 
+import alexndr.plugins.Machines.Settings;
+import alexndr.plugins.Machines.blocks.OnyxFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

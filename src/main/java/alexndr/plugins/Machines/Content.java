@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import alexndr.api.core.ContentRegistry;
 import alexndr.api.core.ContentTypes;
 import alexndr.api.core.LogHelper;
+import alexndr.plugins.Machines.blocks.MythrilFurnace;
+import alexndr.plugins.Machines.blocks.OnyxFurnace;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Content {

@@ -5,12 +5,12 @@ import java.io.File;
 import alexndr.api.config.Configuration;
 import alexndr.api.config.types.ConfigBlock;
 import alexndr.api.config.types.ConfigEntry;
-import alexndr.api.config.types.ConfigGeneric;
 import alexndr.api.config.types.ConfigValue;
-import alexndr.api.core.LogHelper;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import alexndr.api.logger.LogHelper;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class Settings {
+public class Settings 
+{
 
 		private static Configuration settings = new Configuration();
 		

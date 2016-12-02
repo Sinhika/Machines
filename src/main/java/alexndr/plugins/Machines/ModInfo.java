@@ -20,5 +20,6 @@ public class ModInfo {
 	public static final String LOGO = "/assets/machines/logos/machines.png";
 	public static final String PARENT = "";
 	public static final boolean USEDEPENDENCYINFO = true;
+    public static final String VERSIONURL = "https://raw.githubusercontent.com/Sinhika/Machines/1.9.4/update.json";
     public static final String URL = "http://minecraft.curseforge.com/projects/machines";
 }
