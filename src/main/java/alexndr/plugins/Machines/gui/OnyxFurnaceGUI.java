@@ -1,63 +1,69 @@
 package alexndr.plugins.Machines.gui;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-
-import org.lwjgl.opengl.GL11;
-
 import alexndr.plugins.Machines.Settings;
 import alexndr.plugins.Machines.inventory.OnyxFurnaceContainer;
 import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.ResourceLocation;
 
-@SideOnly(Side.CLIENT)
 public class OnyxFurnaceGUI extends GuiContainer
 {
-    private OnyxFurnaceTileEntity furnaceInventory;
+    private static ResourceLocation defaultGui 
+        = new ResourceLocation("textures/gui/container/furnace.png");
+    private static ResourceLocation coloredGui 
+        = new ResourceLocation(alexndr.plugins.Machines.ModInfo.ID,
+                                "textures/gui/container/onyx_furnace_gui.png");
+    private static final ResourceLocation furnaceGuiTextures = 
+                    Settings.coloredGUIs.asBoolean() ? coloredGui : defaultGui;
     
-    private static String defaultGui = "textures/gui/container/furnace.png";
-    private static String coloredGui = "machines:" + "textures/gui/onyx_furnace_gui.png";
-
-    private static final ResourceLocation field_110410_t = new ResourceLocation(Settings.coloredGUIs.asBoolean() ? coloredGui : defaultGui);
-    
-    public OnyxFurnaceGUI(InventoryPlayer par1InventoryPlayer, OnyxFurnaceTileEntity par2TileEntityFurnace)
+    private OnyxFurnaceTileEntity tileFurnace;
+    private final InventoryPlayer field_175383_v;
+        
+    public OnyxFurnaceGUI(InventoryPlayer player, OnyxFurnaceTileEntity iinv)
     {
-        super(new OnyxFurnaceContainer(par1InventoryPlayer, par2TileEntityFurnace));
-        this.furnaceInventory = par2TileEntityFurnace;
+        super(new OnyxFurnaceContainer(player, iinv));
+        this.field_175383_v = player;
+        this.tileFurnace = iinv;
     }
 
-    /**
-     * Draw the foreground layer for the GuiContainer (everything in front of the items)
-     */
     @Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2)
-    {
-        this.fontRendererObj.drawString(StatCollector.translateToLocal("tile.onyx_furnace.name"), this.xSize / 2 - this.fontRendererObj.getStringWidth(StatCollector.translateToLocal("tile.onyxFurnace.name")) / 2, 6, Settings.coloredGUIs.asBoolean() ? 0xFFFFFF : 4210752);
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        String s = this.tileFurnace.getDisplayName().getUnformattedText();
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(this.field_175383_v.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
-    /**
-     * Draw the background layer for the GuiContainer (everything behind the items)
-     */
     @Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-    {
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(field_110410_t);
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(furnaceGuiTextures);
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        if (this.furnaceInventory.isBurning())
-        {
-            i1 = this.furnaceInventory.getBurnTimeRemainingScaled(12);
-            this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+        if (TileEntityFurnace.isBurning(this.tileFurnace)) {
+            i1 = this.getScaledBurnTime(13);
+            this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
         }
 
-        i1 = this.furnaceInventory.getCookProgressScaled(24);
+        i1 = this.getScaledCookProgress(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
+    } // end drawGuiContainerBackgroundLayer
+    
+    private int getScaledCookProgress(int cookTime) {
+        int j = this.tileFurnace.getField(2);
+        int k = this.tileFurnace.getField(3);
+        return k != 0 && j != 0 ? j * cookTime / k : 0;
     }
-}
+    
+    private int getScaledBurnTime(int burnTime){
+        int j = this.tileFurnace.getField(1);
+        if (j == 0) j = 200;
+        return this.tileFurnace.getField(0) * burnTime / j;
+    }
+ 
+} // end class
