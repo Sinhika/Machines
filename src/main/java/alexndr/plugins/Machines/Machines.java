@@ -2,8 +2,7 @@ package alexndr.plugins.Machines;
 
 import alexndr.api.logger.LogHelper;
 import alexndr.api.registry.Plugin;
-import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
-import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import alexndr.plugins.Machines.helpers.FancyFurnaceGuiHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -11,7 +10,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, 
     acceptedMinecraftVersions=ModInfo.ACCEPTED_VERSIONS,
@@ -31,30 +29,23 @@ public class Machines
 	public void PreInit(FMLPreInitializationEvent event) 
 	{
 		LogHelper.info("Loading Machines...");
-  //      proxy.PreInit(event);
+        proxy.PreInit(event);
 		
-		//Configuration
-		Settings.createOrLoadSettings(event);
-		
-		//Content
-		Content.preInitialize();
 	}
 	
 	@EventHandler
 	public void Init(FMLInitializationEvent event) 
 	{
 		//Registers
-		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, proxy);
-		GameRegistry.registerTileEntity(MythrilFurnaceTileEntity.class, "mythrilFurnace");
-		GameRegistry.registerTileEntity(OnyxFurnaceTileEntity.class, "onyxFurnace");
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new FancyFurnaceGuiHandler());
+        proxy.Init(event);
 		
-		//Content
-		Recipes.initialize();
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) 
 	{
+        proxy.PostInit(event);
 		LogHelper.info("Machines loaded");
 	}
 } // end class Machines
