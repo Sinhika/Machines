@@ -66,8 +66,7 @@ public class FancyFurnaceGuiHandler implements IGuiHandler
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-       if (ID != MYTHRIL_FURNACE_TILE_ID && ID != ONYX_FURNACE_TILE_ID) return null;
-       TileEntity machine = world.getTileEntity(new BlockPos(x, y, z));
+        TileEntity machine = world.getTileEntity(new BlockPos(x, y, z));
         
         if(machine == null) {
             return null;

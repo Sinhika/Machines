@@ -37,7 +37,7 @@ public class Machines
 	public void Init(FMLInitializationEvent event) 
 	{
 		//Registers
-		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new FancyFurnaceGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new FancyFurnaceGuiHandler());
         proxy.Init(event);
 		
 	}

@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
@@ -19,7 +20,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
     
     public OnyxFurnaceTileEntity()
     {
-        super("container.onyx_furnace", 600, "machines:onyx_furnace_gui", 3);
+        super("container.onyx_furnace", 200, "machines:onyx_furnace_gui", 3);
     }
 
     public static boolean isItemFuel(ItemStack fuel)
@@ -103,5 +104,76 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
         }
         return false;
 	} // end getDust()
+	
+    @Override
+    public void update() 
+    {
+        boolean flag = this.isBurning();
+        boolean flag1 = false;
+
+        if (this.isBurning())
+        {
+            --this.furnaceBurnTime;
+        }
+
+        if (!this.worldObj.isRemote)
+        {
+            if (this.isBurning() 
+                || this.furnaceItemStacks[1] != null && this.furnaceItemStacks[0] != null)
+            {
+                if (!this.isBurning() && this.canSmelt())
+                {
+                    this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
+
+                    if (this.isBurning())
+                    {
+                        flag1 = true;
+
+                        if (this.furnaceItemStacks[1] != null)
+                        {
+                            --this.furnaceItemStacks[1].stackSize;
+
+                            if (this.furnaceItemStacks[1].stackSize == 0)
+                            {
+                                this.furnaceItemStacks[1] = furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
+                            }
+                        }
+                    }
+                }
+
+                if (this.isBurning() && this.canSmelt())
+                {
+                    ++this.cookTime;
+
+                    if (this.cookTime == this.totalCookTime)
+                    {
+                        this.cookTime = 0;
+                        this.totalCookTime = this.getCookTime(this.furnaceItemStacks[0]);
+                        this.smeltItem();
+                        flag1 = true;
+                    }
+                }
+                else
+                {
+                    this.cookTime = 0;
+                }
+            }
+            else if (!this.isBurning() && this.cookTime > 0)
+            {
+                this.cookTime = MathHelper.clamp_int(this.cookTime - 2, 0, this.totalCookTime);
+            }
+
+            if (flag != this.isBurning())
+            {
+                flag1 = true;
+                OnyxFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+            } // end-if
+        } // end-if
+
+        if (flag1)
+        {
+            this.markDirty();
+        }
+    } // end update()
 	
 } // end class

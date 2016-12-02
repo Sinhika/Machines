@@ -4,6 +4,12 @@ tile.mythril_furnace_lit.name=Fourneau de Mythril
 tile.onyx_furnace.name=Fourneau d'Onyx
 tile.onyx_furnace_lit.name=Fourneau d'Onyx
 
+// Containers
+container.mythril_furnace=Fourneau de Mythril
+mythril_furnace_gui=Fourneau de Mythril
+container.onyx_furnace=Fourneau d'Onyx
+onyx_furnace_gui=Fourneau d'Onyx
+
 //Updater
 machines.updateMessage1=§3Machines §rn'est pas à jour. La dernière version est §c
 machines.updateMessage2=§r. Mise à jour depuis §9http://bit.ly/SimpleOres
