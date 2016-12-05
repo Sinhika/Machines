@@ -1,5 +1,7 @@
 package alexndr.plugins.Machines.gui;
 
+import java.awt.Color;
+
 import alexndr.plugins.Machines.Settings;
 import alexndr.plugins.Machines.inventory.OnyxFurnaceContainer;
 import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
@@ -21,7 +23,8 @@ public class OnyxFurnaceGUI extends GuiContainer
     
     private OnyxFurnaceTileEntity tileFurnace;
     private final InventoryPlayer field_175383_v;
-        
+    private final Color textColor = new Color(1.0F, 1.0F, 1.0F);
+    
     public OnyxFurnaceGUI(InventoryPlayer player, OnyxFurnaceTileEntity iinv)
     {
         super(new OnyxFurnaceContainer(player, iinv));
@@ -32,8 +35,11 @@ public class OnyxFurnaceGUI extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String s = this.tileFurnace.getDisplayName().getUnformattedText();
-        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRendererObj.drawString(this.field_175383_v.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString(s,
+                        this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 
+                        this.textColor.getRGB());
+        this.fontRendererObj.drawString(this.field_175383_v.getDisplayName().getUnformattedText(),
+                        8, this.ySize - 96 + 2, this.textColor.getRGB());
     }
 
     @Override

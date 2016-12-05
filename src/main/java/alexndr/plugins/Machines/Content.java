@@ -32,11 +32,13 @@ public class Content
 	public static void doBlocks() 
 	{
         mythril_furnace = new MythrilFurnace(false).setConfigEntry(Settings.mythrilFurnace)
-                        .setUnlocalizedName("mythril_furnace").setCreativeTab(TabHelper.redstoneTab());
+                        .setUnlocalizedName("mythril_furnace")
+                        .setCreativeTab(TabHelper.redstoneTab());
         mythril_furnace_lit = new MythrilFurnace(true).setConfigEntry(Settings.mythrilFurnace)
                         .setUnlocalizedName("mythril_furnace_lit");
         onyx_furnace = new OnyxFurnace(false).setConfigEntry(Settings.onyxFurnace)
-                        .setUnlocalizedName("onyx_furnace").setCreativeTab(TabHelper.redstoneTab());
+                        .setUnlocalizedName("onyx_furnace")
+                        .setCreativeTab(TabHelper.redstoneTab());
         onyx_furnace_lit = new OnyxFurnace(true).setConfigEntry(Settings.onyxFurnace)
                         .setUnlocalizedName("onyx_furnace_lit");
 	} // end doBlocks()
