@@ -116,7 +116,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
             --this.furnaceBurnTime;
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.getWorld().isRemote)
         {
             if (this.isBurning() 
                 || this.furnaceItemStacks[1] != null && this.furnaceItemStacks[0] != null)
@@ -166,7 +166,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
             if (flag != this.isBurning())
             {
                 flag1 = true;
-                OnyxFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+                OnyxFurnace.setState(this.isBurning(), this.getWorld(), this.pos);
             } // end-if
         } // end-if
 
