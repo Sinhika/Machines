@@ -3,13 +3,14 @@ package alexndr.plugins.Machines.tiles;
 import java.util.Random;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
+import alexndr.api.helpers.game.FurnaceHelper;
 import alexndr.plugins.Machines.blocks.OnyxFurnace;
+import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
@@ -41,48 +42,44 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
     @Override
     public void smeltItem()
     {
-    	int k;
+    	int k;  // additional yield amount
     	int r = generator.nextInt(100);
     	
-    	if(r <= YieldChance && !getDust(this.furnaceItemStacks[NDX_INPUT_SLOT]))
+    	if(r <= YieldChance && !getDust(this.getStackInSlot(NDX_INPUT_SLOT)))
     	{
     		k = YieldAmount;
     	}
-    	
-       	else
-    	{
+       	else {
     		k = 0;
     	}
     	
         if (this.canSmelt())
         {
-            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.furnaceItemStacks[NDX_INPUT_SLOT]);
+            ItemStack instack = (ItemStack)this.getStackInSlot(NDX_INPUT_SLOT);
+            ItemStack result_stack = FurnaceRecipes.instance().getSmeltingResult(instack);
+            ItemStack outstack = (ItemStack)this.getStackInSlot(NDX_OUTPUT_SLOT);
 
-            if (this.furnaceItemStacks[NDX_OUTPUT_SLOT] == null)
+            if (ItemStackTools.isEmpty(outstack))
             {
-                this.furnaceItemStacks[NDX_OUTPUT_SLOT] = itemstack.copy();
-                this.furnaceItemStacks[NDX_OUTPUT_SLOT].stackSize += k;
+                ItemStack extra_result = ItemStackTools.safeCopy(result_stack);
+                ItemStackTools.incStackSize(extra_result, k);
+                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_OUTPUT_SLOT, extra_result);
+            }
+            else if (outstack.getItem() == result_stack.getItem())
+            {
+                ItemStackTools.incStackSize(outstack, ItemStackTools.getStackSize(result_stack) + k);
+            }
+            if (instack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) 
+                && instack.getMetadata() == 1 
+                && ItemStackTools.isValid(this.getStackInSlot(NDX_FUEL_SLOT)) 
+                && (this.getStackInSlot(NDX_FUEL_SLOT)).getItem() == Items.BUCKET)
+            {
+                FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_FUEL_SLOT,
+                                        new ItemStack(Items.WATER_BUCKET));
            }
-            else if (this.furnaceItemStacks[NDX_OUTPUT_SLOT].getItem() == itemstack.getItem())
-            {
-                this.furnaceItemStacks[NDX_OUTPUT_SLOT].stackSize += itemstack.stackSize + k; // Forge BugFix: Results may have multiple items
-            }
-            // TODO rewrite to work with SimpleBucket
-            if (this.furnaceItemStacks[NDX_INPUT_SLOT].getItem() == Item.getItemFromBlock(Blocks.SPONGE) 
-                    && this.furnaceItemStacks[NDX_INPUT_SLOT].getMetadata() == 1 
-                    && this.furnaceItemStacks[NDX_FUEL_SLOT] != null 
-                    && this.furnaceItemStacks[NDX_FUEL_SLOT].getItem() == Items.BUCKET)
-            {
-                this.furnaceItemStacks[NDX_FUEL_SLOT] = new ItemStack(Items.WATER_BUCKET);
-            }
 
-            --this.furnaceItemStacks[NDX_INPUT_SLOT].stackSize;
-
-            if (this.furnaceItemStacks[NDX_INPUT_SLOT].stackSize <= 0)
-            {
-                this.furnaceItemStacks[NDX_INPUT_SLOT] = null;
-            }
-        }
+            ItemStackTools.incStackSize(instack, -1);
+        } // end-if thisCanSmelt
     } // end smeltItem
 
 	
@@ -90,9 +87,9 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
 	{
 		for (String name : OreDictionary.getOreNames())
         {
-			for (final ItemStack oreItem : OreDictionary.getOres(name))
+			for (final ItemStack oreItem : ItemStackTools.getOres(name))
             {
-				if (oreItem.getItem() == item.getItem() && oreItem.getItemDamage() == item.getItemDamage())
+			    if (ItemStack.areItemsEqual(oreItem, item))
 				{
                     if (name.contains("dust"))
                     {
@@ -118,51 +115,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
 
         if (!this.getWorld().isRemote)
         {
-            if (this.isBurning() 
-                || this.furnaceItemStacks[1] != null && this.furnaceItemStacks[0] != null)
-            {
-                if (!this.isBurning() && this.canSmelt())
-                {
-                    this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
-
-                    if (this.isBurning())
-                    {
-                        flag1 = true;
-
-                        if (this.furnaceItemStacks[1] != null)
-                        {
-                            --this.furnaceItemStacks[1].stackSize;
-
-                            if (this.furnaceItemStacks[1].stackSize == 0)
-                            {
-                                this.furnaceItemStacks[1] = furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
-                            }
-                        }
-                    }
-                }
-
-                if (this.isBurning() && this.canSmelt())
-                {
-                    ++this.cookTime;
-
-                    if (this.cookTime == this.totalCookTime)
-                    {
-                        this.cookTime = 0;
-                        this.totalCookTime = this.getCookTime(this.furnaceItemStacks[0]);
-                        this.smeltItem();
-                        flag1 = true;
-                    }
-                }
-                else
-                {
-                    this.cookTime = 0;
-                }
-            }
-            else if (!this.isBurning() && this.cookTime > 0)
-            {
-                this.cookTime = MathHelper.clamp_int(this.cookTime - 2, 0, this.totalCookTime);
-            }
-
+            flag1 = default_cooking_update(flag1);
             if (flag != this.isBurning())
             {
                 flag1 = true;

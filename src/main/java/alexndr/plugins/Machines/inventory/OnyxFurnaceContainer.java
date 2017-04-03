@@ -1,6 +1,7 @@
 package alexndr.plugins.Machines.inventory;
 
 import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -97,44 +98,44 @@ public class OnyxFurnaceContainer extends Container
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) 
     {
-        ItemStack itemstack = null;
+        ItemStack itemstack = ItemStackTools.getEmptyStack();
         Slot slot = (Slot) this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+            itemstack = ItemStackTools.safeCopy(itemstack1);
 
             if (index == 2) {
                 if (!this.mergeItemStack(itemstack1, 3, 39, true))
-                    return null;
+                    return ItemStackTools.getEmptyStack();
                 slot.onSlotChange(itemstack1, itemstack);
             } 
             else if (index != 1 && index != 0) {
                 if (OnyxFurnaceTileEntity.isItemFuel(itemstack1)) {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
-                        return null;
+                        return ItemStackTools.getEmptyStack();
                 } 
                 else if (FurnaceRecipes.instance().getSmeltingResult(itemstack1) != null) {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
-                        return null;
+                        return ItemStackTools.getEmptyStack();
                 } 
                 else if (index >= 3 && index < 30) {
                     if (!this.mergeItemStack(itemstack1, 30, 39, false))
-                        return null;
+                        return ItemStackTools.getEmptyStack();
                 } 
                 else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
-                    return null;
+                    return ItemStackTools.getEmptyStack();
             } 
             else if (!this.mergeItemStack(itemstack1, 3, 39, false))
-                return null;
+                return ItemStackTools.getEmptyStack();
 
-            if (itemstack1.stackSize == 0)
-                slot.putStack((ItemStack) null);
+            if (ItemStackTools.isEmpty(itemstack1))
+                slot.putStack(ItemStackTools.getEmptyStack());
             else
                 slot.onSlotChanged();
 
-            if (itemstack1.stackSize == itemstack.stackSize)
-                return null;
+            if (ItemStackTools.getStackSize(itemstack1) == ItemStackTools.getStackSize(itemstack))
+                return ItemStackTools.getEmptyStack();
 
             slot.onPickupFromSlot(playerIn, itemstack1);
         }
