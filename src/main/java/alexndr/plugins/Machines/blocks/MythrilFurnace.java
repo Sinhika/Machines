@@ -80,9 +80,10 @@ public class MythrilFurnace extends SimpleFurnace
     }
 
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState arg2,
-                    EntityPlayer playerIn, EnumHand arg4, ItemStack arg5, EnumFacing arg6,
+    /* cut & pasted from BlockFurnace & modified per CompatBlock */
+   @Override
+    public boolean clOnBlockActivated(World worldIn, BlockPos pos, IBlockState arg2,
+                    EntityPlayer playerIn, EnumHand hand, EnumFacing arg6,
                     float arg7, float arg8, float arg9)
     {
         if (worldIn.isRemote) {
@@ -99,7 +100,7 @@ public class MythrilFurnace extends SimpleFurnace
             }
             return true;
         }
-    } // end onBlockActivated
+    } // end clOnBlockActivated
 
 
     /**

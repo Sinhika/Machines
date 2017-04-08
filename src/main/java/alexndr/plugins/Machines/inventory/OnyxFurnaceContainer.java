@@ -1,6 +1,8 @@
 package alexndr.plugins.Machines.inventory;
 
 import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import mcjty.lib.compat.CompatSlot;
+import mcjty.lib.tools.InventoryTools;
 import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,7 +27,7 @@ public class OnyxFurnaceContainer extends Container
     public OnyxFurnaceContainer(InventoryPlayer player, OnyxFurnaceTileEntity tileentity)
     {
         this.tileFurnace = tileentity;
-        this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
+        this.addSlotToContainer(new CompatSlot(tileentity, 0, 56, 17));
         this.addSlotToContainer(new SlotFurnaceFuel(tileentity, 1, 56, 53));
         this.addSlotToContainer(new SlotFurnaceOutput(player.player, tileentity, 2, 116, 35));
         int var3;
@@ -99,7 +101,7 @@ public class OnyxFurnaceContainer extends Container
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) 
     {
         ItemStack itemstack = ItemStackTools.getEmptyStack();
-        Slot slot = (Slot) this.inventorySlots.get(index);
+        Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
@@ -137,7 +139,7 @@ public class OnyxFurnaceContainer extends Container
             if (ItemStackTools.getStackSize(itemstack1) == ItemStackTools.getStackSize(itemstack))
                 return ItemStackTools.getEmptyStack();
 
-            slot.onPickupFromSlot(playerIn, itemstack1);
+            InventoryTools.onPickup(slot, playerIn, itemstack1);
         }
 
         return itemstack;

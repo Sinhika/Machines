@@ -91,8 +91,8 @@ public class OnyxFurnace extends SimpleFurnace
 
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState arg2,
-                    EntityPlayer playerIn, EnumHand arg4, ItemStack arg5, EnumFacing arg6,
+    public boolean clOnBlockActivated(World worldIn, BlockPos pos, IBlockState arg2,
+                    EntityPlayer playerIn, EnumHand arg4, EnumFacing arg6,
                     float arg7, float arg8, float arg9)
     {
         if (worldIn.isRemote) {

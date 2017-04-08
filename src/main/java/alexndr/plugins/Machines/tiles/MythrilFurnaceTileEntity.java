@@ -2,6 +2,7 @@ package alexndr.plugins.Machines.tiles;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.Machines.blocks.MythrilFurnace;
+import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -34,7 +35,7 @@ public class MythrilFurnaceTileEntity extends TileEntitySimpleFurnace
      */
     public static int getItemBurnTime(ItemStack burnItem)
     {
-        if (burnItem == null)
+        if (ItemStackTools.isEmpty(burnItem))
         {
             return 0;
         }
@@ -74,12 +75,16 @@ public class MythrilFurnaceTileEntity extends TileEntitySimpleFurnace
         } // end else
     } // end getItemBurnTime
 
+    /**
+     * called on tile update.
+     */
     @Override
     public void update() 
     {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-
+        int burnTime = 0;
+        
         if (this.isBurning())
         {
             --this.furnaceBurnTime;
@@ -87,7 +92,11 @@ public class MythrilFurnaceTileEntity extends TileEntitySimpleFurnace
 
         if (!this.getWorld().isRemote)
         {
-            flag1 = default_cooking_update(flag1);
+            ItemStack itemstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
+            if (ItemStackTools.isValid(itemstack)) {
+                burnTime = MythrilFurnaceTileEntity.getItemBurnTime(itemstack);
+            }
+            flag1 = default_cooking_update(flag1, itemstack, burnTime);
             if (flag != this.isBurning())
             {
                 flag1 = true;

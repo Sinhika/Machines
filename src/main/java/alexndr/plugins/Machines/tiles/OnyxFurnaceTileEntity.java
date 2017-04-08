@@ -65,7 +65,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
                 ItemStackTools.incStackSize(extra_result, k);
                 FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_OUTPUT_SLOT, extra_result);
             }
-            else if (outstack.getItem() == result_stack.getItem())
+            else if (ItemStack.areItemsEqual(outstack, result_stack))
             {
                 ItemStackTools.incStackSize(outstack, ItemStackTools.getStackSize(result_stack) + k);
             }
@@ -78,7 +78,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
                                         new ItemStack(Items.WATER_BUCKET));
            }
 
-            ItemStackTools.incStackSize(instack, -1);
+            this.decrStackSize(NDX_INPUT_SLOT, 1);
         } // end-if thisCanSmelt
     } // end smeltItem
 
@@ -107,7 +107,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
     {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-
+        int burnTime = 0;
         if (this.isBurning())
         {
             --this.furnaceBurnTime;
@@ -115,7 +115,11 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
 
         if (!this.getWorld().isRemote)
         {
-            flag1 = default_cooking_update(flag1);
+            ItemStack itemstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
+            if (ItemStackTools.isValid(itemstack)) {
+                burnTime = OnyxFurnaceTileEntity.getItemBurnTime(itemstack);
+            }
+            flag1 = default_cooking_update(flag1, itemstack, burnTime);
             if (flag != this.isBurning())
             {
                 flag1 = true;

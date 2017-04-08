@@ -1,6 +1,8 @@
 package alexndr.plugins.Machines.inventory;
 
 import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
+import mcjty.lib.compat.CompatSlot;
+import mcjty.lib.tools.InventoryTools;
 import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,7 +27,7 @@ public class MythrilFurnaceContainer extends Container
     public MythrilFurnaceContainer(InventoryPlayer player, MythrilFurnaceTileEntity tileentity)
     {
         this.tileFurnace = tileentity;
-        this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
+        this.addSlotToContainer(new CompatSlot(tileentity, 0, 56, 17));
         this.addSlotToContainer(new SlotFurnaceFuel(tileentity, 1, 56, 53));
         this.addSlotToContainer(new SlotFurnaceOutput(player.player, tileentity, 2, 116, 35));
         int i;
@@ -140,7 +142,7 @@ public class MythrilFurnaceContainer extends Container
             if (ItemStackTools.getStackSize(itemstack1) == ItemStackTools.getStackSize(itemstack))
                 return ItemStackTools.getEmptyStack();
 
-            slot.onPickupFromSlot(playerIn, itemstack1);
+            InventoryTools.onPickup(slot, playerIn, itemstack1);
         }
 
         return itemstack;
