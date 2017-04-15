@@ -37,18 +37,18 @@ public class OnyxFurnace extends SimpleFurnace
     public void setAdditionalProperties()
     {
         super.setAdditionalProperties();
-        if (entry.getValueByName("onyxFurnaceYieldChance") != null
-            && entry.getValueByName("onyxFurnaceYieldChance").isActive())
+        if (entry.getValueByName("YieldChance") != null
+            && entry.getValueByName("YieldChance").isActive())
         {
             OnyxFurnace.YieldChance = Integer.parseInt(
-                            entry.getValueByName("onyxFurnaceYieldChance")
+                            entry.getValueByName("YieldChance")
                             .getCurrentValue());
         }
-        if (entry.getValueByName("onyxFurnaceYieldAmount") != null
-             && entry.getValueByName("onyxFurnaceYieldAmount").isActive())
+        if (entry.getValueByName("YieldAmount") != null
+             && entry.getValueByName("YieldAmount").isActive())
         {
             OnyxFurnace.YieldAmount = Integer.parseInt(
-                            entry.getValueByName("onyxFurnaceYieldAmount")
+                            entry.getValueByName("YieldAmount")
                             .getCurrentValue());
         }
     } // end setAdditionalProperties

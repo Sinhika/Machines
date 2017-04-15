@@ -35,11 +35,11 @@ public class MythrilFurnace extends SimpleFurnace
     public void setAdditionalProperties()
     {
         super.setAdditionalProperties();
-        if (entry.getValueByName("mythrilFurnaceFuelMultiplier") != null
-            && entry.getValueByName("mythrilFurnaceFuelMultiplier").isActive())
+        if (entry.getValueByName("FuelMultiplier") != null
+            && entry.getValueByName("FuelMultiplier").isActive())
         {
             MythrilFurnace.FuelMultiplier = Integer.parseInt(
-                            entry.getValueByName("mythrilFurnaceFuelMultiplier")
+                            entry.getValueByName("FuelMultiplier")
                                  .getCurrentValue());
         }
     } // end setAdditionalProperties
