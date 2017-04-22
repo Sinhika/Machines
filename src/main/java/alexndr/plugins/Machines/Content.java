@@ -1,5 +1,6 @@
 package alexndr.plugins.Machines;
 
+import alexndr.api.core.SimpleCoreAPI;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
 import alexndr.plugins.Machines.blocks.MythrilFurnace;
@@ -33,12 +34,12 @@ public class Content
 	{
         mythril_furnace = new MythrilFurnace(false).setConfigEntry(Settings.mythrilFurnace)
                         .setUnlocalizedName("mythril_furnace")
-                        .setCreativeTab(TabHelper.redstoneTab());
+                        .setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
         mythril_furnace_lit = new MythrilFurnace(true).setConfigEntry(Settings.mythrilFurnace)
                         .setUnlocalizedName("mythril_furnace_lit");
         onyx_furnace = new OnyxFurnace(false).setConfigEntry(Settings.onyxFurnace)
                         .setUnlocalizedName("onyx_furnace")
-                        .setCreativeTab(TabHelper.redstoneTab());
+                        .setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
         onyx_furnace_lit = new OnyxFurnace(true).setConfigEntry(Settings.onyxFurnace)
                         .setUnlocalizedName("onyx_furnace_lit");
 	} // end doBlocks()

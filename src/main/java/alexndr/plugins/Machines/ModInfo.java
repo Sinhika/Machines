@@ -13,7 +13,7 @@ public class ModInfo {
 	public static final String VERSION = "@MODVERSION@";
 	public static final String DESCRIPTION = "A plugin for SimpleCore API that adds a number of different machines.";
     public static final String DEPENDENCIES 
-    = "required-after:simplecore@[1.4.5.1,);required-after:simpleores";
+    = "required-after:simplecore@[1.4.6.1,);required-after:simpleores";
     public static final String ACCEPTED_VERSIONS = "[1.10.2,1.11.2]";
 	public static final List<String> AUTHORS = Lists.newArrayList("AleXndrTheGr8st","Sinhika");
 	public static final String CREDITS = "Created by AleXndrTheGr8st; maintained by Sinhika";
