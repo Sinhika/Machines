@@ -92,3 +92,17 @@ task deobfJar(type: Jar) {
 artifacts {
     archives deobfJar
 }
+
+repositories {
+  maven {
+    // location of the maven that hosts JEI files
+    url = "http://dvs1.progwml6.com/files/maven"
+  }
+}
+
+dependencies {
+  // compile against the JEI API
+  deobfCompile "mezz.jei:jei_${version_minecraft}:${jei_version}:api"
+  // at runtime, use the full JEI jar
+  runtime "mezz.jei:jei_${version_minecraft}:${jei_version}"
+}

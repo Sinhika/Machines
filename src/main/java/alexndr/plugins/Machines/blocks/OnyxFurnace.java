@@ -6,6 +6,7 @@ import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.registry.ContentCategories;
 import alexndr.plugins.Machines.Content;
 import alexndr.plugins.Machines.Machines;
+import alexndr.plugins.Machines.Settings;
 import alexndr.plugins.Machines.helpers.FancyFurnaceGuiHandler;
 import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
 import net.minecraft.block.material.Material;
@@ -37,20 +38,8 @@ public class OnyxFurnace extends SimpleFurnace
     public void setAdditionalProperties()
     {
         super.setAdditionalProperties();
-        if (entry.getValueByName("YieldChance") != null
-            && entry.getValueByName("YieldChance").isActive())
-        {
-            OnyxFurnace.YieldChance = Integer.parseInt(
-                            entry.getValueByName("YieldChance")
-                            .getCurrentValue());
-        }
-        if (entry.getValueByName("YieldAmount") != null
-             && entry.getValueByName("YieldAmount").isActive())
-        {
-            OnyxFurnace.YieldAmount = Integer.parseInt(
-                            entry.getValueByName("YieldAmount")
-                            .getCurrentValue());
-        }
+            OnyxFurnace.YieldChance = Settings.onyxFurnaceYieldChance;
+            OnyxFurnace.YieldAmount = Settings.onyxFurnaceYieldAmount;
     } // end setAdditionalProperties
 
 

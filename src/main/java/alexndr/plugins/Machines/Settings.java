@@ -1,12 +1,9 @@
 package alexndr.plugins.Machines;
 
-import java.io.File;
-
-import alexndr.api.config.Configuration;
+import alexndr.api.config.ConfigHelper;
 import alexndr.api.config.types.ConfigBlock;
-import alexndr.api.config.types.ConfigEntry;
-import alexndr.api.config.types.ConfigValue;
 import alexndr.api.logger.LogHelper;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Settings 
@@ -15,45 +12,13 @@ public class Settings
 
     public static void createOrLoadSettings(FMLPreInitializationEvent event) 
     {
-        settings.setModName(ModInfo.NAME);
-        File configDir = new File(event.getModConfigurationDirectory(), "AleXndr");
-        File settingsFile = new File(configDir, "Machines_Settings.xml");
-        settings.setFile(settingsFile);
-
-        LogHelper.verbose("Machines", "Loading Settings...");
+		settings = ConfigHelper.GetConfig(event, "AleXndr", ModInfo.ID + ".cfg");
+		LogHelper.verbose(ModInfo.NAME, "loading settings...");
         try {
             settings.load();
-            settings.createHelpEntry(ModInfo.URL);
-            
-           //Toggles
-            ConfigEntry toggles = new ConfigEntry("Machines Toggles", "Toggles");
-            toggles.createNewValue("EnableColoredGUIs").setDataType("@B")
-                            .setCurrentValue("true").setDefaultValue("true");
-            toggles.createNewValue("EnableMythrilFurnace").setDataType("@B")
-                            .setCurrentValue("true").setDefaultValue("true");
-            toggles.createNewValue("EnableOnyxFurnace").setDataType("@B")
-                            .setCurrentValue("true").setDefaultValue("true");
-            toggles = settings.get(toggles);
-            coloredGUIs = toggles.getValueByName("EnableColoredGUIs");
-            enableMythrilFurnace = toggles.getValueByName("EnableMythrilFurnace");
-            enableOnyxFurnace = toggles.getValueByName("EnableOnyxFurnace");
-
-            // Blocks
-            mythrilFurnace = settings.get(new ConfigBlock("Mythril Furnace", "Blocks")
-                            .setHardness(3.5F).setResistance(10.0F).setLightValue(1.0F)
-                            .setHarvestLevel(0).setHarvestTool("pickaxe")
-                            .createNewValue("FuelMultiplier", "@I","2","2"))
-                            .asConfigBlock();
-            mythrilFurnaceFuelMultiplier = mythrilFurnace.getValueByName("FuelMultiplier");
-            
-            onyxFurnace = settings.get(new ConfigBlock("Onyx Furnace", "Blocks")
-                            .setHardness(3.5F).setResistance(10.0F).setLightValue(1.0F)
-                            .setHarvestLevel(0).setHarvestTool("pickaxe")
-                             .createNewValue("YieldChance","@I","33","33")
-                             .createNewValue("YieldAmount","@I","1","1")
-                             ).asConfigBlock();
-            onyxFurnaceYieldChance = onyxFurnace.getValueByName("YieldChance");
-            onyxFurnaceYieldAmount = onyxFurnace.getValueByName("YieldAmount");
+			ConfigHelper.createHelpEntry(settings, ModInfo.URL);
+            configureToggles();
+            configureBlocks();
         } 
         catch(Exception e) {
             LogHelper.severe("Machines", "Settings failed to load correctly. The plugin may not function correctly.");
@@ -63,12 +28,40 @@ public class Settings
             settings.save();
             LogHelper.verbose("Machines", "Settings loaded successfully.");
         }
-    }
+    } // end createOrLoadSettings()
 
+    /**
+     * create a "Toggles" category and populate it.
+     */
+    public static void configureToggles()
+    {
+    	settings.getBoolean("EnableColoredGUIs", Configuration.CATEGORY_GENERAL, true, 
+    						"Show colored furnace backgrounds in GUI");
+    } // end configureToggles()
+    
+    public static void configureBlocks()
+    {
+        // Blocks
+        mythrilFurnace = new ConfigBlock("Mythril Furnace", ConfigHelper.CATEGORY_MACHINE)
+                        .setHardness(3.5F).setResistance(10.0F).setLightValue(1.0F)
+                        .setHarvestTool("pickaxe");
+        mythrilFurnace.GetConfig(settings);
+                        //.createNewValue("FuelMultiplier", "@I","2","2");
+        
+        mythrilFurnaceFuelMultiplier = settings.getInt("FuelMultiplier", mythrilFurnace.getSubCategory(), 
+        									2, 1, 99, "Fuel burn time multiplier");
+        
+        onyxFurnace = new ConfigBlock("Onyx Furnace", "Blocks")
+                        .setHardness(3.5F).setResistance(10.0F).setLightValue(1.0F)
+                        .setHarvestTool("pickaxe");
+        onyxFurnace.GetConfig(settings);
+        onyxFurnaceYieldChance = settings.getInt("YieldChance", onyxFurnace.getSubCategory(), 
+        		33, 1, 100, "Chance of smelting an extra item(s)");
+        onyxFurnaceYieldAmount = settings.getInt("YieldAmount", onyxFurnace.getSubCategory(), 
+        		1, 1, 64, "Number of extra items to get");
+    } // end configureBlocks()
+    
     public static ConfigBlock mythrilFurnace, onyxFurnace;
-
-    public static ConfigValue mythrilFurnaceFuelMultiplier, onyxFurnaceYieldAmount, onyxFurnaceYieldChance;
-
-    public static ConfigValue coloredGUIs;
-    public static ConfigValue enableMythrilFurnace, enableOnyxFurnace;
+    public static int mythrilFurnaceFuelMultiplier, onyxFurnaceYieldAmount, onyxFurnaceYieldChance;
+    public static boolean coloredGUIs;
 } // end class Settings

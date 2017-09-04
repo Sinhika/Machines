@@ -6,6 +6,7 @@ import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.registry.ContentCategories;
 import alexndr.plugins.Machines.Content;
 import alexndr.plugins.Machines.Machines;
+import alexndr.plugins.Machines.Settings;
 import alexndr.plugins.Machines.helpers.FancyFurnaceGuiHandler;
 import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
 import net.minecraft.block.material.Material;
@@ -35,13 +36,7 @@ public class MythrilFurnace extends SimpleFurnace
     public void setAdditionalProperties()
     {
         super.setAdditionalProperties();
-        if (entry.getValueByName("FuelMultiplier") != null
-            && entry.getValueByName("FuelMultiplier").isActive())
-        {
-            MythrilFurnace.FuelMultiplier = Integer.parseInt(
-                            entry.getValueByName("FuelMultiplier")
-                                 .getCurrentValue());
-        }
+        MythrilFurnace.FuelMultiplier = Settings.mythrilFurnaceFuelMultiplier;
     } // end setAdditionalProperties
 
     /* must be customized for children of SimpleFurnace */

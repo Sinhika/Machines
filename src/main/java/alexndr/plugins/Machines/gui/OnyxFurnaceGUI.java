@@ -19,7 +19,7 @@ public class OnyxFurnaceGUI extends GuiContainer
         = new ResourceLocation(alexndr.plugins.Machines.ModInfo.ID,
                                 "textures/gui/container/onyx_furnace_gui.png");
     private static final ResourceLocation furnaceGuiTextures = 
-                    Settings.coloredGUIs.asBoolean() ? coloredGui : defaultGui;
+                    Settings.coloredGUIs ? coloredGui : defaultGui;
     
     private OnyxFurnaceTileEntity tileFurnace;
     private final InventoryPlayer field_175383_v;

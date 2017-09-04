@@ -18,7 +18,7 @@ public class MythrilFurnaceGUI extends GuiContainer
                        "textures/gui/container/mythril_furnace_gui.png");
 
     private static final ResourceLocation furnaceGuiTextures = 
-                    Settings.coloredGUIs.asBoolean() ? coloredGui : defaultGui;
+                    Settings.coloredGUIs ? coloredGui : defaultGui;
         
     private MythrilFurnaceTileEntity tileFurnace;
     private final InventoryPlayer field_175383_v;

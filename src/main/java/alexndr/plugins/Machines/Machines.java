@@ -4,7 +4,6 @@ import alexndr.api.logger.LogHelper;
 import alexndr.api.registry.Plugin;
 import alexndr.plugins.Machines.helpers.FancyFurnaceGuiHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -25,7 +24,7 @@ public class Machines
 	
     public static Plugin plugin = new Plugin(ModInfo.ID, ModInfo.NAME);
 
-	@EventHandler
+	@Mod.EventHandler
 	public void PreInit(FMLPreInitializationEvent event) 
 	{
 		LogHelper.info("Loading Machines...");
@@ -33,7 +32,7 @@ public class Machines
 		
 	}
 	
-	@EventHandler
+	@Mod.EventHandler
 	public void Init(FMLInitializationEvent event) 
 	{
 		//Registers
@@ -42,7 +41,7 @@ public class Machines
 		
 	}
 	
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) 
 	{
         proxy.PostInit(event);
