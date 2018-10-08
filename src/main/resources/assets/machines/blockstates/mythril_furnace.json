@@ -1,19 +1,9 @@
 {
-	"forge_marker" : 1,
-	"defaults": {
-		"textures": {         
-			"top": "machines:blocks/mythril_furnace_top",
-			"front": "machines:blocks/mythril_furnace_front",
-			"side": "machines:blocks/mythril_furnace_side"
-		}
-	},
     "variants": {
-		"normal": { "model" : "orientable" },
-		"inventory": { "model" : "orientable" },
-        "facing=north": { "model": "orientable" },
-        "facing=south": { "model": "orientable", "y": 180 },
-        "facing=west":  { "model": "orientable", "y": 270 },
-        "facing=east":  { "model": "orientable", "y": 90 }
+        "facing=north": { "model": "machines:mythril_furnace" },
+        "facing=south": { "model": "machines:mythril_furnace", "y": 180 },
+        "facing=west":  { "model": "machines:mythril_furnace", "y": 270 },
+        "facing=east":  { "model": "machines:mythril_furnace", "y": 90 }
     }
 }
 

@@ -14,19 +14,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class OnyxFurnaceGUI extends SimpleFurnaceGui
 {
-    private static ResourceLocation defaultGui 
-        = new ResourceLocation("textures/gui/container/furnace.png");
-    private static ResourceLocation coloredGui 
-        = new ResourceLocation(alexndr.plugins.machines.ModInfo.ID,
-                                "textures/gui/container/onyx_furnace_gui.png");
-    private static final ResourceLocation furnaceGuiTextures = 
-                    Settings.coloredGUIs ? coloredGui : defaultGui;
-    
     private final Color textColor = new Color(1.0F, 1.0F, 1.0F);
     
     public OnyxFurnaceGUI(InventoryPlayer player, OnyxFurnaceTileEntity iinv)
     {
-        super(new OnyxFurnaceContainer(player, iinv), furnaceGuiTextures, player, iinv);
+       super(new OnyxFurnaceContainer(player, iinv), 
+        		(Settings.coloredGUIs 
+        			? new ResourceLocation(alexndr.plugins.machines.ModInfo.ID, "textures/gui/container/onyx_furnace_gui.png")
+        			:  new ResourceLocation("textures/gui/container/furnace.png")
+        		), 
+        		player, iinv);
     }
 
     @Override

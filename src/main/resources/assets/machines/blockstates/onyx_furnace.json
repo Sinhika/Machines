@@ -1,19 +1,9 @@
 {
-	"forge_marker" : 1,
-	"defaults": {
-		"textures": {         
-			"top": "machines:blocks/onyx_furnace_top",
-			"front": "machines:blocks/onyx_furnace_front",
-			"side": "machines:blocks/onyx_furnace_side"
-		}
-	},
     "variants": {
-		"normal": { "model" : "orientable" },
-		"inventory": { "model" : "orientable" },
-        "facing=north": { "model": "orientable" },
-        "facing=south": { "model": "orientable", "y": 180 },
-        "facing=west":  { "model": "orientable", "y": 270 },
-        "facing=east":  { "model": "orientable", "y": 90 }
+        "facing=north": { "model": "machines:onyx_furnace" },
+        "facing=south": { "model": "machines:onyx_furnace", "y": 180 },
+        "facing=west":  { "model": "machines:onyx_furnace", "y": 270 },
+        "facing=east":  { "model": "machines:onyx_furnace", "y": 90 }
     }
 }
 
