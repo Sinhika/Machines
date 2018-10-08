@@ -1,8 +1,8 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.machines;
 
 import alexndr.api.logger.LogHelper;
 import alexndr.api.registry.Plugin;
-import alexndr.plugins.Machines.helpers.FancyFurnaceGuiHandler;
+import alexndr.plugins.machines.helpers.FancyFurnaceGuiHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

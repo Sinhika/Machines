@@ -1,6 +1,6 @@
-package alexndr.plugins.Machines.modsupport.jei;
+package alexndr.plugins.machines.modsupport.jei;
 
-import alexndr.plugins.Machines.Content;
+import alexndr.plugins.machines.Content;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;

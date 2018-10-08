@@ -1,6 +1,6 @@
-package alexndr.plugins.Machines.inventory;
+package alexndr.plugins.machines.inventory;
 
-import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
+import alexndr.plugins.machines.tiles.MythrilFurnaceTileEntity;
 import mcjty.lib.compat.CompatSlot;
 import mcjty.lib.tools.InventoryTools;
 import mcjty.lib.tools.ItemStackTools;

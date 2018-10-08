@@ -1,10 +1,10 @@
-package alexndr.plugins.Machines.tiles;
+package alexndr.plugins.machines.tiles;
 
 import java.util.Random;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.FurnaceHelper;
-import alexndr.plugins.Machines.blocks.OnyxFurnace;
+import alexndr.plugins.machines.blocks.OnyxFurnace;
 import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

@@ -1,4 +1,4 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.machines;
 
 import alexndr.api.registry.ContentRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

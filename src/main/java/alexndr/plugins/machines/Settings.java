@@ -1,4 +1,4 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.machines;
 
 import alexndr.api.config.ConfigHelper;
 import alexndr.api.config.types.ConfigBlock;

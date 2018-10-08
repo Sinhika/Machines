@@ -1,33 +1,31 @@
-package alexndr.plugins.Machines.gui;
+package alexndr.plugins.machines.gui;
 
-import java.awt.Color;
-
-import alexndr.plugins.Machines.Settings;
-import alexndr.plugins.Machines.inventory.OnyxFurnaceContainer;
-import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import alexndr.plugins.machines.Settings;
+import alexndr.plugins.machines.inventory.MythrilFurnaceContainer;
+import alexndr.plugins.machines.tiles.MythrilFurnaceTileEntity;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 
-public class OnyxFurnaceGUI extends GuiContainer
+public class MythrilFurnaceGUI extends GuiContainer
 {
     private static ResourceLocation defaultGui 
         = new ResourceLocation("textures/gui/container/furnace.png");
     private static ResourceLocation coloredGui 
-        = new ResourceLocation(alexndr.plugins.Machines.ModInfo.ID,
-                                "textures/gui/container/onyx_furnace_gui.png");
+        = new ResourceLocation(alexndr.plugins.machines.ModInfo.ID,
+                       "textures/gui/container/mythril_furnace_gui.png");
+
     private static final ResourceLocation furnaceGuiTextures = 
                     Settings.coloredGUIs ? coloredGui : defaultGui;
-    
-    private OnyxFurnaceTileEntity tileFurnace;
+        
+    private MythrilFurnaceTileEntity tileFurnace;
     private final InventoryPlayer field_175383_v;
-    private final Color textColor = new Color(1.0F, 1.0F, 1.0F);
-    
-    public OnyxFurnaceGUI(InventoryPlayer player, OnyxFurnaceTileEntity iinv)
+
+    public MythrilFurnaceGUI(InventoryPlayer player, MythrilFurnaceTileEntity iinv)
     {
-        super(new OnyxFurnaceContainer(player, iinv));
+        super(new MythrilFurnaceContainer(player, iinv));
         this.field_175383_v = player;
         this.tileFurnace = iinv;
     }
@@ -35,11 +33,8 @@ public class OnyxFurnaceGUI extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String s = this.tileFurnace.getDisplayName().getUnformattedText();
-        this.fontRendererObj.drawString(s,
-                        this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 
-                        this.textColor.getRGB());
-        this.fontRendererObj.drawString(this.field_175383_v.getDisplayName().getUnformattedText(),
-                        8, this.ySize - 96 + 2, this.textColor.getRGB());
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(this.field_175383_v.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override

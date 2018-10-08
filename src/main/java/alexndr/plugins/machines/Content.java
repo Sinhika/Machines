@@ -1,12 +1,12 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.machines;
 
 import alexndr.api.core.SimpleCoreAPI;
 import alexndr.api.helpers.game.TabHelper;
 import alexndr.api.logger.LogHelper;
-import alexndr.plugins.Machines.blocks.MythrilFurnace;
-import alexndr.plugins.Machines.blocks.OnyxFurnace;
-import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
-import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import alexndr.plugins.machines.blocks.MythrilFurnace;
+import alexndr.plugins.machines.blocks.OnyxFurnace;
+import alexndr.plugins.machines.tiles.MythrilFurnaceTileEntity;
+import alexndr.plugins.machines.tiles.OnyxFurnaceTileEntity;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

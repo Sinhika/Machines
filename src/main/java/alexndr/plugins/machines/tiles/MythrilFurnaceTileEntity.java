@@ -1,7 +1,7 @@
-package alexndr.plugins.Machines.tiles;
+package alexndr.plugins.machines.tiles;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
-import alexndr.plugins.Machines.blocks.MythrilFurnace;
+import alexndr.plugins.machines.blocks.MythrilFurnace;
 import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

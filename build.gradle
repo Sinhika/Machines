@@ -9,14 +9,14 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'java'
-
-sourceCompatibility = version_java
-targetCompatibility = version_java
+sourceCompatibility = targetCompatibility = version_java // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = version_java
+}
 
 def getVersionAppendage() {
     if (System.env.BUILD_NUMBER)
@@ -47,22 +47,8 @@ minecraft {
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
-repositories {
-    maven { // McJtyLib
-            url "http://maven.k-4u.nl"
-    }
-}
 
 dependencies {
-    deobfCompile "com.github.mcjty:compatlayer:${project.compat_version}"
-}
-
-
-dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
  }
 
 processResources
@@ -94,14 +80,20 @@ artifacts {
 }
 
 repositories {
-  maven {
+maven {
     // location of the maven that hosts JEI files
+    name = "Progwml6 maven"
     url = "http://dvs1.progwml6.com/files/maven"
+  }
+  maven {
+    // location of a maven mirror for JEI files, as a fallback
+    name = "ModMaven"
+    url = "modmaven.k-4u.nl"
   }
 }
 
 dependencies {
-  // compile against the JEI API
+   // compile against the JEI API but do not include it at runtime
   deobfCompile "mezz.jei:jei_${version_minecraft}:${jei_version}:api"
   // at runtime, use the full JEI jar
   runtime "mezz.jei:jei_${version_minecraft}:${jei_version}"

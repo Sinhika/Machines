@@ -1,4 +1,4 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.machines;
 
 import alexndr.api.logger.LogHelper;
 import net.minecraft.init.Blocks;

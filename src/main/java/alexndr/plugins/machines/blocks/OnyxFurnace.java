@@ -1,14 +1,14 @@
-package alexndr.plugins.Machines.blocks;
+package alexndr.plugins.machines.blocks;
 
 import java.util.Random;
 
 import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.registry.ContentCategories;
-import alexndr.plugins.Machines.Content;
-import alexndr.plugins.Machines.Machines;
-import alexndr.plugins.Machines.Settings;
-import alexndr.plugins.Machines.helpers.FancyFurnaceGuiHandler;
-import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import alexndr.plugins.machines.Content;
+import alexndr.plugins.machines.Machines;
+import alexndr.plugins.machines.Settings;
+import alexndr.plugins.machines.helpers.FancyFurnaceGuiHandler;
+import alexndr.plugins.machines.tiles.OnyxFurnaceTileEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

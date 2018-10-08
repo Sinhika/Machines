@@ -1,4 +1,4 @@
-package alexndr.plugins.Machines;
+package alexndr.plugins.machines;
 
 import alexndr.api.helpers.game.RenderItemHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

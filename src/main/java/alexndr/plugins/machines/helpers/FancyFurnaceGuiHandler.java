@@ -1,11 +1,11 @@
-package alexndr.plugins.Machines.helpers;
+package alexndr.plugins.machines.helpers;
 
-import alexndr.plugins.Machines.gui.MythrilFurnaceGUI;
-import alexndr.plugins.Machines.gui.OnyxFurnaceGUI;
-import alexndr.plugins.Machines.inventory.MythrilFurnaceContainer;
-import alexndr.plugins.Machines.inventory.OnyxFurnaceContainer;
-import alexndr.plugins.Machines.tiles.MythrilFurnaceTileEntity;
-import alexndr.plugins.Machines.tiles.OnyxFurnaceTileEntity;
+import alexndr.plugins.machines.gui.MythrilFurnaceGUI;
+import alexndr.plugins.machines.gui.OnyxFurnaceGUI;
+import alexndr.plugins.machines.inventory.MythrilFurnaceContainer;
+import alexndr.plugins.machines.inventory.OnyxFurnaceContainer;
+import alexndr.plugins.machines.tiles.MythrilFurnaceTileEntity;
+import alexndr.plugins.machines.tiles.OnyxFurnaceTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
