@@ -1,7 +1,7 @@
 {
     "parent": "block/orientable",
     "textures": {
-        "top": "machines:blocks/mythril_furnace_to",
+        "top": "machines:blocks/mythril_furnace_top",
         "front": "machines:blocks/mythril_furnace_front_lit",
         "side": "machines:blocks/mythril_furnace_side"
     }

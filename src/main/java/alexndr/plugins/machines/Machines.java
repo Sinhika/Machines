@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, 
@@ -36,7 +37,7 @@ public class Machines
 	public void Init(FMLInitializationEvent event) 
 	{
 		//Registers
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new FancyFurnaceGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, (IGuiHandler) new FancyFurnaceGuiHandler());
         proxy.Init(event);
 		
 	}

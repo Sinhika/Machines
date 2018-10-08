@@ -28,12 +28,18 @@ public class ModBlocks
 		if (Settings.mythrilFurnace.isEnabled()) 
 		{
 			mythril_furnace.setConfigEntry(Settings.mythrilFurnace).setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
-			mythril_furnace_lit.setConfigEntry(Settings.mythrilFurnace);
+			mythril_furnace_lit.setConfigEntry(Settings.mythrilFurnace).setDropItem(true)
+				.setItemToDrop(mythril_furnace.getItemToDrop());
+			MythrilFurnace.setUnlit_furnace(mythril_furnace);
+			MythrilFurnace.setLit_furnace(mythril_furnace_lit);
 		}
 		if (Settings.onyxFurnace.isEnabled())
 		{
 			onyx_furnace.setConfigEntry(Settings.onyxFurnace).setCreativeTab(TabHelper.redstoneTab(SimpleCoreAPI.plugin));
-			onyx_furnace_lit.setConfigEntry(Settings.onyxFurnace);
+			onyx_furnace_lit.setConfigEntry(Settings.onyxFurnace).setDropItem(true)
+				.setItemToDrop(onyx_furnace.getItemToDrop());
+			OnyxFurnace.setUnlit_furnace(onyx_furnace);
+			OnyxFurnace.setLit_furnace(onyx_furnace_lit);
 		}
 	} // end configureBlocks()
 
