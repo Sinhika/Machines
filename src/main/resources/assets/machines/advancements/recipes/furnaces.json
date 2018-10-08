@@ -1,0 +1,26 @@
+{
+	"parent" : "machines:recipes/root",
+   	"rewards": {
+    	"recipes": [
+      		"machines:mythril_furnace", "machines:onyx_furnace"
+    	]
+  	},
+    "criteria" : {
+    	"has_furnace" : {
+      		"trigger": "minecraft:inventory_changed",
+      		"conditions" : {
+      			"items" : [
+      				{
+      				"item" : "minecraft:furnace"
+      				}
+      			]
+      		}
+    	}
+    	
+     },
+  "requirements": [
+    [
+      "has_furnace"
+   	]
+  ]
+}
