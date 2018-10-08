@@ -5,28 +5,23 @@ import java.util.Random;
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.api.helpers.game.FurnaceHelper;
 import alexndr.plugins.machines.blocks.OnyxFurnace;
-import mcjty.lib.tools.ItemStackTools;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
 {	
+	public final static String tilename = "container.onyx_furnace";
+	public final static String guiID = "machines:onyx_furnace_gui";
     private static int YieldChance = OnyxFurnace.YieldChance;
     private static int YieldAmount = OnyxFurnace.YieldAmount;
     private Random generator = new Random();
     
     public OnyxFurnaceTileEntity()
     {
-        super("container.onyx_furnace", 200, "machines:onyx_furnace_gui", 3);
-    }
-
-    public static boolean isItemFuel(ItemStack fuel)
-    {
-         return getItemBurnTime(fuel) > 0;
+        super(OnyxFurnaceTileEntity.tilename, 200, OnyxFurnaceTileEntity.guiID, 3);
     }
 
     public static int getItemBurnTime(ItemStack burnItem)
@@ -36,8 +31,9 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
     
     /**
      * Turn one item from the furnace source stack into the appropriate smelted
-     * item in the furnace result stack. Avoid doubling dusts because they have already
-     * been doubled.
+     * item in the furnace result stack. We don't care if you're trying to double dusts,
+     * because Mekanism exists so who cares?  (Also scanning the ore list every single
+     * operation is a bit extra).
      */
     @Override
     public void smeltItem()
@@ -45,7 +41,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
     	int k;  // additional yield amount
     	int r = generator.nextInt(100);
     	
-    	if(r <= YieldChance && !getDust(this.getStackInSlot(NDX_INPUT_SLOT)))
+    	if(r <= YieldChance)
     	{
     		k = YieldAmount;
     	}
@@ -59,19 +55,19 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
             ItemStack result_stack = FurnaceRecipes.instance().getSmeltingResult(instack);
             ItemStack outstack = (ItemStack)this.getStackInSlot(NDX_OUTPUT_SLOT);
 
-            if (ItemStackTools.isEmpty(outstack))
+            if (outstack.isEmpty())
             {
-                ItemStack extra_result = ItemStackTools.safeCopy(result_stack);
-                ItemStackTools.incStackSize(extra_result, k);
+                ItemStack extra_result = result_stack.copy();
+                extra_result.grow(k);
                 FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_OUTPUT_SLOT, extra_result);
             }
             else if (ItemStack.areItemsEqual(outstack, result_stack))
             {
-                ItemStackTools.incStackSize(outstack, ItemStackTools.getStackSize(result_stack) + k);
+               	outstack.grow(result_stack.getCount() + k);
             }
             if (instack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) 
                 && instack.getMetadata() == 1 
-                && ItemStackTools.isValid(this.getStackInSlot(NDX_FUEL_SLOT)) 
+                && !this.getStackInSlot(NDX_FUEL_SLOT).isEmpty() 
                 && (this.getStackInSlot(NDX_FUEL_SLOT)).getItem() == Items.BUCKET)
             {
                 FurnaceHelper.SetInSlot(furnaceItemStacks, NDX_FUEL_SLOT,
@@ -81,26 +77,7 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
             this.decrStackSize(NDX_INPUT_SLOT, 1);
         } // end-if thisCanSmelt
     } // end smeltItem
-
 	
-	public boolean getDust(ItemStack item)
-	{
-		for (String name : OreDictionary.getOreNames())
-        {
-			for (final ItemStack oreItem : ItemStackTools.getOres(name))
-            {
-			    if (ItemStack.areItemsEqual(oreItem, item))
-				{
-                    if (name.contains("dust"))
-                    {
-                    	return true;
-                    }
-                    return false;
-                }
-            }
-        }
-        return false;
-	} // end getDust()
 	
     @Override
     public void update() 
@@ -116,7 +93,8 @@ public class OnyxFurnaceTileEntity extends TileEntitySimpleFurnace
         if (!this.getWorld().isRemote)
         {
             ItemStack itemstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
-            if (ItemStackTools.isValid(itemstack)) {
+            if (!itemstack.isEmpty()) 
+			{
                 burnTime = OnyxFurnaceTileEntity.getItemBurnTime(itemstack);
             }
             flag1 = default_cooking_update(flag1, itemstack, burnTime);

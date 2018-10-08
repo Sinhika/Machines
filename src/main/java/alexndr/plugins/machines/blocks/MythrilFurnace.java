@@ -1,35 +1,33 @@
 package alexndr.plugins.machines.blocks;
 
-import java.util.Random;
-
 import alexndr.api.content.blocks.SimpleFurnace;
 import alexndr.api.registry.ContentCategories;
-import alexndr.plugins.machines.Content;
 import alexndr.plugins.machines.Machines;
 import alexndr.plugins.machines.Settings;
 import alexndr.plugins.machines.helpers.FancyFurnaceGuiHandler;
 import alexndr.plugins.machines.tiles.MythrilFurnaceTileEntity;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class MythrilFurnace extends SimpleFurnace
+public class MythrilFurnace extends SimpleFurnace<MythrilFurnaceTileEntity>
 {
+	// repeat for custom furnace classes
+	private static Block unlit_furnace;
+	private static Block lit_furnace;
+	
     public static int FuelMultiplier = 2;
     
-    public MythrilFurnace(boolean is_active)
+    public MythrilFurnace(String furnace_name, boolean is_active)
     {
-        super(Machines.plugin, Material.IRON, ContentCategories.Block.MACHINE, is_active);
+        super(furnace_name, Machines.plugin, Material.IRON, ContentCategories.Block.MACHINE, is_active);
     } // end ctor
 
     @Override
@@ -40,18 +38,22 @@ public class MythrilFurnace extends SimpleFurnace
     } // end setAdditionalProperties
 
     /* must be customized for children of SimpleFurnace */
-    public static SimpleFurnace getUnlit_furnace()
-    {
-        return (SimpleFurnace) Content.mythril_furnace;
+    public static Block getUnlit_furnace() {
+        return MythrilFurnace.unlit_furnace;
     }
-
 
     /* must be customized for children of SimpleFurnace */
-    public static SimpleFurnace getLit_furnace()
-    {
-        return (SimpleFurnace) Content.mythril_furnace_lit;
+    public static Block getLit_furnace()  {
+        return MythrilFurnace.lit_furnace;
     }
 
+	public static void setUnlit_furnace(Block unlit_furnace) {
+		MythrilFurnace.unlit_furnace = unlit_furnace;
+	}
+
+	public static void setLit_furnace(Block lit_furnace) {
+		MythrilFurnace.lit_furnace = lit_furnace;
+	}
 
     @Override
     public TileEntity createNewTileEntity(World arg0, int arg1)
@@ -59,25 +61,19 @@ public class MythrilFurnace extends SimpleFurnace
         return new MythrilFurnaceTileEntity();
     }
 
-
     @Override
-    @SideOnly(Side.CLIENT)
-    public ItemStack getItem(World arg0, BlockPos arg1, IBlockState arg2)
-    {
-        return new ItemStack(Item.getItemFromBlock(Content.mythril_furnace));
-    }
+	public MythrilFurnaceTileEntity createTileEntity(World world, IBlockState state) {
+        return new MythrilFurnaceTileEntity();
+	}
 
-
-    @Override
-    public Item getItemDropped(IBlockState arg0, Random arg1, int arg2)
-    {
-        return Item.getItemFromBlock(Content.mythril_furnace);
-    }
-
+	@Override
+	public Class<MythrilFurnaceTileEntity> getTileEntityClass() {
+		return MythrilFurnaceTileEntity.class;
+	}
 
     /* cut & pasted from BlockFurnace & modified per CompatBlock */
    @Override
-    public boolean clOnBlockActivated(World worldIn, BlockPos pos, IBlockState arg2,
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState arg2,
                     EntityPlayer playerIn, EnumHand hand, EnumFacing arg6,
                     float arg7, float arg8, float arg9)
     {
@@ -95,7 +91,7 @@ public class MythrilFurnace extends SimpleFurnace
             }
             return true;
         }
-    } // end clOnBlockActivated
+    } // end onBlockActivated
 
 
     /**
@@ -114,16 +110,12 @@ public class MythrilFurnace extends SimpleFurnace
         keepInventory = true;
 
         if (active) {
-            worldIn.setBlockState(pos, getLit_furnace().getDefaultState().withProperty(FACING,
-                            iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, getLit_furnace().getDefaultState().withProperty(FACING,
-                            iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, MythrilFurnace.lit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, MythrilFurnace.lit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else {
-            worldIn.setBlockState(pos, getUnlit_furnace().getDefaultState().withProperty(FACING,
-                            iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, getUnlit_furnace().getDefaultState().withProperty(FACING,
-                            iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, MythrilFurnace.unlit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, MythrilFurnace.unlit_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;

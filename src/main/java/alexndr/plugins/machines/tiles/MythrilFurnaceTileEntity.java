@@ -2,31 +2,34 @@ package alexndr.plugins.machines.tiles;
 
 import alexndr.api.content.tiles.TileEntitySimpleFurnace;
 import alexndr.plugins.machines.blocks.MythrilFurnace;
-import mcjty.lib.tools.ItemStackTools;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
+import alexndr.plugins.machines.inventory.MythrilFurnaceContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 
 public class MythrilFurnaceTileEntity extends TileEntitySimpleFurnace
 {
+	public final static String tilename = "container.mythril_furnace";
+	public final static String guiID = "machines:mythril_furnace_gui";
     private static int fuelMultiplier = 2;
 
     public MythrilFurnaceTileEntity()
     {
-        super("container.mythril_furnace", 200, "machines:mythril_furnace_gui", 3);
+        super(MythrilFurnaceTileEntity.tilename, 200, MythrilFurnaceTileEntity.guiID, 3);
         fuelMultiplier = MythrilFurnace.FuelMultiplier;
     }
 
-    public static boolean isItemFuel(ItemStack fuel)
+	@Override
+	public boolean isItemFuel(ItemStack fuel)
     {
-         return getItemBurnTime(fuel) > 0;
+        return MythrilFurnaceTileEntity.getItemBurnTime(fuel) > 0;
+    }
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+        return new MythrilFurnaceContainer(playerInventory, this);	
     }
 
      /**
@@ -35,44 +38,7 @@ public class MythrilFurnaceTileEntity extends TileEntitySimpleFurnace
      */
     public static int getItemBurnTime(ItemStack burnItem)
     {
-        if (ItemStackTools.isEmpty(burnItem))
-        {
-            return 0;
-        }
-        else
-        {
-            Item item = burnItem.getItem();
-
-            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
-            {
-                Block block = Block.getBlockFromItem(item);
-
-                if (block == Blocks.WOODEN_SLAB)
-                {
-                    return 150 * fuelMultiplier;
-                }
-
-                if (block.getDefaultState().getMaterial() == Material.WOOD)
-                {
-                    return 300 * fuelMultiplier;
-                }
-
-                if (block == Blocks.COAL_BLOCK)
-                {
-                    return 16000 * fuelMultiplier;
-                }
-            }
-
-            if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200 * fuelMultiplier;
-            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200 * fuelMultiplier;
-            if (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD")) return 200 * fuelMultiplier;
-            if (item == Items.STICK) return 100 * fuelMultiplier;
-            if (item == Items.COAL) return 1600 * fuelMultiplier;
-            if (item == Items.LAVA_BUCKET) return 20000 * fuelMultiplier;
-            if (item == Item.getItemFromBlock(Blocks.SAPLING)) return 100 * fuelMultiplier;
-            if (item == Items.BLAZE_ROD) return 2400 * fuelMultiplier;
-            return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(burnItem) * fuelMultiplier;
-        } // end else
+		return TileEntitySimpleFurnace.getItemBurnTime(burnItem) * fuelMultiplier;
     } // end getItemBurnTime
 
     /**
@@ -93,7 +59,8 @@ public class MythrilFurnaceTileEntity extends TileEntitySimpleFurnace
         if (!this.getWorld().isRemote)
         {
             ItemStack itemstack = (ItemStack)this.getStackInSlot(NDX_FUEL_SLOT);
-            if (ItemStackTools.isValid(itemstack)) {
+            if (! itemstack.isEmpty())
+			{
                 burnTime = MythrilFurnaceTileEntity.getItemBurnTime(itemstack);
             }
             flag1 = default_cooking_update(flag1, itemstack, burnTime);

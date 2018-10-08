@@ -9,7 +9,3 @@ container.mythril_furnace=Mythril Furnace
 mythril_furnace_gui=Mythril Furnace
 container.onyx_furnace=Onyx Furnace
 onyx_furnace_gui=Onyx Furnace
-
-//Updater
-machines.updateMessage1=§3Machines §ris out of date. The latest version is §c
-machines.updateMessage2=§r. Please update from §9http://bit.ly/SimpleOres

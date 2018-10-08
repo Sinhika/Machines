@@ -18,8 +18,8 @@ public class Machines
     @Mod.Instance
     public static Machines INSTANCE;
     
-	@SidedProxy(clientSide = "alexndr.plugins.Machines.ProxyClient",
-	            serverSide = "alexndr.plugins.Machines.ProxyCommon")
+	@SidedProxy(clientSide = "alexndr.plugins.machines.ProxyClient",
+	            serverSide = "alexndr.plugins.machines.ProxyCommon")
 	public static ProxyCommon proxy;
 	
     public static Plugin plugin = new Plugin(ModInfo.ID, ModInfo.NAME);
@@ -27,7 +27,7 @@ public class Machines
 	@Mod.EventHandler
 	public void PreInit(FMLPreInitializationEvent event) 
 	{
-		LogHelper.info("Loading Machines...");
+		LogHelper.info(ModInfo.ID, "Loading...");
         proxy.PreInit(event);
 		
 	}
@@ -45,6 +45,6 @@ public class Machines
 	public void postInit(FMLPostInitializationEvent event) 
 	{
         proxy.PostInit(event);
-		LogHelper.info("Machines loaded");
+		LogHelper.info(ModInfo.ID, "Loading Complete!");
 	}
 } // end class Machines
