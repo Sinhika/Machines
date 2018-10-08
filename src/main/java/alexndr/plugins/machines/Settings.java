@@ -35,7 +35,7 @@ public class Settings
      */
     public static void configureToggles()
     {
-    	settings.getBoolean("EnableColoredGUIs", Configuration.CATEGORY_GENERAL, true, 
+    	coloredGUIs = settings.getBoolean("EnableColoredGUIs", Configuration.CATEGORY_GENERAL, true, 
     						"Show colored furnace backgrounds in GUI");
     } // end configureToggles()
     
