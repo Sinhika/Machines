@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "machines:mythril_furnace_lit" },
-        "facing=south": { "model": "machines:mythril_furnace_lit", "y": 180 },
-        "facing=west":  { "model": "machines:mythril_furnace_lit", "y": 270 },
-        "facing=east":  { "model": "machines:mythril_furnace_lit", "y": 90 }
-    }
-}
