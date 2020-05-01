@@ -1,0 +1,48 @@
+# The overall format is standard TOML format, v0.5.0.
+# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
+modLoader="javafml" #mandatory
+
+# A version range to match for said mod loader - for regular FML @Mod it will be the forge version
+loaderVersion="[31,)" #mandatory
+issueTrackerURL="https://github.com/Sinhika/Machines/issues"
+logoFile="machines.png"
+
+[[mods]]
+modId="machines"
+version="${version}"
+displayName="SimpleOres:Machines"
+updateJSONURL="https://raw.githubusercontent.com/Sinhika/Machines/1.15/update.json"
+displayURL="http://minecraft.curseforge.com/projects/machines"
+credits="Created by AleXndrTheGr8st, updated and maintained by Sinhika"
+authors="AleXndrTheGr8st, Sinhika"
+description='''An addon for SimpleOres that adds improved furnaces.
+'''
+
+[[dependencies.machines]] #optional
+    modId="forge"
+    mandatory=true
+    versionRange="[31,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.machines]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.15.2]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.machines]]
+    modId="simpleores"
+    mandatory=true
+    versionRange="[1.15.2-2.1.5.1,)"
+    ordering="NONE"
+    side="BOTH"
+        
+[[dependencies.machines]] #optional
+    modId="jei"
+    mandatory=false
+    versionRange="[1.15.2-6.0.0.3,)"
+    ordering="BEFORE"
+    side="BOTH"
+    
