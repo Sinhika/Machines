@@ -1,3 +1,0 @@
-Version 1.0.0
--Added Mythril Furnace
--Added Onyx Furnace
