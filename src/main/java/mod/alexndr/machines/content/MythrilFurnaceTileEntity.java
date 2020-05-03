@@ -36,9 +36,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 
 /**
- * @author Cadiboo
+ *
  */
-public abstract class MythrilFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider 
+public class MythrilFurnaceTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider 
 {
 
 	public static final int FUEL_SLOT = 0;
@@ -353,4 +353,4 @@ public abstract class MythrilFurnaceTileEntity extends TileEntity implements ITi
 		return new MythrilFurnaceContainer(windowId, inventory, this);
 	}
 
-}
+} // end class

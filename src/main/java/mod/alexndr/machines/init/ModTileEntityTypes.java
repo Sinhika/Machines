@@ -24,14 +24,16 @@ public final class ModTileEntityTypes {
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = 
 	        new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, Machines.MODID);
 
-	public static final RegistryObject<TileEntityType<MythrilFurnaceTileEntity>> mythril_furnace 
-	    = TILE_ENTITY_TYPES.register("mythril_furnace", 
-	            () -> TileEntityType.Builder.create(MythrilFurnaceTileEntity::new, ModBlocks.mythril_furnace.get())
+	public static RegistryObject<TileEntityType<MythrilFurnaceTileEntity>> mythril_furnace = 
+	        TILE_ENTITY_TYPES.register("mythril_furnace", 
+	                () -> TileEntityType.Builder.create(MythrilFurnaceTileEntity::new, 
+	                                                    ModBlocks.mythril_furnace.get())
                .build(null));
 
     
-    public static final RegistryObject<TileEntityType<OnyxFurnaceTileEntity>> onyx_furnace 
-        = TILE_ENTITY_TYPES.register("onyx_furnace", 
-            () -> TileEntityType.Builder.create(OnyxFurnaceTileEntity::new, ModBlocks.onyx_furnace.get())
-        .build(null));
+    public static RegistryObject<TileEntityType<OnyxFurnaceTileEntity>> onyx_furnace = 
+            TILE_ENTITY_TYPES.register("onyx_furnace", 
+                            () -> TileEntityType.Builder.create(OnyxFurnaceTileEntity::new, 
+                                                                ModBlocks.onyx_furnace.get())
+             .build(null));
 } // end class
