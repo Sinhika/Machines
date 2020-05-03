@@ -19,7 +19,7 @@ import mod.alexndr.machines.init.ModTileEntityTypes;
 @Mod(Machines.MODID)
 public final class Machines {
 
-	public static final String MODID = "machines";
+	public static final String MODID = "simple_machines";
 
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 

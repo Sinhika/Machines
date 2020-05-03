@@ -1,13 +1,5 @@
 package mod.alexndr.machines.client;
 
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +7,12 @@ import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.client.gui.MythrilFurnaceScreen;
 import mod.alexndr.machines.client.gui.OnyxFurnaceScreen;
 import mod.alexndr.machines.init.ModContainerTypes;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 /**
  * Subscribe to events from the MOD EventBus that should be handled on the PHYSICAL CLIENT side in this class
