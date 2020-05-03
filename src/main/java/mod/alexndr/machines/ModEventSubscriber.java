@@ -1,17 +1,20 @@
 package mod.alexndr.machines;
 
-import net.minecraft.entity.EntityType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import mod.alexndr.machines.config.ConfigHelper;
+import mod.alexndr.machines.config.ConfigHolder;
+import mod.alexndr.machines.init.ModBlocks;
+import mod.alexndr.machines.init.ModItemGroups;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * Subscribe to events from the MOD EventBus that should be handled on both PHYSICAL sides in this class
@@ -53,13 +56,11 @@ public final class ModEventSubscriber {
 	 * This method will be called by Forge when a config changes.
 	 */
 	@SubscribeEvent
-	public static void onModConfigEvent(final ModConfig.ModConfigEvent event) {
+	public static void onModConfigEvent(final ModConfig.ModConfigEvent event) 
+	{
 		final ModConfig config = event.getConfig();
 		// Rebake the configs when they change
-		if (config.getSpec() == ConfigHolder.CLIENT_SPEC) {
-			ConfigHelper.bakeClient(config);
-			LOGGER.debug("Baked client config");
-		} else if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
+		if (config.getSpec() == ConfigHolder.SERVER_SPEC) {
 			ConfigHelper.bakeServer(config);
 			LOGGER.debug("Baked server config");
 		}

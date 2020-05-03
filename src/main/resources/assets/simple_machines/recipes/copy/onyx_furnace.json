@@ -1,0 +1,20 @@
+{
+	"conditions" : [
+		{
+			"type" : "machines:onyx_furnace_enabled",
+			"value" : true
+		} ],
+	"type" : "forge:ore_shaped",
+	"result" : {
+		"item" : "machines:onyx_furnace"
+	},
+	"pattern" : [
+		"SSS",
+		"SYS",
+		"SSS"
+	],
+	"key" : {
+		"S" : { "item" : "#GEMONYX"},
+		"Y" : { "item" : "minecraft:furnace"}
+	}
+}
