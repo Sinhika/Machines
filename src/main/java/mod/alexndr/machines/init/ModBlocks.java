@@ -1,7 +1,12 @@
 package mod.alexndr.machines.init;
 
 import mod.alexndr.machines.Machines;
+import mod.alexndr.machines.content.MythrilFurnaceBlock;
+import mod.alexndr.machines.content.OnyxFurnaceBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -21,5 +26,13 @@ public final class ModBlocks
     public static final DeferredRegister<Block> BLOCKS = 
             new DeferredRegister<>(ForgeRegistries.BLOCKS, Machines.MODID);
     
-
+    // Furnaces
+    public static final RegistryObject<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
+            () -> new OnyxFurnaceBlock(Block.Properties.create(Material.ROCK)
+                    .hardnessAndResistance(3.5F, 12.0F)
+                    .lightValue(13).harvestTool(ToolType.PICKAXE)));    
+    public static final RegistryObject<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
+            () -> new MythrilFurnaceBlock(Block.Properties.create(Material.ROCK)
+                    .hardnessAndResistance(3.5F, 12.0F)
+                    .lightValue(13).harvestTool(ToolType.PICKAXE)));
 } // end class
