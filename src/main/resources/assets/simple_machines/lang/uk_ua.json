@@ -1,0 +1,6 @@
+{
+	"itemGroup.simple_machines" : "Машини",
+    "_comment": "blocks",
+    "block.simple_machines.mythril_furnace": "Міфрилова піч",
+    "block.simple_machines.onyx_furnace": "Оніксова піч"
+}
