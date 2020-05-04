@@ -1,6 +1,0 @@
-{
-  "conditions": {
-    	"mythril_furnace_enabled" : "alexndr.plugins.machines.conditions.FurnaceConditionFactory",
-    	"onyx_furnace_enabled" : "alexndr.plugins.machines.conditions.FurnaceConditionFactory"
- 	}
-}
