@@ -42,7 +42,8 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, final int mouseY) {
+	protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, final int mouseY) 
+	{
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
 		int startX = this.guiLeft;
@@ -54,7 +55,8 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 		this.blit(startX, startY, 0, 0, this.xSize, this.ySize);
 
 		final OnyxFurnaceTileEntity tileEntity = container.tileEntity;
-		if (tileEntity.smeltTimeLeft > 0) {
+		if (tileEntity.smeltTimeLeft > 0) 
+		{
 			// Draw progress arrow
 			int arrowWidth = getSmeltTimeScaled();
 			this.blit(
@@ -63,7 +65,8 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 					arrowWidth, 14
 			);
 		}
-		if (tileEntity.isBurning()) {
+		if (tileEntity.isBurning()) 
+		{
 			// Draw flames
 			int flameHeight = getFuelBurnTimeScaled();
 			this.blit(
@@ -72,9 +75,10 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 					14, flameHeight
 			);
 		}
-	}
+	} // end ()
 
-	private int getSmeltTimeScaled() {
+	private int getSmeltTimeScaled() 
+	{
 		final OnyxFurnaceTileEntity tileEntity = this.container.tileEntity;
 		final short smeltTimeLeft = tileEntity.smeltTimeLeft;
 		final short maxSmeltTime = tileEntity.maxSmeltTime;
@@ -83,7 +87,8 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 		return (maxSmeltTime - smeltTimeLeft) * 24 / maxSmeltTime; // 24 is the width of the arrow
 	}
 
-	private int getFuelBurnTimeScaled() {
+	private int getFuelBurnTimeScaled() 
+	{
 		final OnyxFurnaceTileEntity tileEntity = this.container.tileEntity;
 		if (tileEntity.maxFuelBurnTime <= 0)
 			return 0;

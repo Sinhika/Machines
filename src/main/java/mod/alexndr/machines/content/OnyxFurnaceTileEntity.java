@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.block.BlockState;
@@ -52,8 +53,8 @@ public class OnyxFurnaceTileEntity extends TileEntity implements ITickableTileEn
 	private static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
 	private static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
 
-    private static int YieldChance = 33;
-    private static int YieldAmount = 1;
+    private static int YieldChance = MachinesConfig.onyxFurnaceYieldChance;
+    private static int YieldAmount = MachinesConfig.onyxFurnaceYieldAmount;
     private Random generator = new Random();
 	
 	public final ItemStackHandler inventory = new ItemStackHandler(3) 
