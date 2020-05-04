@@ -1,8 +1,8 @@
 {
 	"parent": "block/orientable",
 	"textures": {
-		"top": "machines:blocks/onyx_furnace_top",
-		"front": "machines:blocks/onyx_furnace_front",
-		"side": "machines:blocks/onyx_furnace_side"
+		"top": "simple_machines:block/onyx_furnace_top",
+		"front": "simple_machines:block/onyx_furnace_front",
+		"side": "simple_machines:block/onyx_furnace_side"
 	}
 }
