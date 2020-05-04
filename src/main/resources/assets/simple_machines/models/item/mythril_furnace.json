@@ -1,3 +1,3 @@
 {
-    "parent": "machines:block/mythril_furnace"
+    "parent": "simple_machines:block/mythril_furnace"
 }

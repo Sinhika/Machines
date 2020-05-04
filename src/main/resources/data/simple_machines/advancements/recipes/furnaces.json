@@ -1,8 +1,8 @@
 {
-	"parent" : "machines:recipes/root",
+	"parent" : "simple_machines:recipes/root",
    	"rewards": {
     	"recipes": [
-      		"machines:mythril_furnace", "machines:onyx_furnace"
+      		"simple_machines:mythril_furnace", "simple_machines:onyx_furnace"
     	]
   	},
     "criteria" : {
