@@ -35,7 +35,7 @@ public final class Machines {
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 
 		// Register Configs (Does not need to be after Deferred Registers)
-		modLoadingContext.registerConfig(ModConfig.Type.SERVER, ConfigHolder.SERVER_SPEC);
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC);
 	}
 
 } // end class
