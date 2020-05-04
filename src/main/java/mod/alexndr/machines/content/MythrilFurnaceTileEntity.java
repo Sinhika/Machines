@@ -51,6 +51,8 @@ public class MythrilFurnaceTileEntity extends TileEntity implements ITickableTil
 	private static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
 	private static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
 
+	private static int fuelMultiplier = 2;
+
 	public final ItemStackHandler inventory = new ItemStackHandler(3) {
 		@Override
 		public boolean isItemValid(final int slot, @Nonnull final ItemStack stack) {
@@ -227,7 +229,7 @@ public class MythrilFurnaceTileEntity extends TileEntity implements ITickableTil
 	private boolean burnFuel() {
 		final ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT).copy();
 		if (!fuelStack.isEmpty()) {
-			final int burnTime = ForgeHooks.getBurnTime(fuelStack);
+			final int burnTime = ForgeHooks.getBurnTime(fuelStack) * fuelMultiplier;
 			if (burnTime > 0) {
 				fuelBurnTimeLeft = maxFuelBurnTime = ((short) burnTime);
 				if (fuelStack.hasContainerItem())

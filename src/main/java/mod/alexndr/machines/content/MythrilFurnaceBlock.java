@@ -33,7 +33,7 @@ import mod.alexndr.machines.init.ModTileEntityTypes;
 public class MythrilFurnaceBlock extends HorizontalBlock 
 {
 
-	public static final BooleanProperty BURNING = BooleanProperty.create("burning");
+	public static final BooleanProperty BURNING = BooleanProperty.create("lit");
 
 	public MythrilFurnaceBlock(final Properties properties) {
 		super(properties);
