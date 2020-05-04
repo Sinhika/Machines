@@ -17,7 +17,7 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 {
 
 	private static final ResourceLocation BACKGROUND_TEXTURE = 
-	        new ResourceLocation(Machines.MODID, "textures/gui/container/onyx_furnace.png");
+	        new ResourceLocation(Machines.MODID, "textures/gui/container/onyx_furnace_gui.png");
 
 	public OnyxFurnaceScreen(final OnyxFurnaceContainer container, final PlayerInventory inventory, final ITextComponent title) {
 		super(container, inventory, title);
@@ -32,12 +32,13 @@ public class OnyxFurnaceScreen extends ContainerScreen<OnyxFurnaceContainer>
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(final int mouseX, final int mouseY) {
+	protected void drawGuiContainerForegroundLayer(final int mouseX, final int mouseY) 
+	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		// Copied from AbstractFurnaceScreen#drawGuiContainerForegroundLayer
 		String s = this.title.getFormattedText();
-		this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
-		this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
+		this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0xFFFFFF);
+		this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 0xFFFFFF);
 	}
 
 	@Override
