@@ -33,7 +33,7 @@ import mod.alexndr.machines.init.ModTileEntityTypes;
 public class OnyxFurnaceBlock extends HorizontalBlock 
 {
 
-	public static final BooleanProperty BURNING = BooleanProperty.create("burning");
+	public static final BooleanProperty BURNING = BooleanProperty.create("lit");
 
 	public OnyxFurnaceBlock(final Properties properties) {
 		super(properties);

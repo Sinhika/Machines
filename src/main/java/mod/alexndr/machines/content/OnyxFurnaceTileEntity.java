@@ -1,6 +1,7 @@
 package mod.alexndr.machines.content;
 
 import java.util.Optional;
+import java.util.Random;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -51,9 +52,15 @@ public class OnyxFurnaceTileEntity extends TileEntity implements ITickableTileEn
 	private static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
 	private static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
 
-	public final ItemStackHandler inventory = new ItemStackHandler(3) {
+    private static int YieldChance = 33;
+    private static int YieldAmount = 1;
+    private Random generator = new Random();
+	
+	public final ItemStackHandler inventory = new ItemStackHandler(3) 
+	{
 		@Override
-		public boolean isItemValid(final int slot, @Nonnull final ItemStack stack) {
+		public boolean isItemValid(final int slot, @Nonnull final ItemStack stack) 
+		{
 			switch (slot) {
 				case FUEL_SLOT:
 					return FurnaceTileEntity.isFuel(stack);
@@ -64,17 +71,18 @@ public class OnyxFurnaceTileEntity extends TileEntity implements ITickableTileEn
 				default:
 					return false;
 			}
-		}
+		} // end ItemStackHandler.isItemValid()
 
 		@Override
-		protected void onContentsChanged(final int slot) {
+		protected void onContentsChanged(final int slot) 
+		{
 			super.onContentsChanged(slot);
 			// Mark the tile entity as having changed whenever its inventory changes.
 			// "markDirty" tells vanilla that the chunk containing the tile entity has
 			// changed and means the game will save the chunk to disk later.
 			OnyxFurnaceTileEntity.this.markDirty();
-		}
-	};
+		} // end ItemStackHandler.onContentsChanged()
+	}; // end new ItemStackHandler(3)
 
 	// Store the capability lazy optionals as fields to keep the amount of objects we use to a minimum
 	private final LazyOptional<ItemStackHandler> inventoryCapabilityExternal = LazyOptional.of(() -> this.inventory);
@@ -142,7 +150,8 @@ public class OnyxFurnaceTileEntity extends TileEntity implements ITickableTileEn
 	 * Called every tick to update our tile entity
 	 */
 	@Override
-	public void tick() {
+	public void tick() 
+	{
 		if (world == null || world.isRemote)
 			return;
 
@@ -158,36 +167,59 @@ public class OnyxFurnaceTileEntity extends TileEntity implements ITickableTileEn
 
 		final ItemStack input = inventory.getStackInSlot(INPUT_SLOT).copy();
 		final ItemStack result = getResult(input).orElse(ItemStack.EMPTY);
+		
+        int r = generator.nextInt(100);
+        if(r <= YieldChance && ! result.isEmpty()) 
+        {
+            int k = YieldAmount;
+            if ((k + result.getCount()) < result.getMaxStackSize())
+            result.grow(k);
+        }
 
-		if (!result.isEmpty() && isInput(input)) {
-			final boolean canInsertResultIntoOutput = inventory.insertItem(OUTPUT_SLOT, result, true).isEmpty();
-			if (canInsertResultIntoOutput) {
-				if (!hasFuel)
-					if (burnFuel())
+		if (!result.isEmpty() && isInput(input)) 
+		{
+			final boolean canInsertResultIntoOutput 
+			    = inventory.insertItem(OUTPUT_SLOT, result, true).isEmpty();
+			if (canInsertResultIntoOutput) 
+			{
+				if (!hasFuel) {
+					if (burnFuel()) {
 						hasFuel = true;
-				if (hasFuel) {
+					}
+				}
+				if (hasFuel) 
+				{
 					if (smeltTimeLeft == -1) { // Item has not been smelted before
 						smeltTimeLeft = maxSmeltTime = getSmeltTime(input);
-					} else { // Item was already being smelted
+					} 
+					else { // Item was already being smelted
 						--smeltTimeLeft;
-						if (smeltTimeLeft == 0) {
+						if (smeltTimeLeft == 0) 
+						{
 							inventory.insertItem(OUTPUT_SLOT, result, false);
-							if (input.hasContainerItem())
+							if (input.hasContainerItem()) {
 								inventory.setStackInSlot(INPUT_SLOT, input.getContainerItem());
+							}
 							else {
 								input.shrink(1);
 								inventory.setStackInSlot(INPUT_SLOT, input); // Update the data
 							}
 							smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
-						}
-					}
-				} else // No fuel -> add to smelt time left to simulate cooling
+						} // end-if
+					} // end-else
+				} // end-if
+				else // No fuel -> add to smelt time left to simulate cooling
+				{
 					if (smeltTimeLeft < maxSmeltTime)
 						++smeltTimeLeft;
+				} // end-else
 			}
-		} else // We have an invalid input stack (somehow)
+		} 
+		else // We have an invalid input stack (somehow)
+		{
 			smeltTimeLeft = maxSmeltTime = -1;
-
+		}
+		
 		// Syncing code
 
 		// If the burning state has changed.
