@@ -17,7 +17,7 @@ public class MythrilFurnaceScreen extends ContainerScreen<MythrilFurnaceContaine
 {
 
 	private static final ResourceLocation BACKGROUND_TEXTURE = 
-	        new ResourceLocation(Machines.MODID, "textures/gui/container/mythril_furnace.png");
+	        new ResourceLocation(Machines.MODID, "textures/gui/container/mythril_furnace_gui.png");
 
 	public MythrilFurnaceScreen(final MythrilFurnaceContainer container, final PlayerInventory inventory, final ITextComponent title) {
 		super(container, inventory, title);
