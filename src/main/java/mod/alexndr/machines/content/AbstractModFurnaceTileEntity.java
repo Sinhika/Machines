@@ -45,14 +45,13 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     private static final String MAX_SMELT_TIME_TAG = "maxSmeltTime";
     private static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
     private static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
-
-    protected static double fuelMultiplier = 1.0;
     
     @SuppressWarnings("rawtypes")
     protected final IRecipeType recipeType;
     
-    protected static int YieldChance = 0;
-    protected static int YieldAmount = 0;
+    protected double fuelMultiplier = 1.0;
+    protected int YieldChance = 0;
+    protected int YieldAmount = 0;
     protected Random generator = new Random();
 
     public final ItemStackHandler inventory = new ItemStackHandler(3) 
@@ -249,7 +248,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
      *
      * @return The custom smelt time or 200 if there is no recipe for the input
      */
-    private short getSmeltTime(final ItemStack input)
+    protected short getSmeltTime(final ItemStack input)
     {
     	return getRecipe(input)
     			.map(AbstractCookingRecipe::getCookTime)
@@ -260,7 +259,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     /**
      * @return If the fuel was burnt
      */
-    private boolean burnFuel()
+    protected boolean burnFuel()
     {
     	final ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT).copy();
     	if (!fuelStack.isEmpty()) 

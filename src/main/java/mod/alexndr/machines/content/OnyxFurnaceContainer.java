@@ -2,6 +2,7 @@ package mod.alexndr.machines.content;
 
 import java.util.Objects;
 
+import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.network.IContainerFactory;
  *
  * @author Cadiboo
  */
-public class OnyxFurnaceContainer extends AbstractModFurnaceContainer 
+public class OnyxFurnaceContainer extends AbstractModFurnaceContainer<OnyxFurnaceBlock> 
 {
 
 	/**
@@ -44,7 +45,7 @@ public class OnyxFurnaceContainer extends AbstractModFurnaceContainer
 	 */
 	public OnyxFurnaceContainer(final int windowId, final PlayerInventory playerInventory, final OnyxFurnaceTileEntity tileEntity) 
 	{
-		super(ModContainerTypes.onyx_furnace.get(), windowId, playerInventory, tileEntity);
+		super(ModContainerTypes.onyx_furnace.get(), windowId, playerInventory, tileEntity, ModBlocks.onyx_furnace);
 	} // end-server-side ctor
 
 	protected static OnyxFurnaceTileEntity getTileEntity(final PlayerInventory playerInventory, final PacketBuffer data) 

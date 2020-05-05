@@ -3,7 +3,6 @@ package mod.alexndr.machines.content;
 import javax.annotation.Nonnull;
 
 import mod.alexndr.machines.helpers.FunctionalIntReferenceHolder;
-import mod.alexndr.machines.init.ModBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -12,24 +11,28 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.items.SlotItemHandler;
 
-public abstract class AbstractModFurnaceContainer extends Container
+public abstract class AbstractModFurnaceContainer<T extends AbstractModFurnaceBlock> extends Container
 {
-
-    public final AbstractModFurnaceTileEntity tileEntity;
-    protected final IWorldPosCallable canInteractWithCallable;
-
+    protected RegistryObject<T> my_block; 
+    public AbstractModFurnaceTileEntity tileEntity;
+    protected IWorldPosCallable canInteractWithCallable;
+    
     /**
      * Constructor called logical-server-side from {@link MythrilFurnaceTileEntity#createMenu}
      * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
      */
-    public AbstractModFurnaceContainer(ContainerType<?> type, int id, final PlayerInventory playerInventory, final AbstractModFurnaceTileEntity tileEntity)
+    public AbstractModFurnaceContainer(ContainerType<?> type, int id, final PlayerInventory playerInventory, 
+                                       final AbstractModFurnaceTileEntity tileEntity, 
+                                       final RegistryObject<T> block)
     {
         super(type, id);
         this.tileEntity = tileEntity;
         this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
-
+        this.my_block = block;
+        
         // Add tracking for data (Syncs to client/updates value when it changes)
         this.trackInt(new FunctionalIntReferenceHolder(() -> tileEntity.smeltTimeLeft, v -> tileEntity.smeltTimeLeft = (short) v));
         this.trackInt(new FunctionalIntReferenceHolder(() -> tileEntity.maxSmeltTime, v -> tileEntity.maxSmeltTime = (short) v));
@@ -102,7 +105,7 @@ public abstract class AbstractModFurnaceContainer extends Container
     @Override
     public boolean canInteractWith(@Nonnull final PlayerEntity player)
     {
-    	return isWithinUsableDistance(canInteractWithCallable, player, ModBlocks.mythril_furnace.get());
+    	return isWithinUsableDistance(canInteractWithCallable, player, my_block.get());
     }
 
 }
