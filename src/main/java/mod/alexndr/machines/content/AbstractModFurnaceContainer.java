@@ -3,6 +3,7 @@ package mod.alexndr.machines.content;
 import javax.annotation.Nonnull;
 
 import mod.alexndr.machines.helpers.FunctionalIntReferenceHolder;
+import mod.alexndr.machines.helpers.FurnaceResultSlotItemHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -42,7 +43,8 @@ public abstract class AbstractModFurnaceContainer<T extends AbstractModFurnaceBl
         // Tile inventory slot(s)
         this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractModFurnaceTileEntity.FUEL_SLOT, 56, 53));
         this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractModFurnaceTileEntity.INPUT_SLOT, 56, 17));
-        this.addSlot(new SlotItemHandler(tileEntity.inventory, AbstractModFurnaceTileEntity.OUTPUT_SLOT, 116, 35));
+        this.addSlot(new FurnaceResultSlotItemHandler(playerInventory.player, tileEntity, tileEntity.inventory,
+                                                      AbstractModFurnaceTileEntity.OUTPUT_SLOT, 116, 35));
 
         final int playerInventoryStartX = 8;
         final int playerInventoryStartY = 84;

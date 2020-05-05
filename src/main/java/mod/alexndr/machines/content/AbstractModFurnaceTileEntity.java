@@ -1,12 +1,19 @@
 package mod.alexndr.machines.content;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -15,6 +22,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
@@ -23,6 +31,8 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
@@ -46,14 +56,20 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     private static final String FUEL_BURN_TIME_LEFT_TAG = "fuelBurnTimeLeft";
     private static final String MAX_FUEL_BURN_TIME_TAG = "maxFuelBurnTime";
     
-    @SuppressWarnings("rawtypes")
-    protected final IRecipeType recipeType;
-    
+    protected final IRecipeType<? extends AbstractCookingRecipe> recipeType;
+    private final Map<ResourceLocation, Integer> recipe2xp_map = Maps.newHashMap();
+
     protected double fuelMultiplier = 1.0;
     protected int YieldChance = 0;
     protected int YieldAmount = 0;
     protected Random generator = new Random();
 
+    public short smeltTimeLeft = -1;
+    public short maxSmeltTime = -1;
+    public short fuelBurnTimeLeft = -1;
+    public short maxFuelBurnTime = -1;
+    private boolean lastBurning = false;
+    
     public final ItemStackHandler inventory = new ItemStackHandler(3) 
     {
     		@Override
@@ -85,13 +101,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT_SLOT, INPUT_SLOT + 1));
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = LazyOptional.of(() -> new RangedWrapper(this.inventory, OUTPUT_SLOT, OUTPUT_SLOT + 1));
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalSides = LazyOptional.of(() -> new RangedWrapper(this.inventory, FUEL_SLOT, INPUT_SLOT + 1));
-    public short smeltTimeLeft = -1;
-    public short maxSmeltTime = -1;
-    public short fuelBurnTimeLeft = -1;
-    public short maxFuelBurnTime = -1;
-    private boolean lastBurning = false;
 
-    public AbstractModFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn, @SuppressWarnings("rawtypes") IRecipeType recipeTypeIn)
+    public AbstractModFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn, IRecipeType<? extends AbstractCookingRecipe> recipeTypeIn)
     {
         super(tileEntityTypeIn);
         this.recipeType = recipeTypeIn;
@@ -131,7 +142,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     @SuppressWarnings("unchecked")
     private Optional<AbstractCookingRecipe> getRecipe(final IInventory inventory)
     {
-    	return world.getRecipeManager().getRecipe(recipeType, inventory, world);
+    	return world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>) recipeType, inventory, world);
     }
 
     
@@ -166,15 +177,15 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     @Override
     public void tick()
     {
+        // Fuel burning code
+        boolean hasFuel = false;
+        if (isBurning()) {
+            hasFuel = true;
+            --fuelBurnTimeLeft;
+        }
+        
     	if (world == null || world.isRemote)
     		return;
-    
-    	// Fuel burning code
-    	boolean hasFuel = false;
-    	if (isBurning()) {
-    		hasFuel = true;
-    		--fuelBurnTimeLeft;
-    	}
     
     	// Smelting code
     	final ItemStack input = inventory.getStackInSlot(INPUT_SLOT).copy();
@@ -209,6 +220,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
                                 input.shrink(1);
                                 inventory.setStackInSlot(INPUT_SLOT, input); // Update the data
                             }
+                            this.setRecipeUsed(getRecipe(input).get());
+                            
                             smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
                         } // end-if
                     } // end-else
@@ -256,6 +269,16 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     			.shortValue();
     }
 
+    public void setRecipeUsed(@Nullable IRecipe<?> recipe)
+    {
+        if (recipe != null)
+        {
+            this.recipe2xp_map.compute(recipe.getId(), (p_214004_0_, p_214004_1_) -> {
+                return 1 + (p_214004_1_ == null ? 0 : p_214004_1_);
+            });
+        }
+    } // end setRecipeUsed()
+    
     /**
      * @return If the fuel was burnt
      */
@@ -337,6 +360,15 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
     	this.fuelBurnTimeLeft = compound.getShort(FUEL_BURN_TIME_LEFT_TAG);
     	this.maxFuelBurnTime = compound.getShort(MAX_FUEL_BURN_TIME_TAG);
+    	
+    	// get recipe2xp map
+        int ii = compound.getShort("RecipesUsedSize");
+        for(int jj = 0; jj < ii; ++jj) {
+           ResourceLocation resourcelocation 
+               = new ResourceLocation(compound.getString("RecipeLocation" + jj));
+           int kk = compound.getInt("RecipeAmount" + jj);
+           this.recipe2xp_map.put(resourcelocation, kk);
+        }
     }
 
     /**
@@ -352,6 +384,16 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	compound.putShort(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
     	compound.putShort(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
     	compound.putShort(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
+    	
+    	// write recipe2xp map
+        compound.putShort("RecipesUsedSize", (short)this.recipe2xp_map.size());
+        int ii = 0;
+        for(Entry<ResourceLocation, Integer> entry : this.recipe2xp_map.entrySet()) 
+        {
+           compound.putString("RecipeLocation" + ii, entry.getKey().toString());
+           compound.putInt("RecipeAmount" + ii, entry.getValue());
+           ++ii;
+        }
     	return compound;
     }
 
@@ -393,5 +435,45 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     @Nonnull
     @Override
     public abstract Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player);
+
+    public void grantExperience(PlayerEntity player)
+    {
+        List<IRecipe<?>> list = Lists.newArrayList();
+
+        for (Entry<ResourceLocation, Integer> entry : this.recipe2xp_map.entrySet())
+        {
+            player.world.getRecipeManager().getRecipe(entry.getKey()).ifPresent((p_213993_3_) -> {
+                list.add(p_213993_3_);
+                spawnExpOrbs(player, entry.getValue(), ((AbstractCookingRecipe) p_213993_3_).getExperience());
+            });
+        }
+        player.unlockRecipes(list);
+        this.recipe2xp_map.clear();
+    }
+    
+    private static void spawnExpOrbs(PlayerEntity player, int pCount, float experience)
+    {
+        if (experience == 0.0F) {
+            pCount = 0;
+        }
+        else if (experience < 1.0F)
+        {
+            int i = MathHelper.floor((float) pCount * experience);
+            if (i < MathHelper.ceil((float) pCount * experience)
+                    && Math.random() < (double) ((float) pCount * experience - (float) i))
+            {
+                ++i;
+            }
+            pCount = i;
+        }
+
+        while (pCount > 0)
+        {
+            int j = ExperienceOrbEntity.getXPSplit(pCount);
+            pCount -= j;
+            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D,
+                    player.getPosZ() + 0.5D, j));
+        }
+    } // end spawnExpOrbs()
 
 } // end class
