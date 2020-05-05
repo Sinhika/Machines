@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceContainer> extends ContainerScreen<T>
+public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceContainer<?>> extends ContainerScreen<T>
 {
 
     private static ResourceLocation BACKGROUND_TEXTURE;

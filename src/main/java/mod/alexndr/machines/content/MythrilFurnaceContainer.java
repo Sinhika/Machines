@@ -2,6 +2,7 @@ package mod.alexndr.machines.content;
 
 import java.util.Objects;
 
+import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.network.IContainerFactory;
  *
  * @author Cadiboo
  */
-public class MythrilFurnaceContainer extends AbstractModFurnaceContainer 
+public class MythrilFurnaceContainer extends AbstractModFurnaceContainer<MythrilFurnaceBlock> 
 {
 
 	/**
@@ -44,7 +45,7 @@ public class MythrilFurnaceContainer extends AbstractModFurnaceContainer
 	 */
 	public MythrilFurnaceContainer(final int windowId, final PlayerInventory playerInventory, final MythrilFurnaceTileEntity tileEntity) 
 	{
-		super(ModContainerTypes.mythril_furnace.get(), windowId, playerInventory, tileEntity);
+		super(ModContainerTypes.mythril_furnace.get(), windowId, playerInventory, tileEntity, ModBlocks.mythril_furnace);
 		// Add all the slots for the tileEntity's inventory and the playerInventory to this container
 
 	} // end-server-side ctor
