@@ -6,8 +6,6 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mod.alexndr.machines.config.MachinesConfig;
-import mod.alexndr.machines.init.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,7 +24,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -58,9 +55,11 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     protected static int YieldAmount = 0;
     protected Random generator = new Random();
 
-    public final ItemStackHandler inventory = new ItemStackHandler(3) {
+    public final ItemStackHandler inventory = new ItemStackHandler(3) 
+    {
     		@Override
-    		public boolean isItemValid(final int slot, @Nonnull final ItemStack stack) {
+    		public boolean isItemValid(final int slot, @Nonnull final ItemStack stack) 
+    		{
     			switch (slot) {
     				case FUEL_SLOT:
     					return FurnaceTileEntity.isFuel(stack);
@@ -71,7 +70,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     				default:
     					return false;
     			}
-    		}
+    		} // end ItemStackHander(3).isItemValid()
     
     		@Override
     		protected void onContentsChanged(final int slot) {
@@ -80,8 +79,9 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     			// "markDirty" tells vanilla that the chunk containing the tile entity has
     			// changed and means the game will save the chunk to disk later.
     			AbstractModFurnaceTileEntity.this.markDirty();
-    		}
-    	};
+    		} // end ()
+    }; // end ItemStackHandler(3)
+    
     private final LazyOptional<ItemStackHandler> inventoryCapabilityExternal = LazyOptional.of(() -> this.inventory);
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalUp = LazyOptional.of(() -> new RangedWrapper(this.inventory, INPUT_SLOT, INPUT_SLOT + 1));
     private final LazyOptional<IItemHandlerModifiable> inventoryCapabilityExternalDown = LazyOptional.of(() -> new RangedWrapper(this.inventory, OUTPUT_SLOT, OUTPUT_SLOT + 1));
@@ -92,7 +92,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     public short maxFuelBurnTime = -1;
     private boolean lastBurning = false;
 
-    public AbstractModFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn, IRecipeType recipeTypeIn)
+    public AbstractModFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn, @SuppressWarnings("rawtypes") IRecipeType recipeTypeIn)
     {
         super(tileEntityTypeIn);
         this.recipeType = recipeTypeIn;
@@ -129,11 +129,13 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     /**
      * @return The smelting recipe for the inventory
      */
+    @SuppressWarnings("unchecked")
     private Optional<AbstractCookingRecipe> getRecipe(final IInventory inventory)
     {
     	return world.getRecipeManager().getRecipe(recipeType, inventory, world);
     }
 
+    
     protected Optional<ItemStack> getResult(final ItemStack input)
     {
         // Due to vanilla's code we need to pass an IInventory into RecipeManager#getRecipe and
@@ -141,6 +143,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
         final Inventory dummyInventory = new Inventory(input);
         Optional<ItemStack> maybe_result = 
                 getRecipe(dummyInventory).map(recipe -> recipe.getCraftingResult(dummyInventory));
+        
+        // enhanced yield processing.
         if (YieldChance <= 0 || YieldAmount <= 0)
         {
             return maybe_result;
@@ -167,7 +171,6 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     		return;
     
     	// Fuel burning code
-    
     	boolean hasFuel = false;
     	if (isBurning()) {
     		hasFuel = true;
@@ -175,41 +178,54 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	}
     
     	// Smelting code
-    
     	final ItemStack input = inventory.getStackInSlot(INPUT_SLOT).copy();
     	final ItemStack result = getResult(input).orElse(ItemStack.EMPTY);
     
-    	if (!result.isEmpty() && isInput(input)) {
-    		final boolean canInsertResultIntoOutput = inventory.insertItem(OUTPUT_SLOT, result, true).isEmpty();
-    		if (canInsertResultIntoOutput) {
-    			if (!hasFuel)
-    				if (burnFuel())
-    					hasFuel = true;
-    			if (hasFuel) {
-    				if (smeltTimeLeft == -1) { // Item has not been smelted before
-    					smeltTimeLeft = maxSmeltTime = getSmeltTime(input);
-    				} else { // Item was already being smelted
-    					--smeltTimeLeft;
-    					if (smeltTimeLeft == 0) {
-    						inventory.insertItem(OUTPUT_SLOT, result, false);
-    						if (input.hasContainerItem())
-    							inventory.setStackInSlot(INPUT_SLOT, input.getContainerItem());
-    						else {
-    							input.shrink(1);
-    							inventory.setStackInSlot(INPUT_SLOT, input); // Update the data
-    						}
-    						smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
-    					}
-    				}
-    			} else // No fuel -> add to smelt time left to simulate cooling
-    				if (smeltTimeLeft < maxSmeltTime)
-    					++smeltTimeLeft;
-    		}
-    	} else // We have an invalid input stack (somehow)
+        if (!result.isEmpty() && isInput(input))
+        {
+            final boolean canInsertResultIntoOutput 
+                = inventory.insertItem(OUTPUT_SLOT, result, true).isEmpty();
+            if (canInsertResultIntoOutput)
+            {
+                if (!hasFuel) { 
+                    if (burnFuel()) hasFuel = true; 
+                 }
+                if (hasFuel)
+                {
+                    if (smeltTimeLeft == -1)
+                    { // Item has not been smelted before
+                        smeltTimeLeft = maxSmeltTime = getSmeltTime(input);
+                    }
+                    else
+                    { // Item was already being smelted
+                        --smeltTimeLeft;
+                        if (smeltTimeLeft == 0)
+                        {
+                            inventory.insertItem(OUTPUT_SLOT, result, false);
+                            if (input.hasContainerItem()) {
+                                inventory.setStackInSlot(INPUT_SLOT, input.getContainerItem());
+                            }
+                            else
+                            {
+                                input.shrink(1);
+                                inventory.setStackInSlot(INPUT_SLOT, input); // Update the data
+                            }
+                            smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
+                        } // end-if
+                    } // end-else
+                }
+                else // No fuel -> add to smelt time left to simulate cooling
+                {
+                    if (smeltTimeLeft < maxSmeltTime) ++smeltTimeLeft;
+                }
+            }
+        } // end-if
+    	else // We have an invalid input stack (somehow)
+    	{
     		smeltTimeLeft = maxSmeltTime = -1;
-    
+    	}
+    	
     	// Syncing code
-    
     	// If the burning state has changed.
     	if (lastBurning != hasFuel) { // We use hasFuel because the current fuel may be all burnt out but we have more that will be used next tick
     
@@ -225,9 +241,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     
     		// Update the last synced burning state to the current burning state
     		lastBurning = hasFuel;
-    	}
-    
-    }
+    	} // end-if
+    } // end tick()
 
     /**
      * Mimics the code in {@link AbstractFurnaceTileEntity#func_214005_h()}
@@ -248,7 +263,9 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     private boolean burnFuel()
     {
     	final ItemStack fuelStack = inventory.getStackInSlot(FUEL_SLOT).copy();
-    	if (!fuelStack.isEmpty()) {
+    	if (!fuelStack.isEmpty()) 
+    	{
+    	    // improved fuel efficiency processing here.
     		final int burnTime = (int) (ForgeHooks.getBurnTime(fuelStack) * fuelMultiplier);
     		if (burnTime > 0) {
     			fuelBurnTimeLeft = maxFuelBurnTime = ((short) burnTime);
@@ -378,4 +395,4 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     @Override
     public abstract Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player);
 
-}
+} // end class
