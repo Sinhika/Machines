@@ -29,6 +29,6 @@ public final class ModContainerTypes {
         = CONTAINER_TYPES.register("mythril_furnace", () -> IForgeContainerType.create(MythrilFurnaceContainer::new));
     
     public static final RegistryObject<ContainerType<OnyxFurnaceContainer>> onyx_furnace 
-    = CONTAINER_TYPES.register("onyx_furnace", () -> IForgeContainerType.create(OnyxFurnaceContainer::new));
+        = CONTAINER_TYPES.register("onyx_furnace", () -> IForgeContainerType.create(OnyxFurnaceContainer::new));
 
 } // end class
