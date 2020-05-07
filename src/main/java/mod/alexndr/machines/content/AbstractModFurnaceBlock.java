@@ -104,8 +104,8 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos)
     {
     	final TileEntity tileEntity = worldIn.getTileEntity(pos);
-    	if (tileEntity instanceof MythrilFurnaceTileEntity)
-    		return ItemHandlerHelper.calcRedstoneFromInventory(((MythrilFurnaceTileEntity) tileEntity).inventory);
+    	if (tileEntity instanceof AbstractModFurnaceTileEntity)
+    		return ItemHandlerHelper.calcRedstoneFromInventory(((AbstractModFurnaceTileEntity) tileEntity).inventory);
     	return super.getComparatorInputOverride(blockState, worldIn, pos);
     }
 
