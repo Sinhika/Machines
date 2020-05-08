@@ -4,6 +4,7 @@ import net.minecraft.tileentity.TileEntityType;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.content.tile.MythrilBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
+import mod.alexndr.machines.content.tile.MythrilSmokerTileEntity;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,6 +36,12 @@ public final class ModTileEntityTypes {
             TILE_ENTITY_TYPES.register("mythril_blast_furnace", 
                     () -> TileEntityType.Builder.create(MythrilBlastFurnaceTileEntity::new, 
                                                         ModBlocks.mythril_blast_furnace.get())
+               .build(null));
+
+    public static RegistryObject<TileEntityType<MythrilSmokerTileEntity>> mythril_smoker = 
+            TILE_ENTITY_TYPES.register("mythril_smoker", 
+                    () -> TileEntityType.Builder.create(MythrilSmokerTileEntity::new, 
+                                                        ModBlocks.mythril_smoker.get())
                .build(null));
 
     

@@ -3,6 +3,7 @@ package mod.alexndr.machines.init;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.content.block.MythrilBlastFurnaceBlock;
 import mod.alexndr.machines.content.block.MythrilFurnaceBlock;
+import mod.alexndr.machines.content.block.MythrilSmokerBlock;
 import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -40,6 +41,12 @@ public final class ModBlocks
     public static final RegistryObject<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
             BLOCKS.register("mythril_blast_furnace",  
                             () -> new MythrilBlastFurnaceBlock(Block.Properties.create(Material.ROCK)
+                                                               .hardnessAndResistance(3.5F, 12.0F)
+
+                                                               .lightValue(13).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<MythrilSmokerBlock> mythril_smoker = 
+            BLOCKS.register("mythril_smoker",  
+                            () -> new MythrilSmokerBlock(Block.Properties.create(Material.ROCK)
                                                                .hardnessAndResistance(3.5F, 12.0F)
                                                        .lightValue(13).harvestTool(ToolType.PICKAXE)));
 } // end class
