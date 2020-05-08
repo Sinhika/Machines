@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import mod.alexndr.machines.Machines;
+import mod.alexndr.machines.client.gui.MythrilBlastFurnaceScreen;
 import mod.alexndr.machines.client.gui.MythrilFurnaceScreen;
 import mod.alexndr.machines.client.gui.OnyxFurnaceScreen;
 import mod.alexndr.machines.init.ModContainerTypes;
@@ -41,6 +42,8 @@ public final class ClientModEventSubscriber {
 		DeferredWorkQueue.runLater(() -> {
 			ScreenManager.registerFactory(ModContainerTypes.onyx_furnace.get(), OnyxFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.mythril_furnace.get(), MythrilFurnaceScreen::new);
+            ScreenManager.registerFactory(ModContainerTypes.mythril_blast_furnace.get(), 
+                                          MythrilBlastFurnaceScreen::new);
 			LOGGER.debug("Registered ContainerType Screens");
 		});
 

@@ -2,6 +2,7 @@ package mod.alexndr.machines.init;
 
 import net.minecraft.tileentity.TileEntityType;
 import mod.alexndr.machines.Machines;
+import mod.alexndr.machines.content.tile.MythrilBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import net.minecraftforge.fml.RegistryObject;
@@ -28,6 +29,12 @@ public final class ModTileEntityTypes {
 	        TILE_ENTITY_TYPES.register("mythril_furnace", 
 	                () -> TileEntityType.Builder.create(MythrilFurnaceTileEntity::new, 
 	                                                    ModBlocks.mythril_furnace.get())
+               .build(null));
+
+    public static RegistryObject<TileEntityType<MythrilBlastFurnaceTileEntity>> mythril_blast_furnace = 
+            TILE_ENTITY_TYPES.register("mythril_blast_furnace", 
+                    () -> TileEntityType.Builder.create(MythrilBlastFurnaceTileEntity::new, 
+                                                        ModBlocks.mythril_blast_furnace.get())
                .build(null));
 
     

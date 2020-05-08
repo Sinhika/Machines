@@ -15,3 +15,4 @@ bin/
 .gradle/
 build.number
 .project
+src/main/resources/assets/simple_machines/textures/block/blast_furnace_front_mask
