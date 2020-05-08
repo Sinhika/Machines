@@ -83,21 +83,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) 
-    {
-        if (worldIn.isRemote) {
-           return ActionResultType.SUCCESS;
-        } else {
-           this.interactWith(worldIn, pos, player);
-           return ActionResultType.SUCCESS;
-        }
-     }
-
-    /**
-     * Interface for handling interaction with blocks that impliment AbstractFurnaceBlock. Called in onBlockActivated
-     * inside AbstractFurnaceBlock.
-     */
-    protected abstract void interactWith(World worldIn, BlockPos pos, PlayerEntity player);
+    public abstract ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit); 
     
     /**
      * Makes the block face the player when placed
