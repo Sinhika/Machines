@@ -9,7 +9,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
@@ -78,9 +77,12 @@ public class MythrilSmokerBlock extends AbstractModFurnaceBlock
         {
             final TileEntity tileEntity = worldIn.getTileEntity(pos);
             if (tileEntity instanceof MythrilSmokerTileEntity)
+            {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (MythrilSmokerTileEntity) tileEntity, pos);
+                player.addStat(Stats.INTERACT_WITH_SMOKER);
+            }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return ActionResultType.SUCCESS;
     }
 
     @Override
@@ -98,15 +100,5 @@ public class MythrilSmokerBlock extends AbstractModFurnaceBlock
             worldIn.addParticle(ParticleTypes.SMOKE, d0, d1 + 1.1D, d2, 0.0D, 0.0D, 0.0D);
          }
      } // animateTick()
-
-    @Override
-    protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
-    {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        if (tileentity instanceof MythrilSmokerTileEntity) {
-           player.openContainer((INamedContainerProvider)tileentity);
-           player.addStat(Stats.INTERACT_WITH_SMOKER);
-        }
-    }
 
 } // end class

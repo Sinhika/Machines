@@ -11,7 +11,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
@@ -57,7 +56,6 @@ public class MythrilBlastFurnaceBlock extends AbstractModFurnaceBlock
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
             Hand handIn, BlockRayTraceResult hit)
@@ -65,10 +63,13 @@ public class MythrilBlastFurnaceBlock extends AbstractModFurnaceBlock
         if (!worldIn.isRemote) 
         {
             final TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof MythrilBlastFurnaceTileEntity)
+            if (tileEntity instanceof MythrilBlastFurnaceTileEntity) 
+            {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (MythrilBlastFurnaceTileEntity) tileEntity, pos);
+                player.addStat(Stats.INTERACT_WITH_BLAST_FURNACE);
+            }
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return ActionResultType.SUCCESS;
     }
 
     @Override
@@ -91,16 +92,5 @@ public class MythrilBlastFurnaceBlock extends AbstractModFurnaceBlock
             worldIn.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
          }
     } // end animateTick()
-
-    @Override
-    protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
-    {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        if (tileentity instanceof MythrilBlastFurnaceTileEntity)
-        {
-            player.openContainer((INamedContainerProvider) tileentity);
-            player.addStat(Stats.INTERACT_WITH_BLAST_FURNACE);
-        }
-    }
 
 } // end-class

@@ -9,7 +9,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -74,21 +73,13 @@ public class OnyxFurnaceBlock extends AbstractModFurnaceBlock
         if (!worldIn.isRemote)
         {
             final TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof OnyxFurnaceTileEntity)
+            if (tileEntity instanceof OnyxFurnaceTileEntity) 
+            {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (OnyxFurnaceTileEntity) tileEntity, pos);
+                player.addStat(Stats.INTERACT_WITH_FURNACE);
+            }
         }
-		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+		return ActionResultType.SUCCESS;
 	}
-
-    @Override
-    protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
-    {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        if (tileentity instanceof OnyxFurnaceTileEntity)
-        {
-            player.openContainer((INamedContainerProvider) tileentity);
-            player.addStat(Stats.INTERACT_WITH_FURNACE);
-        }
-    }
 	
 } // end class
