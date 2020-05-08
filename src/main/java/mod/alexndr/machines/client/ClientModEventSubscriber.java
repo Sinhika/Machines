@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.client.gui.MythrilBlastFurnaceScreen;
 import mod.alexndr.machines.client.gui.MythrilFurnaceScreen;
+import mod.alexndr.machines.client.gui.MythrilSmokerScreen;
 import mod.alexndr.machines.client.gui.OnyxFurnaceScreen;
 import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.client.gui.ScreenManager;
@@ -44,9 +45,10 @@ public final class ClientModEventSubscriber {
             ScreenManager.registerFactory(ModContainerTypes.mythril_furnace.get(), MythrilFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.mythril_blast_furnace.get(), 
                                           MythrilBlastFurnaceScreen::new);
+            ScreenManager.registerFactory(ModContainerTypes.mythril_smoker.get(), MythrilSmokerScreen::new);
 			LOGGER.debug("Registered ContainerType Screens");
 		});
 
 	}
 
-}
+} // end-class

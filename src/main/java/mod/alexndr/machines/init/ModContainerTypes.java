@@ -3,6 +3,7 @@ package mod.alexndr.machines.init;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.content.container.MythrilBlastFurnaceContainer;
 import mod.alexndr.machines.content.container.MythrilFurnaceContainer;
+import mod.alexndr.machines.content.container.MythrilSmokerContainer;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -32,7 +33,10 @@ public final class ModContainerTypes {
     public static final RegistryObject<ContainerType<MythrilBlastFurnaceContainer>> mythril_blast_furnace 
         = CONTAINER_TYPES.register("mythril_blast_furnace", () -> IForgeContainerType.create(MythrilBlastFurnaceContainer::new));
 
-    public static final RegistryObject<ContainerType<OnyxFurnaceContainer>> onyx_furnace 
+    public static final RegistryObject<ContainerType<MythrilSmokerContainer>> mythril_smoker 
+        = CONTAINER_TYPES.register("mythril_smoker", () -> IForgeContainerType.create(MythrilSmokerContainer::new));
+    
+   public static final RegistryObject<ContainerType<OnyxFurnaceContainer>> onyx_furnace 
         = CONTAINER_TYPES.register("onyx_furnace", () -> IForgeContainerType.create(OnyxFurnaceContainer::new));
 
 } // end class

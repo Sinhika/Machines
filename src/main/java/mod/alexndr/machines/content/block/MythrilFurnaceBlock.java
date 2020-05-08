@@ -9,6 +9,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -76,7 +78,18 @@ public class MythrilFurnaceBlock extends AbstractModFurnaceBlock
 			if (tileEntity instanceof MythrilFurnaceTileEntity)
 				NetworkHooks.openGui((ServerPlayerEntity) player, (MythrilFurnaceTileEntity) tileEntity, pos);
 		}
-		return ActionResultType.SUCCESS;
+		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
 	}
+
+    @Override
+    protected void interactWith(World worldIn, BlockPos pos, PlayerEntity player)
+    {
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        if (tileentity instanceof MythrilFurnaceTileEntity)
+        {
+            player.openContainer((INamedContainerProvider) tileentity);
+            player.addStat(Stats.INTERACT_WITH_FURNACE);
+        }
+    }
 	
 } // end class
