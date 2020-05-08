@@ -1,9 +1,9 @@
-package mod.alexndr.machines.client.gui;
+package mod.alexndr.machines.api.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import mod.alexndr.machines.content.AbstractModFurnaceContainer;
-import mod.alexndr.machines.content.AbstractModFurnaceTileEntity;
+import mod.alexndr.machines.api.content.AbstractModFurnaceContainer;
+import mod.alexndr.machines.api.content.AbstractModFurnaceTileEntity;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;

@@ -3,5 +3,6 @@
 	
     "_comment": "Blocks",
     "block.simple_machines.mythril_furnace": "Mythril Furnace",
+    "block.simple_machines.mythril_blast_furnace": "Mythril Blast Furnace",
     "block.simple_machines.onyx_furnace": "Onyx Furnace"
 }

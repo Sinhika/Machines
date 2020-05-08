@@ -1,8 +1,9 @@
 package mod.alexndr.machines.init;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.MythrilFurnaceBlock;
-import mod.alexndr.machines.content.OnyxFurnaceBlock;
+import mod.alexndr.machines.content.block.MythrilBlastFurnaceBlock;
+import mod.alexndr.machines.content.block.MythrilFurnaceBlock;
+import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
@@ -35,4 +36,10 @@ public final class ModBlocks
             () -> new MythrilFurnaceBlock(Block.Properties.create(Material.ROCK)
                     .hardnessAndResistance(3.5F, 12.0F)
                     .lightValue(13).harvestTool(ToolType.PICKAXE)));
+    
+    public static final RegistryObject<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
+            BLOCKS.register("mythril_blast_furnace",  
+                            () -> new MythrilBlastFurnaceBlock(Block.Properties.create(Material.ROCK)
+                                                               .hardnessAndResistance(3.5F, 12.0F)
+                                                       .lightValue(13).harvestTool(ToolType.PICKAXE)));
 } // end class

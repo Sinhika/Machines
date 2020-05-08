@@ -1,8 +1,8 @@
 package mod.alexndr.machines.init;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.MythrilFurnaceContainer;
-import mod.alexndr.machines.content.OnyxFurnaceContainer;
+import mod.alexndr.machines.content.container.MythrilFurnaceContainer;
+import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;

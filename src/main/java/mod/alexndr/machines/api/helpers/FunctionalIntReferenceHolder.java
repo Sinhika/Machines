@@ -1,4 +1,4 @@
-package mod.alexndr.machines.helpers;
+package mod.alexndr.machines.api.helpers;
 
 import net.minecraft.util.IntReferenceHolder;
 

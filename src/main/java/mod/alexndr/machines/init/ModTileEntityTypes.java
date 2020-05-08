@@ -2,8 +2,8 @@ package mod.alexndr.machines.init;
 
 import net.minecraft.tileentity.TileEntityType;
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.MythrilFurnaceTileEntity;
-import mod.alexndr.machines.content.OnyxFurnaceTileEntity;
+import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
+import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

@@ -1,7 +1,8 @@
 package mod.alexndr.machines.client.gui;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.MythrilFurnaceContainer;
+import mod.alexndr.machines.api.client.gui.AbstractModFurnaceScreen;
+import mod.alexndr.machines.content.container.MythrilFurnaceContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;

@@ -1,7 +1,10 @@
-package mod.alexndr.machines.content;
+package mod.alexndr.machines.content.container;
 
 import java.util.Objects;
 
+import mod.alexndr.machines.api.content.AbstractModFurnaceContainer;
+import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
+import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
