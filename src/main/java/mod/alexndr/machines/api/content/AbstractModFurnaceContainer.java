@@ -1,9 +1,10 @@
-package mod.alexndr.machines.content;
+package mod.alexndr.machines.api.content;
 
 import javax.annotation.Nonnull;
 
-import mod.alexndr.machines.helpers.FunctionalIntReferenceHolder;
-import mod.alexndr.machines.helpers.FurnaceResultSlotItemHandler;
+import mod.alexndr.machines.api.helpers.FunctionalIntReferenceHolder;
+import mod.alexndr.machines.api.helpers.FurnaceResultSlotItemHandler;
+import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

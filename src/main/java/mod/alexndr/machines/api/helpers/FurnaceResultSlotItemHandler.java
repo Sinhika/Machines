@@ -1,6 +1,6 @@
-package mod.alexndr.machines.helpers;
+package mod.alexndr.machines.api.helpers;
 
-import mod.alexndr.machines.content.AbstractModFurnaceTileEntity;
+import mod.alexndr.machines.api.content.AbstractModFurnaceTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

@@ -1,4 +1,4 @@
-package mod.alexndr.machines.content;
+package mod.alexndr.machines.api.content;
 
 import java.util.Random;
 

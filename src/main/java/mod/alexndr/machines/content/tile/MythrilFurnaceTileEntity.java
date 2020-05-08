@@ -1,8 +1,10 @@
-package mod.alexndr.machines.content;
+package mod.alexndr.machines.content.tile;
 
 import javax.annotation.Nonnull;
 
+import mod.alexndr.machines.api.content.AbstractModFurnaceTileEntity;
 import mod.alexndr.machines.config.MachinesConfig;
+import mod.alexndr.machines.content.container.MythrilFurnaceContainer;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.entity.player.PlayerEntity;
