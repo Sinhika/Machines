@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:logs"
+    },
+    "X": {
+      "item": "simple_machines:mythril_furnace"
+    }
+  },
+  "result": {
+    "item": "simple_machines:mythril_smoker"
+  }
+}
