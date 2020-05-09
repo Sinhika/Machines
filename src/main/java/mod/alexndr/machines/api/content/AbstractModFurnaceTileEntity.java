@@ -59,6 +59,10 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     protected final IRecipeType<? extends AbstractCookingRecipe> recipeType;
     private final Map<ResourceLocation, Integer> recipe2xp_map = Maps.newHashMap();
 
+    // implement recipe-caching like all the cool kids.
+    protected AbstractCookingRecipe cachedRecipe;
+    protected ItemStack failedMatch = ItemStack.EMPTY;
+    
     protected double fuelMultiplier = 1.0;
     protected int YieldChance = 0;
     protected int YieldAmount = 0;
@@ -132,18 +136,37 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
      */
     private Optional<AbstractCookingRecipe> getRecipe(final ItemStack input)
     {
+        if (input.isEmpty() || input == failedMatch) {
+            return Optional.empty();
+        }
     	// Due to vanilla's code we need to pass an IInventory into RecipeManager#getRecipe so we make one here.
     	return getRecipe(new Inventory(input));
     }
 
     /**
-     * @return The smelting recipe for the inventory
+     * @return The smelting recipe for the inventory; implements recipe caching.
      */
     @SuppressWarnings("unchecked")
     private Optional<AbstractCookingRecipe> getRecipe(final IInventory inventory)
     {
-    	return world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>) recipeType, inventory, world);
-    }
+        if (cachedRecipe != null && cachedRecipe.matches(inventory, world))
+        {
+            return Optional.of(cachedRecipe);
+        }
+        else
+        {
+            AbstractCookingRecipe rec 
+                = world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>) recipeType, inventory, world).orElse(null);
+            if (rec == null) {
+                failedMatch = inventory.getStackInSlot(0); // i.e., input.
+            }
+            else {
+                failedMatch = ItemStack.EMPTY;
+            }
+            cachedRecipe = rec;
+            return Optional.ofNullable(rec);
+        } // end else
+    } // end getRecipe()
 
     
     protected Optional<ItemStack> getResult(final ItemStack input)
