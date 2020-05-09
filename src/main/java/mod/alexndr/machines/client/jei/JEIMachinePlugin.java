@@ -31,6 +31,10 @@ public class JEIMachinePlugin implements IModPlugin
         
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.onyx_furnace.get()), 
                 VanillaRecipeCategoryUid.FURNACE);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.onyx_blast_furnace.get()), 
+                VanillaRecipeCategoryUid.BLASTING);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.onyx_smoker.get()), 
+                VanillaRecipeCategoryUid.SMOKING);
     }
 
     @Override
