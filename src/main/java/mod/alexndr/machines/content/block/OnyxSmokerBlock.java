@@ -1,9 +1,7 @@
 package mod.alexndr.machines.content.block;
 
-import javax.annotation.Nullable;
-
-import mod.alexndr.machines.api.content.AbstractModBlastFurnaceBlock;
-import mod.alexndr.machines.content.tile.MythrilBlastFurnaceTileEntity;
+import mod.alexndr.machines.api.content.AbstractModSmokerBlock;
+import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,19 +18,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class MythrilBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
+public class OnyxSmokerBlock extends AbstractModSmokerBlock
 {
 
-    public MythrilBlastFurnaceBlock(Properties builder)
+    public OnyxSmokerBlock(Properties builder)
     {
         super(builder);
     }
 
-    @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return ModTileEntityTypes.mythril_blast_furnace.get().create();
+        return ModTileEntityTypes.onyx_smoker.get().create();
     }
 
     @Override
@@ -41,9 +38,9 @@ public class MythrilBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
         if (oldState.getBlock() != newState.getBlock()) 
         {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof MythrilBlastFurnaceTileEntity) 
+            if (tileEntity instanceof OnyxSmokerTileEntity) 
             {
-                final ItemStackHandler inventory = ((MythrilBlastFurnaceTileEntity) tileEntity).inventory;
+                final ItemStackHandler inventory = ((OnyxSmokerTileEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
                     InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
             }
@@ -57,13 +54,13 @@ public class MythrilBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
         if (!worldIn.isRemote) 
         {
             final TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof MythrilBlastFurnaceTileEntity) 
+            if (tileEntity instanceof OnyxSmokerTileEntity)
             {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (MythrilBlastFurnaceTileEntity) tileEntity, pos);
-                player.addStat(Stats.INTERACT_WITH_BLAST_FURNACE);
+                NetworkHooks.openGui((ServerPlayerEntity) player, (OnyxSmokerTileEntity) tileEntity, pos);
+                player.addStat(Stats.INTERACT_WITH_SMOKER);
             }
         }
         return ActionResultType.SUCCESS;
     }
 
-} // end-class
+} // end class

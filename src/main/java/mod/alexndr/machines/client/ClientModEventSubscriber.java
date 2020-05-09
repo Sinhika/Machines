@@ -7,7 +7,9 @@ import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.client.gui.MythrilBlastFurnaceScreen;
 import mod.alexndr.machines.client.gui.MythrilFurnaceScreen;
 import mod.alexndr.machines.client.gui.MythrilSmokerScreen;
+import mod.alexndr.machines.client.gui.OnyxBlastFurnaceScreen;
 import mod.alexndr.machines.client.gui.OnyxFurnaceScreen;
+import mod.alexndr.machines.client.gui.OnyxSmokerScreen;
 import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
@@ -41,11 +43,14 @@ public final class ClientModEventSubscriber {
 		// Register ContainerType Screens
 		// ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
 		DeferredWorkQueue.runLater(() -> {
-			ScreenManager.registerFactory(ModContainerTypes.onyx_furnace.get(), OnyxFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.mythril_furnace.get(), MythrilFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.mythril_blast_furnace.get(), 
                                           MythrilBlastFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.mythril_smoker.get(), MythrilSmokerScreen::new);
+            ScreenManager.registerFactory(ModContainerTypes.onyx_furnace.get(), OnyxFurnaceScreen::new);
+            ScreenManager.registerFactory(ModContainerTypes.onyx_blast_furnace.get(), 
+                    OnyxBlastFurnaceScreen::new);
+            ScreenManager.registerFactory(ModContainerTypes.onyx_smoker.get(), OnyxSmokerScreen::new);
 			LOGGER.debug("Registered ContainerType Screens");
 		});
 
