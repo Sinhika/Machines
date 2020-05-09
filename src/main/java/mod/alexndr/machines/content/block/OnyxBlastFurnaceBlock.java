@@ -20,6 +20,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
 {
+    // public static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
 
     public OnyxBlastFurnaceBlock(Properties builder)
     {

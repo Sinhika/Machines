@@ -49,7 +49,7 @@ public final class ClientModEventSubscriber {
             ScreenManager.registerFactory(ModContainerTypes.mythril_smoker.get(), MythrilSmokerScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.onyx_furnace.get(), OnyxFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.onyx_blast_furnace.get(), 
-                    OnyxBlastFurnaceScreen::new);
+                                          OnyxBlastFurnaceScreen::new);
             ScreenManager.registerFactory(ModContainerTypes.onyx_smoker.get(), OnyxSmokerScreen::new);
 			LOGGER.debug("Registered ContainerType Screens");
 		});

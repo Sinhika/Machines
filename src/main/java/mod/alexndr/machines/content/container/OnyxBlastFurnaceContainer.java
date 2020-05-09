@@ -16,6 +16,7 @@ import net.minecraftforge.fml.network.IContainerFactory;
 
 public class OnyxBlastFurnaceContainer extends AbstractModFurnaceContainer<OnyxBlastFurnaceBlock>
 {
+    //private static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
 
     /**
      * Logical-client-side constructor, called from {@link ContainerType#create(IContainerFactory)}
