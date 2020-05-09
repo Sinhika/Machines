@@ -12,6 +12,7 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class OnyxBlastFurnaceScreen extends AbstractModFurnaceScreen<OnyxBlastFurnaceContainer> 
 {
+//    public static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
     private final static int name_color =  0x0ffffff;
 
 	public OnyxBlastFurnaceScreen(final OnyxBlastFurnaceContainer container, final PlayerInventory inventory, 

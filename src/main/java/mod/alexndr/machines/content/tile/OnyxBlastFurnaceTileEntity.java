@@ -14,6 +14,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class OnyxBlastFurnaceTileEntity extends AbstractModFurnaceTileEntity
 {
+    // private static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
 
     public OnyxBlastFurnaceTileEntity()
     {
