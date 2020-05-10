@@ -32,6 +32,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.ForgeHooks;
@@ -494,8 +495,9 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
         {
             int j = ExperienceOrbEntity.getXPSplit(pCount);
             pCount -= j;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D,
-                    player.getPosZ() + 0.5D, j));
+            BlockPos pos = player.getPosition();
+            player.world.addEntity(new ExperienceOrbEntity(player.world, pos.getX(), 
+            		pos.getY() + 0.5D, pos.getZ() + 0.5D, j));
         }
     } // end spawnExpOrbs()
 

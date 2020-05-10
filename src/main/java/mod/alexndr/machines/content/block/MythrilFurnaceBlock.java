@@ -11,7 +11,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -69,7 +68,7 @@ public class MythrilFurnaceBlock extends AbstractModFurnaceBlock
 	 * Implementing/overriding is fine.
 	 */
 	@Override
-	public ActionResultType onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) 
+	public boolean onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) 
 	{
 		if (!worldIn.isRemote) 
 		{
@@ -80,7 +79,7 @@ public class MythrilFurnaceBlock extends AbstractModFurnaceBlock
 	            player.addStat(Stats.INTERACT_WITH_FURNACE);
 			}
 		}
-		return ActionResultType.SUCCESS;
+		return true;
 	}
 	
 } // end class

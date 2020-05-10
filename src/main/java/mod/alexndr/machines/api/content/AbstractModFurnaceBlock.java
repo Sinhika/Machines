@@ -13,7 +13,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Mirror;
@@ -83,7 +82,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public abstract ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit); 
+    public abstract boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit); 
     
     /**
      * Makes the block face the player when placed

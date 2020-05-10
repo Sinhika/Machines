@@ -9,7 +9,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -49,7 +48,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
     } // end onReplaced
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
             Hand handIn, BlockRayTraceResult hit)
     {
         if (!worldIn.isRemote) 
@@ -61,7 +60,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
                 player.addStat(Stats.INTERACT_WITH_BLAST_FURNACE);
             }
         }
-        return ActionResultType.SUCCESS;
+        return true;
     }
 
 } // end class
