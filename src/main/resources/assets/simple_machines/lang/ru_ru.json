@@ -1,0 +1,11 @@
+{
+	  "itemGroup.simple_machines" : "Machines",
+	
+    "_comment": "Блоки",
+    "block.simple_machines.mythril_furnace": "Мифриловая печь",
+    "block.simple_machines.mythril_blast_furnace": "Мифриловая доменная печь",
+    "block.simple_machines.mythril_smoker": "Мифриловый курильщик",
+    "block.simple_machines.onyx_furnace": "Ониксовая печь",
+    "block.simple_machines.onyx_blast_furnace": "Ониксовая доменная печь",
+    "block.simple_machines.onyx_smoker": "Ониксовый курильщик"
+}
