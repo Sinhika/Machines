@@ -236,6 +236,9 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
                         if (smeltTimeLeft == 0)
                         {
                             inventory.insertItem(OUTPUT_SLOT, result, false);
+                            
+                            this.setRecipeUsed(getRecipe(input).get()); // move to BEFORE we shrink.
+                            
                             if (input.hasContainerItem()) {
                                 inventory.setStackInSlot(INPUT_SLOT, input.getContainerItem());
                             }
@@ -244,7 +247,6 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
                                 input.shrink(1);
                                 inventory.setStackInSlot(INPUT_SLOT, input); // Update the data
                             }
-                            this.setRecipeUsed(getRecipe(input).get());
                             
                             smeltTimeLeft = -1; // Set to -1 so we smelt the next stack on the next tick
                         } // end-if
@@ -312,7 +314,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	if (!fuelStack.isEmpty()) 
     	{
     	    // improved fuel efficiency processing here.
-    		final int burnTime = (int) (ForgeHooks.getBurnTime(fuelStack) * fuelMultiplier);
+    		final int burnTime = (int) Math.ceil(ForgeHooks.getBurnTime(fuelStack) * fuelMultiplier);
     		if (burnTime > 0) {
     			fuelBurnTimeLeft = maxFuelBurnTime = ((short) burnTime);
     			if (fuelStack.hasContainerItem())
