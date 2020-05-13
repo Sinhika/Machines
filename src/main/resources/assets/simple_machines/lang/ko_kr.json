@@ -1,0 +1,11 @@
+{
+	"itemGroup.simple_machines" : "기계들",
+	
+    "_comment": "Blocks",
+    "block.simple_machines.mythril_furnace": "미스릴 화로",
+    "block.simple_machines.mythril_blast_furnace": "미스릴 폭발 화로",
+    "block.simple_machines.mythril_smoker": "미스릴 훈연기",
+    "block.simple_machines.onyx_furnace": "오닉스 화로",
+    "block.simple_machines.onyx_blast_furnace": "오닉스 폭발 화로",
+    "block.simple_machines.onyx_smoker": "오닉스 훈연기"
+}
