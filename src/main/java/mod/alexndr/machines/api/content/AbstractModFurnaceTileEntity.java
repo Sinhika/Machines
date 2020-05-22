@@ -71,8 +71,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
 
     public short smeltTimeLeft = -1;
     public short maxSmeltTime = -1;
-    public short fuelBurnTimeLeft = -1;
-    public short maxFuelBurnTime = -1;
+    public int fuelBurnTimeLeft = -1;
+    public int maxFuelBurnTime = -1;
     private boolean lastBurning = false;
     
     public final ItemStackHandler inventory = new ItemStackHandler(3) 
@@ -265,7 +265,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	
     	// Syncing code
     	// If the burning state has changed.
-    	if (lastBurning != hasFuel) { // We use hasFuel because the current fuel may be all burnt out but we have more that will be used next tick
+    	if (lastBurning != hasFuel) { 
+    	    // We use hasFuel because the current fuel may be all burnt out but we have more that will be used next tick
     
     		// "markDirty" tells vanilla that the chunk containing the tile entity has
     		// changed and means the game will save the chunk to disk later.
@@ -316,7 +317,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	    // improved fuel efficiency processing here.
     		final int burnTime = (int) Math.ceil(ForgeHooks.getBurnTime(fuelStack) * fuelMultiplier);
     		if (burnTime > 0) {
-    			fuelBurnTimeLeft = maxFuelBurnTime = ((short) burnTime);
+    			fuelBurnTimeLeft = maxFuelBurnTime = burnTime;
     			if (fuelStack.hasContainerItem())
     				inventory.setStackInSlot(FUEL_SLOT, fuelStack.getContainerItem());
     			else {
@@ -384,8 +385,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
     	this.smeltTimeLeft = compound.getShort(SMELT_TIME_LEFT_TAG);
     	this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
-    	this.fuelBurnTimeLeft = compound.getShort(FUEL_BURN_TIME_LEFT_TAG);
-    	this.maxFuelBurnTime = compound.getShort(MAX_FUEL_BURN_TIME_TAG);
+    	this.fuelBurnTimeLeft = compound.getInt(FUEL_BURN_TIME_LEFT_TAG);
+    	this.maxFuelBurnTime = compound.getInt(MAX_FUEL_BURN_TIME_TAG);
     	
     	// get recipe2xp map
         int ii = compound.getShort("RecipesUsedSize");
@@ -408,8 +409,8 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
     	compound.putShort(SMELT_TIME_LEFT_TAG, this.smeltTimeLeft);
     	compound.putShort(MAX_SMELT_TIME_TAG, this.maxSmeltTime);
-    	compound.putShort(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
-    	compound.putShort(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
+    	compound.putInt(FUEL_BURN_TIME_LEFT_TAG, this.fuelBurnTimeLeft);
+    	compound.putInt(MAX_FUEL_BURN_TIME_TAG, this.maxFuelBurnTime);
     	
     	// write recipe2xp map
         compound.putShort("RecipesUsedSize", (short)this.recipe2xp_map.size());
