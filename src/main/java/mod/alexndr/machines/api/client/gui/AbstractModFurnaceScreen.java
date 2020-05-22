@@ -95,7 +95,7 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
     	final AbstractModFurnaceTileEntity tileEntity = this.container.tileEntity;
     	if (tileEntity.maxFuelBurnTime <= 0)
     		return 0;
-    	return tileEntity.fuelBurnTimeLeft * 16 / tileEntity.maxFuelBurnTime; // 14 is the height of the flames
+    	return (tileEntity.fuelBurnTimeLeft * 16) / tileEntity.maxFuelBurnTime; // 14 is the height of the flames
     }
 
 }
