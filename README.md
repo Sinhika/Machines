@@ -13,12 +13,13 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
 **Very much a Work-in-Progress!**
 
 ### New TO-DO list
- * create Mythril Blast Furnace
- * create Mythril Smoker
- * create Onyx Blast Furnace
- * create Onyx Smoker
+ * <s>create Mythril Blast Furnace</s>
+ * <s>create Mythril Smoker</s>
+ * <s>create Onyx Blast Furnace</s>
+ * <s>create Onyx Smoker</s>
  * there are textures for Tin Fusion Furnace and Adamantinum Fusion Furnace. What should they do?
- * fix progress arrow acting weird / furnaces burn time being a tick or so shorter than it should be.
+ * <s>fix progress arrow acting weird</s> - this is a feature. 
+ * fix furnaces burn time being a tick or so shorter than it should be.
  
 ### Old TO-DO list
  * Mythril furnace texture is 1 pixel too high.
@@ -26,7 +27,7 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
  * Make Onyx Furnace smelt faster
  * Sinisite Furnace - Cooks 2x as fast, fuel efficient, extra yield, and can use nether fuels.
  * Thyrium Furnace - Combined abilities of Mythril and Adamantium Furnaces.
- * Ashstone Furnace - A Nether furnace that cooks a bit faster than a Nether Furnace
+ * <s>Ashstone Furnace - A Nether furnace that cooks a bit faster than a Nether Furnace</s> - redundant with Nether Blast Furnace. I think.
 
 ##License
 
