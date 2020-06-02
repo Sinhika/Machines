@@ -15,7 +15,12 @@ updateJSONURL="https://raw.githubusercontent.com/Sinhika/Machines/1.15-revised/u
 displayURL="http://minecraft.curseforge.com/projects/machines"
 credits="Created by AleXndrTheGr8st, updated and maintained by Sinhika"
 authors="AleXndrTheGr8st, Sinhika"
-description='''An addon for SimpleOres that adds improved furnaces.
+description='''An addon for SimpleOres that adds improved furnaces, blast furnaces, and smokers.
+	 The Mythril series cooks faster (and thus burns less fuel), while the Onyx series has a 
+	 chance of yielding extra outputs.
+	
+	Additional Credits:  mindy15963 (Korean translations), vanja-san (Russian), burunduk (Ukrainian)
+	Unknown, but probably fearheaven (French).
 '''
 
 [[dependencies.simple_machines]] #optional
