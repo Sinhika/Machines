@@ -20,6 +20,7 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
  * there are textures for Tin Fusion Furnace and Adamantinum Fusion Furnace. What should they do?
  * <s>fix progress arrow acting weird</s> - this is a feature. 
  * fix furnaces burn time being a tick or so shorter than it should be.
+ * add rails made from Simple Ores metals.
  
 ### Old TO-DO list
  * Mythril furnace texture is 1 pixel too high.
