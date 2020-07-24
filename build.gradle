@@ -70,7 +70,7 @@ minecraft {
                 }
             }
         }
-
+
         data {
             workingDirectory project.file('run')
 
@@ -80,7 +80,7 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'simpleores', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'simple_machines', '--all', '--output', file('src/generated/resources/')
 
             mods {
                 simple_machines {
@@ -101,10 +101,10 @@ dependencies {
 }
 
 repositories {
-	maven {
-		name = "mcmodsrepo"
-		url = "file:///${project.projectDir}/../mcmodsrepo"
-	}
+        maven {
+                name = "mcmodsrepo"
+                url = "file:///${project.projectDir}/../mcmodsrepo"
+        }
 }
 
 dependencies {
@@ -114,7 +114,7 @@ dependencies {
     //minecraft 'net.minecraftforge:forge:1.15.2-31.1.34'
     minecraft "net.minecraftforge:forge:${version_forge}"
 
-	compile fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
+    compile fg.deobf("mod.alexndr.simpleores:SimpleOres2:${simpleores_version}")
 }
 
 repositories {
