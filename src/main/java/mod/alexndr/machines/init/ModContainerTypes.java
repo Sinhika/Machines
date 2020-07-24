@@ -27,7 +27,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public final class ModContainerTypes {
 
 	public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = 
-	        new DeferredRegister<>(ForgeRegistries.CONTAINERS, Machines.MODID);
+	        DeferredRegister.create(ForgeRegistries.CONTAINERS, Machines.MODID);
 	
 	// mythril furnaces
     public static final RegistryObject<ContainerType<MythrilFurnaceContainer>> mythril_furnace 

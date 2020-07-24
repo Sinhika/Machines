@@ -2,9 +2,9 @@ package mod.alexndr.machines.api.content;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -378,15 +378,21 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
      * Read saved data from disk into the tile.
      */
     @Override
-    public void read(final CompoundNBT compound)
+    public void read(BlockState stateIn, final CompoundNBT compound)
     {
-    	super.read(compound);
+    	super.read(stateIn, compound);
     	this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
     	this.smeltTimeLeft = compound.getShort(SMELT_TIME_LEFT_TAG);
     	this.maxSmeltTime = compound.getShort(MAX_SMELT_TIME_TAG);
     	this.fuelBurnTimeLeft = compound.getInt(FUEL_BURN_TIME_LEFT_TAG);
     	this.maxFuelBurnTime = compound.getInt(MAX_FUEL_BURN_TIME_TAG);
-    	
+
+        // We set this in read() instead of the constructor so that TileEntities
+        // constructed from NBT (saved tile entities) have this set to the proper value
+        if (this.hasWorld() && !this.world.isRemote) {
+            lastBurning = this.isBurning();
+        }
+
     	// get recipe2xp map
         int ii = compound.getShort("RecipesUsedSize");
         for(int jj = 0; jj < ii; ++jj) {
@@ -395,7 +401,15 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
            int kk = compound.getInt("RecipeAmount" + jj);
            this.recipe2xp_map.put(resourcelocation, kk);
         }
-    }
+        
+        // blockstate?
+        if (this.hasWorld()) {
+            this.world.setBlockState(getPos(), this.getBlockState()
+                                            .with(AbstractModFurnaceBlock.BURNING, 
+                                                    Boolean.valueOf(this.isBurning())));
+        }
+        
+    } // end read()
 
     /**
      * Write data from the tile into a compound tag for saving to disk.
