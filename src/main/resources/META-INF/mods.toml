@@ -3,7 +3,7 @@
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[31,)" #mandatory
+loaderVersion="[32,)" #mandatory
 issueTrackerURL="https://github.com/Sinhika/Machines/issues"
 logoFile="machines.png"
 
@@ -11,43 +11,40 @@ logoFile="machines.png"
 modId="simple_machines"
 version="${version}"
 displayName="SimpleOres:Machines"
-updateJSONURL="https://raw.githubusercontent.com/Sinhika/Machines/1.15-revised/update.json"
+updateJSONURL="https://raw.githubusercontent.com/Sinhika/Machines/1.16/update.json"
 displayURL="http://minecraft.curseforge.com/projects/machines"
 credits="Created by AleXndrTheGr8st, updated and maintained by Sinhika"
 authors="AleXndrTheGr8st, Sinhika"
-description='''An addon for SimpleOres that adds improved furnaces, blast furnaces, and smokers.
-	 The Mythril series cooks faster (and thus burns less fuel), while the Onyx series has a 
-	 chance of yielding extra outputs.
-	
-	Additional Credits:  mindy15963 (Korean translations), vanja-san (Russian), burunduk (Ukrainian)
-	Unknown, but probably fearheaven (French).
+description='''An addon for SimpleOres that adds improved furnaces, blast furnaces, and smokers. The Mythril series cooks faster (and thus burns less fuel), while the Onyx series has a chance of yielding extra outputs.
+        
+Additional Credits:  mindy15963 (Korean translations), vanja-san (Russian), burunduk (Ukrainian) Unknown, but probably fearheaven (French).
 '''
 
 [[dependencies.simple_machines]] #optional
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[32,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.simple_machines]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.1]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.simple_machines]]
     modId="simpleores"
     mandatory=true
-    versionRange="[1.15.2-2.1.5.1,)"
+    versionRange="[1.16.1-2.2.0,)"
     ordering="NONE"
     side="BOTH"
         
 [[dependencies.simple_machines]] #optional
     modId="jei"
     mandatory=false
-    versionRange="[1.15.2-6.0.0.3,)"
+    versionRange="[1.16.1-7.0.0.6,)"
     ordering="BEFORE"
     side="BOTH"
     
