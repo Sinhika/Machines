@@ -43,7 +43,7 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
      * @param mouseY
      */
     @Override
-    protected void func_230451_b_(MatrixStack matStack, final int mouseX, final int mouseY)
+    protected void drawGuiContainerForegroundLayer(MatrixStack matStack, final int mouseX, final int mouseY)
     {
     	// Copied from AbstractFurnaceScreen#drawGuiContainerForegroundLayer
     	String s = this.title.getString();
@@ -62,7 +62,7 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
      */
     @SuppressWarnings("deprecation")
     @Override
-    protected void func_230450_a_(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
+    protected void drawGuiContainerBackgroundLayer(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
     {
     	RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     	getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
