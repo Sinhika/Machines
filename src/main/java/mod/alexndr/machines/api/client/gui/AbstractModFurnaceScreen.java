@@ -32,28 +32,28 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
     {
     	this.renderBackground(matStack);
     	super.render(matStack, mouseX, mouseY, partialTicks);
-    	this.renderHoveredTooltip(matStack, mouseX, mouseY); // formerly renderHoveredTooltip
+    	this.renderTooltip(matStack, mouseX, mouseY); // formerly renderHoveredTooltip
     }
 
     /**
-     * Probably corresponds to ContainerScreen.func_230451_b_() in 1.16.1.
+     * Probably corresponds to ContainerScreen.renderLabels() in 1.16.1.
      * Formerly drawGuiContainerForegroundLayer() in 1.15.2.
      * @param matStack
      * @param mouseX
      * @param mouseY
      */
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matStack, final int mouseX, final int mouseY)
+    protected void renderLabels(MatrixStack matStack, final int mouseX, final int mouseY)
     {
     	// Copied from AbstractFurnaceScreen#drawGuiContainerForegroundLayer
     	String s = this.title.getString();
-    	this.font.drawString(matStack, s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, displayNameColor);
-    	this.font.drawString(matStack, this.playerInventory.getDisplayName().getString(), 8.0F, 
-    	                     (float) (this.ySize - 96 + 2), displayNameColor);
+    	this.font.draw(matStack, s, (float) (this.imageWidth / 2 - this.font.width(s) / 2), 6.0F, displayNameColor);
+    	this.font.draw(matStack, this.inventory.getDisplayName().getString(), 8.0F, 
+    	                     (float) (this.imageHeight - 96 + 2), displayNameColor);
     }
 
     /**
-     * Corresponds to AbstractFurnaceScreen.func_230450_a_() in 1.16.1.
+     * Corresponds to AbstractFurnaceScreen.renderBg() in 1.16.1.
      * Formerly drawGuiContainerBackgroundLayer() in 1.15.2
      * @param matStack
      * @param partialTicks
@@ -62,19 +62,19 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
      */
     @SuppressWarnings("deprecation")
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
+    protected void renderBg(MatrixStack matStack, final float partialTicks, final int mouseX, final int mouseY)
     {
     	RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-    	getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
-    	int startX = this.guiLeft;
-    	int startY = this.guiTop;
+    	getMinecraft().getTextureManager().bind(BACKGROUND_TEXTURE);
+    	int startX = this.leftPos;
+    	int startY = this.topPos;
     
     	// Screen#blit draws a part of the current texture (assumed to be 256x256) to the screen
     	// The parameters are (x, y, u, v, width, height)
     
-    	this.blit(matStack, startX, startY, 0, 0, this.xSize, this.ySize);
+    	this.blit(matStack, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
     
-    	final AbstractModFurnaceTileEntity tileEntity = container.tileEntity;
+    	final AbstractModFurnaceTileEntity tileEntity = menu.tileEntity;
     	if (tileEntity.smeltTimeLeft > 0) {
     		// Draw progress arrow
     		int arrowWidth = getSmeltTimeScaled();
@@ -97,7 +97,7 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
 
     private int getSmeltTimeScaled()
     {
-    	final AbstractModFurnaceTileEntity tileEntity = this.container.tileEntity;
+    	final AbstractModFurnaceTileEntity tileEntity = this.menu.tileEntity;
     	final short smeltTimeLeft = tileEntity.smeltTimeLeft;
     	final short maxSmeltTime = tileEntity.maxSmeltTime;
     	if (smeltTimeLeft <= 0 || maxSmeltTime <= 0)
@@ -107,7 +107,7 @@ public abstract class AbstractModFurnaceScreen<T extends AbstractModFurnaceConta
 
     private int getFuelBurnTimeScaled()
     {
-    	final AbstractModFurnaceTileEntity tileEntity = this.container.tileEntity;
+    	final AbstractModFurnaceTileEntity tileEntity = this.menu.tileEntity;
     	if (tileEntity.maxFuelBurnTime <= 0)
     		return 0;
     	return (tileEntity.fuelBurnTimeLeft * 16) / tileEntity.maxFuelBurnTime; // 14 is the height of the flames

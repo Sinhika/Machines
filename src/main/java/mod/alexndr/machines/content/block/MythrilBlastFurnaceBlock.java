@@ -36,31 +36,31 @@ public class MythrilBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
     }
 
     @Override
-    public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if (oldState.getBlock() != newState.getBlock()) 
         {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            TileEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof MythrilBlastFurnaceTileEntity) 
             {
                 final ItemStackHandler inventory = ((MythrilBlastFurnaceTileEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
-                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
+                    InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
             }
         }
     } // end onReplaced
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
             Hand handIn, BlockRayTraceResult hit)
     {
-        if (!worldIn.isRemote) 
+        if (!worldIn.isClientSide) 
         {
-            final TileEntity tileEntity = worldIn.getTileEntity(pos);
+            final TileEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof MythrilBlastFurnaceTileEntity) 
             {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (MythrilBlastFurnaceTileEntity) tileEntity, pos);
-                player.addStat(Stats.INTERACT_WITH_BLAST_FURNACE);
+                player.awardStat(Stats.INTERACT_WITH_BLAST_FURNACE);
             }
         }
         return ActionResultType.SUCCESS;

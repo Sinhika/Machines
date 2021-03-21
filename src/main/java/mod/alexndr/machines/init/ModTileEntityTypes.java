@@ -31,38 +31,38 @@ public final class ModTileEntityTypes {
 	// mythril furnaces
 	public static RegistryObject<TileEntityType<MythrilFurnaceTileEntity>> mythril_furnace = 
 	        TILE_ENTITY_TYPES.register("mythril_furnace", 
-	                () -> TileEntityType.Builder.create(MythrilFurnaceTileEntity::new, 
+	                () -> TileEntityType.Builder.of(MythrilFurnaceTileEntity::new, 
 	                                                    ModBlocks.mythril_furnace.get())
                .build(null));
 
     public static RegistryObject<TileEntityType<MythrilBlastFurnaceTileEntity>> mythril_blast_furnace = 
             TILE_ENTITY_TYPES.register("mythril_blast_furnace", 
-                    () -> TileEntityType.Builder.create(MythrilBlastFurnaceTileEntity::new, 
+                    () -> TileEntityType.Builder.of(MythrilBlastFurnaceTileEntity::new, 
                                                         ModBlocks.mythril_blast_furnace.get())
                .build(null));
 
     public static RegistryObject<TileEntityType<MythrilSmokerTileEntity>> mythril_smoker = 
             TILE_ENTITY_TYPES.register("mythril_smoker", 
-                    () -> TileEntityType.Builder.create(MythrilSmokerTileEntity::new, 
+                    () -> TileEntityType.Builder.of(MythrilSmokerTileEntity::new, 
                                                         ModBlocks.mythril_smoker.get())
                .build(null));
 
     // onyx furnaces
     public static RegistryObject<TileEntityType<OnyxFurnaceTileEntity>> onyx_furnace = 
             TILE_ENTITY_TYPES.register("onyx_furnace", 
-                            () -> TileEntityType.Builder.create(OnyxFurnaceTileEntity::new, 
+                            () -> TileEntityType.Builder.of(OnyxFurnaceTileEntity::new, 
                                                                 ModBlocks.onyx_furnace.get())
              .build(null));
 
     public static RegistryObject<TileEntityType<OnyxBlastFurnaceTileEntity>> onyx_blast_furnace = 
             TILE_ENTITY_TYPES.register("onyx_blast_furnace", 
-                    () -> TileEntityType.Builder.create(OnyxBlastFurnaceTileEntity::new, 
+                    () -> TileEntityType.Builder.of(OnyxBlastFurnaceTileEntity::new, 
                                                         ModBlocks.onyx_blast_furnace.get())
                .build(null));
 
     public static RegistryObject<TileEntityType<OnyxSmokerTileEntity>> onyx_smoker = 
             TILE_ENTITY_TYPES.register("onyx_smoker", 
-                    () -> TileEntityType.Builder.create(OnyxSmokerTileEntity::new, 
+                    () -> TileEntityType.Builder.of(OnyxSmokerTileEntity::new, 
                                                         ModBlocks.onyx_smoker.get())
                .build(null));
 

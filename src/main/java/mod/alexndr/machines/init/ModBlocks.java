@@ -36,42 +36,42 @@ public final class ModBlocks
     
     // Furnaces
     public static final RegistryObject<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
-            () -> new OnyxFurnaceBlock(Block.Properties.create(Material.ROCK)
-                    .hardnessAndResistance(3.5F, 12.0F).setRequiresTool()
-                    .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));    
+            () -> new OnyxFurnaceBlock(Block.Properties.of(Material.STONE)
+                    .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
+                    .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));    
     public static final RegistryObject<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
-            () -> new MythrilFurnaceBlock(Block.Properties.create(Material.ROCK)
-                    .hardnessAndResistance(3.5F, 12.0F).setRequiresTool()
-                    .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
+            () -> new MythrilFurnaceBlock(Block.Properties.of(Material.STONE)
+                    .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
+                    .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
     
     // blast furnaces
     public static final RegistryObject<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
             BLOCKS.register("mythril_blast_furnace",  
-                            () -> new MythrilBlastFurnaceBlock(Block.Properties.create(Material.ROCK)
-                                                               .hardnessAndResistance(3.5F, 12.0F).setRequiresTool()
-                                                               .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
+                            () -> new MythrilBlastFurnaceBlock(Block.Properties.of(Material.STONE)
+                                                               .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
+                                                               .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<OnyxBlastFurnaceBlock> onyx_blast_furnace = 
             BLOCKS.register("onyx_blast_furnace",  
-                            () -> new OnyxBlastFurnaceBlock(Block.Properties.create(Material.ROCK)
-                                                               .hardnessAndResistance(3.5F, 12.0F).setRequiresTool()
-                                                               .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
+                            () -> new OnyxBlastFurnaceBlock(Block.Properties.of(Material.STONE)
+                                                               .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
+                                                               .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
     
     // smokers
     public static final RegistryObject<MythrilSmokerBlock> mythril_smoker = 
             BLOCKS.register("mythril_smoker",  
-                            () -> new MythrilSmokerBlock(Block.Properties.create(Material.ROCK).setRequiresTool()
-                                                               .hardnessAndResistance(3.5F, 12.0F)
-                                                       .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
+                            () -> new MythrilSmokerBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops()
+                                                               .strength(3.5F, 12.0F)
+                                                       .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<OnyxSmokerBlock> onyx_smoker = 
             BLOCKS.register("onyx_smoker",  
-                            () -> new OnyxSmokerBlock(Block.Properties.create(Material.ROCK)
-                                                               .hardnessAndResistance(3.5F, 12.0F).setRequiresTool()
-                                                       .setLightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
+                            () -> new OnyxSmokerBlock(Block.Properties.of(Material.STONE)
+                                                               .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
+                                                       .lightLevel(lit_makes_light(13)).harvestTool(ToolType.PICKAXE)));
 
     
     private static ToIntFunction<BlockState> lit_makes_light(int foo) {
         return (bar) -> {
-           return bar.get(BlockStateProperties.LIT) ? foo : 0;
+           return bar.getValue(BlockStateProperties.LIT) ? foo : 0;
         };
      }    
 

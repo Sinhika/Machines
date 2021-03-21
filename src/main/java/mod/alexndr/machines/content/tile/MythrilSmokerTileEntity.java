@@ -24,7 +24,7 @@ public class MythrilSmokerTileEntity extends AbstractModFurnaceTileEntity
     @Override
     public ITextComponent getDisplayName()
     {
-        return new TranslationTextComponent(ModBlocks.mythril_smoker.get().getTranslationKey());
+        return new TranslationTextComponent(ModBlocks.mythril_smoker.get().getDescriptionId());
     }
 
     @Override

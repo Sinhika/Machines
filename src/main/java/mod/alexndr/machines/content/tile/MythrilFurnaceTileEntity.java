@@ -45,7 +45,7 @@ public class MythrilFurnaceTileEntity extends AbstractModFurnaceTileEntity imple
     @Override
     public ITextComponent getDisplayName()
     {
-        return new TranslationTextComponent(ModBlocks.mythril_furnace.get().getTranslationKey());
+        return new TranslationTextComponent(ModBlocks.mythril_furnace.get().getDescriptionId());
     }
 
 } // end class

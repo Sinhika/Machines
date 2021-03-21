@@ -33,7 +33,7 @@ public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity implemen
     @Nonnull
 	@Override
 	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent(ModBlocks.onyx_furnace.get().getTranslationKey());
+		return new TranslationTextComponent(ModBlocks.onyx_furnace.get().getDescriptionId());
 	}
 
 	/**

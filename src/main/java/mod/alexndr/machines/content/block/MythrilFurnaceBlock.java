@@ -47,16 +47,16 @@ public class MythrilFurnaceBlock extends AbstractModFurnaceBlock
 	 * Implementing/overriding is fine.
 	 */
 	@Override
-	public void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) 
+	public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) 
 	{
 		if (oldState.getBlock() != newState.getBlock()) 
 		{
-			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			TileEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof MythrilFurnaceTileEntity) 
 			{
 				final ItemStackHandler inventory = ((MythrilFurnaceTileEntity) tileEntity).inventory;
 				for (int slot = 0; slot < inventory.getSlots(); ++slot)
-					InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
+					InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
 			}
 		}
 	}
@@ -69,15 +69,15 @@ public class MythrilFurnaceBlock extends AbstractModFurnaceBlock
 	 * Implementing/overriding is fine.
 	 */
 	@Override
-	public ActionResultType onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) 
+	public ActionResultType use(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) 
 	{
-		if (!worldIn.isRemote) 
+		if (!worldIn.isClientSide) 
 		{
-			final TileEntity tileEntity = worldIn.getTileEntity(pos);
+			final TileEntity tileEntity = worldIn.getBlockEntity(pos);
 			if (tileEntity instanceof MythrilFurnaceTileEntity) 
 			{
 				NetworkHooks.openGui((ServerPlayerEntity) player, (MythrilFurnaceTileEntity) tileEntity, pos);
-	            player.addStat(Stats.INTERACT_WITH_FURNACE);
+	            player.awardStat(Stats.INTERACT_WITH_FURNACE);
 			}
 		}
 		return ActionResultType.SUCCESS;

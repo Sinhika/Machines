@@ -28,33 +28,33 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
      * No, you can't stick items in the output slot.
      */
     @Override
-    public boolean isItemValid(ItemStack stack)
+    public boolean mayPlace(ItemStack stack)
     {
         return false;
     }
 
     
     @Override
-    public ItemStack decrStackSize(int amount)
+    public ItemStack remove(int amount)
     {
-        if (this.getHasStack()) {
-            this.removeCount += Math.min(amount, this.getStack().getCount());
+        if (this.hasItem()) {
+            this.removeCount += Math.min(amount, this.getItem().getCount());
          }
-        return super.decrStackSize(amount);
+        return super.remove(amount);
     }
 
     @Override
-    protected void onCrafting(ItemStack stack, int amount)
+    protected void onQuickCraft(ItemStack stack, int amount)
     {
         this.removeCount += amount;
-        this.onCrafting(stack);
+        this.checkTakeAchievements(stack);
     }
 
     @Override
-    protected void onCrafting(ItemStack stack)
+    protected void checkTakeAchievements(ItemStack stack)
     {
-        stack.onCrafting(this.player.world, this.player, this.removeCount);
-        if (!this.player.world.isRemote && this.tile instanceof AbstractModFurnaceTileEntity) 
+        stack.onCraftedBy(this.player.level, this.player, this.removeCount);
+        if (!this.player.level.isClientSide && this.tile instanceof AbstractModFurnaceTileEntity) 
         {
            ((AbstractModFurnaceTileEntity)this.tile).grantExperience(this.player);
         }
@@ -65,7 +65,7 @@ public class FurnaceResultSlotItemHandler extends SlotItemHandler
     @Override
     public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
     {
-        this.onCrafting(stack);
+        this.checkTakeAchievements(stack);
         super.onTake(thePlayer, stack);
         return stack;
     }

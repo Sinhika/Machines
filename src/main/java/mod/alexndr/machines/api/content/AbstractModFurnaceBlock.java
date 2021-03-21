@@ -38,9 +38,9 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
         super(builder);
         
         // Set the default values for our blockstate properties
-        this.setDefaultState(this.getDefaultState()
-                .with(HORIZONTAL_FACING, Direction.NORTH)
-                .with(BURNING, false)
+        this.registerDefaultState(this.defaultBlockState()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(BURNING, false)
         );
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public abstract void onReplaced(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving);
+    public abstract void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving);
 
     /**
      * Called when a player right clicks our block.
@@ -72,7 +72,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public abstract ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit); 
+    public abstract ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit); 
     
     /**
      * Makes the block face the player when placed
@@ -80,7 +80,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-    	return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+    	return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     /**
@@ -90,22 +90,22 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
      * Implementing/overriding is fine.
      */
     @Override
-    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos)
+    public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos)
     {
-    	final TileEntity tileEntity = worldIn.getTileEntity(pos);
+    	final TileEntity tileEntity = worldIn.getBlockEntity(pos);
     	if (tileEntity instanceof AbstractModFurnaceTileEntity)
     		return ItemHandlerHelper.calcRedstoneFromInventory(((AbstractModFurnaceTileEntity) tileEntity).inventory);
-    	return super.getComparatorInputOverride(blockState, worldIn, pos);
+    	return super.getAnalogOutputSignal(blockState, worldIn, pos);
     }
 
     /**
      * Called from inside the constructor {@link Block#Block(Properties)} to add all the properties to our blockstate
      */
     @Override
-    protected void fillStateContainer(final StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(final StateContainer.Builder<Block, BlockState> builder)
     {
-    	super.fillStateContainer(builder);
-    	builder.add(HORIZONTAL_FACING);
+    	super.createBlockStateDefinition(builder);
+    	builder.add(FACING);
     	builder.add(BURNING);
     }
 
@@ -118,7 +118,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
     @Override
     public BlockState rotate(BlockState state, Rotation rot)
     {
-    	return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
+    	return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     /**
@@ -130,7 +130,7 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn)
     {
-    	return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
+    	return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     /**
@@ -142,24 +142,24 @@ public abstract class AbstractModFurnaceBlock extends HorizontalBlock
     @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        if (stateIn.get(BURNING))
+        if (stateIn.getValue(BURNING))
         {
             double d0 = (double) pos.getX() + 0.5D;
             double d1 = (double) pos.getY();
             double d2 = (double) pos.getZ() + 0.5D;
             if (rand.nextDouble() < 0.1D)
             {
-                worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F,
+                worldIn.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F,
                         false);
             }
 
-            Direction direction = stateIn.get(HORIZONTAL_FACING);
+            Direction direction = stateIn.getValue(FACING);
             Direction.Axis direction$axis = direction.getAxis();
             // double d3 = 0.52D;
             double d4 = rand.nextDouble() * 0.6D - 0.3D;
-            double d5 = direction$axis == Direction.Axis.X ? (double) direction.getXOffset() * 0.52D : d4;
+            double d5 = direction$axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52D : d4;
             double d6 = rand.nextDouble() * 6.0D / 16.0D;
-            double d7 = direction$axis == Direction.Axis.Z ? (double) direction.getZOffset() * 0.52D : d4;
+            double d7 = direction$axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52D : d4;
             worldIn.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
             worldIn.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
         }

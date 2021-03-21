@@ -26,7 +26,7 @@ public class OnyxSmokerTileEntity extends AbstractModFurnaceTileEntity
     @Override
     public ITextComponent getDisplayName()
     {
-        return new TranslationTextComponent(ModBlocks.onyx_smoker.get().getTranslationKey());
+        return new TranslationTextComponent(ModBlocks.onyx_smoker.get().getDescriptionId());
     }
 
     @Override
