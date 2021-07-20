@@ -32,6 +32,7 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
         return ModTileEntityTypes.onyx_smoker.get().create();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
@@ -45,6 +46,7 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
                     InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
             }
         }
+        super.onRemove(oldState, worldIn, pos, newState, isMoving);
     } // end onReplaced
 
     @Override

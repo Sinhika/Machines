@@ -314,7 +314,7 @@ public abstract class AbstractModFurnaceTileEntity extends TileEntity  implement
     	if (!fuelStack.isEmpty()) 
     	{
     	    // improved fuel efficiency processing here.
-    		final int burnTime = (int) Math.ceil(ForgeHooks.getBurnTime(fuelStack) * fuelMultiplier);
+    		final int burnTime = (int) Math.ceil(ForgeHooks.getBurnTime(fuelStack, IRecipeType.SMELTING) * fuelMultiplier);
     		if (burnTime > 0) {
     			fuelBurnTimeLeft = maxFuelBurnTime = burnTime;
     			if (fuelStack.hasContainerItem())

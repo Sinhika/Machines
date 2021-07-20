@@ -33,6 +33,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
         return ModTileEntityTypes.onyx_blast_furnace.get().create();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState oldState, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
@@ -46,6 +47,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
                     InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
             }
         }
+        super.onRemove(oldState, worldIn, pos, newState, isMoving);
     } // end onReplaced
 
     @Override

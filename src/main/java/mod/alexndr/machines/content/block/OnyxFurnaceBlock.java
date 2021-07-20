@@ -58,6 +58,7 @@ public class OnyxFurnaceBlock extends AbstractModFurnaceBlock
 					InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
 			}
 		}
+		super.onRemove(oldState, worldIn, pos, newState, isMoving);
 	} // end onReplaced()
 
 	/**
