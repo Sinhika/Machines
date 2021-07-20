@@ -19,7 +19,7 @@ public class OnyxBlastFurnaceTileEntity extends AbstractModFurnaceTileEntity
     public OnyxBlastFurnaceTileEntity()
     {
         super(ModTileEntityTypes.onyx_blast_furnace.get(), IRecipeType.BLASTING);
-        fuelMultiplier /=  2.0; // because blast furnace.
+        fuelMultiplier = fuelMultiplier / 2.0; // because blast furnace.
         YieldChance = MachinesConfig.onyxFurnaceYieldChance;
         YieldAmount = MachinesConfig.onyxFurnaceYieldAmount;
     }
