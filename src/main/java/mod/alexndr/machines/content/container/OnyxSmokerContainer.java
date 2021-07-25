@@ -2,19 +2,19 @@ package mod.alexndr.machines.content.container;
 
 import java.util.Objects;
 
-import mod.alexndr.machines.api.content.AbstractModFurnaceContainer;
 import mod.alexndr.machines.content.block.OnyxSmokerBlock;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.network.IContainerFactory;
 
-public class OnyxSmokerContainer extends AbstractModFurnaceContainer<OnyxSmokerBlock>
+public class OnyxSmokerContainer extends VeryAbstractFurnaceContainer<OnyxSmokerBlock>
 {
     /**
      * Logical-client-side constructor, called from {@link ContainerType#create(IContainerFactory)}

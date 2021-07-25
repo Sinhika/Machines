@@ -2,9 +2,9 @@ package mod.alexndr.machines.content.block;
 
 import javax.annotation.Nullable;
 
-import mod.alexndr.machines.api.content.AbstractModFurnaceBlock;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -23,7 +23,7 @@ import net.minecraftforge.items.ItemStackHandler;
 /**
  * @author Cadiboo
  */
-public class OnyxFurnaceBlock extends AbstractModFurnaceBlock 
+public class OnyxFurnaceBlock extends VeryAbstractFurnaceBlock 
 {
 
 	public OnyxFurnaceBlock(final Properties properties) 

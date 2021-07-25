@@ -1,13 +1,13 @@
 package mod.alexndr.machines.client.gui;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.api.client.gui.AbstractModFurnaceScreen;
 import mod.alexndr.machines.content.container.MythrilSmokerContainer;
+import mod.alexndr.simplecorelib.client.gui.VeryAbstractFurnaceScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class MythrilSmokerScreen extends AbstractModFurnaceScreen<MythrilSmokerContainer>
+public class MythrilSmokerScreen extends VeryAbstractFurnaceScreen<MythrilSmokerContainer>
 {
     private final static int name_color =  0x404040;
     

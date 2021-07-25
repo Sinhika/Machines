@@ -1,8 +1,8 @@
 package mod.alexndr.machines.client.gui;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.api.client.gui.AbstractModFurnaceScreen;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
+import mod.alexndr.simplecorelib.client.gui.VeryAbstractFurnaceScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 /**
  * @author Cadiboo
  */
-public class OnyxFurnaceScreen extends AbstractModFurnaceScreen<OnyxFurnaceContainer> 
+public class OnyxFurnaceScreen extends VeryAbstractFurnaceScreen<OnyxFurnaceContainer> 
 {
     private final static int name_color =  0x0ffffff;
 

@@ -2,11 +2,11 @@ package mod.alexndr.machines.content.container;
 
 import java.util.Objects;
 
-import mod.alexndr.machines.api.content.AbstractModFurnaceContainer;
 import mod.alexndr.machines.content.block.MythrilFurnaceBlock;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -30,7 +30,7 @@ import net.minecraftforge.fml.network.IContainerFactory;
  *
  * @author Cadiboo
  */
-public class MythrilFurnaceContainer extends AbstractModFurnaceContainer<MythrilFurnaceBlock> 
+public class MythrilFurnaceContainer extends VeryAbstractFurnaceContainer<MythrilFurnaceBlock> 
 {
 
 	/**
