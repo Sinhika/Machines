@@ -22,7 +22,7 @@ final class ServerConfig {
 		mythrilFurnaceFuelMultiplier = builder
 		     .comment("Multiplier for fuel duration in mythril furnaces")
 		    .translation(Machines.MODID + "config.mythrilFurnaceFuelMultiplier")
-		    .defineInRange("mythrilFurnaceFuelMultiplier", 2.01, 1.00, 99.9);
+		    .defineInRange("mythrilFurnaceFuelMultiplier", 2.0, 1.0, 99.9);
 		onyxFurnaceYieldChance = builder
 		    .comment("Per cent (%) chance that onyx furnaces will yield extra output")
 		    .translation(Machines.MODID + "config.onyxFurnaceYieldChance")

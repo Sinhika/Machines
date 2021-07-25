@@ -17,7 +17,15 @@ public class MythrilSmokerTileEntity extends AbstractModFurnaceTileEntity
     public MythrilSmokerTileEntity() 
     {
         super(ModTileEntityTypes.mythril_smoker.get(), IRecipeType.SMOKING);
-        fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier / 2.0; // because smoker.
+        
+        // because smoker, and attempt to reduce rounding errors.
+        if (MachinesConfig.mythrilFurnaceFuelMultiplier == 2.0)
+        {
+            fuelMultiplier = 1.0;
+        }
+        else {
+            fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier / 2.0; 
+        }
     }
 
 

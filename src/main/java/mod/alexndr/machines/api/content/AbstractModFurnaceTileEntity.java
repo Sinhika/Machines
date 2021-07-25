@@ -30,8 +30,7 @@ public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTi
         // Due to vanilla's code we need to pass an IInventory into RecipeManager#getRecipe and
         // AbstractCookingRecipe#getCraftingResult() so we make one here.
         final Inventory dummyInventory = new Inventory(input);
-        Optional<ItemStack> maybe_result = 
-                getRecipe(dummyInventory).map(recipe -> recipe.assemble(dummyInventory));
+        Optional<ItemStack> maybe_result = getRecipe(dummyInventory).map(recipe -> recipe.assemble(dummyInventory));
         
         // enhanced yield processing.
         if (YieldChance <= 0 || YieldAmount <= 0)

@@ -18,7 +18,15 @@ public class MythrilBlastFurnaceTileEntity extends AbstractModFurnaceTileEntity
     public MythrilBlastFurnaceTileEntity()
     {
         super(ModTileEntityTypes.mythril_blast_furnace.get(), IRecipeType.BLASTING);
-        fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier / 2.0; // because blast furnace.
+        
+        // because blast furnace and attempt to reduce rounding errors.
+        if (MachinesConfig.mythrilFurnaceFuelMultiplier == 2.0)
+        {
+            fuelMultiplier = 1.0;
+        }
+        else {
+            fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier / 2.0;
+        }
     }
 
     @Override
