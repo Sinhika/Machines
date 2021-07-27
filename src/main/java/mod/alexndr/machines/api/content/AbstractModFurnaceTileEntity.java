@@ -5,14 +5,12 @@ import java.util.Random;
 
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceTileEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
-public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTileEntity  implements ITickableTileEntity, INamedContainerProvider
+public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTileEntity
 {
 
     protected int YieldChance = 0;

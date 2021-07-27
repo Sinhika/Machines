@@ -10,9 +10,7 @@ import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -20,7 +18,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 /**
  * 
  */
-public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity implements ITickableTileEntity, INamedContainerProvider 
+public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity 
 {
 
 	public OnyxFurnaceTileEntity() 

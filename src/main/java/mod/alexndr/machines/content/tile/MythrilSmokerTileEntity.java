@@ -1,31 +1,22 @@
 package mod.alexndr.machines.content.tile;
 
-import mod.alexndr.machines.api.content.AbstractModFurnaceTileEntity;
 import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.content.container.MythrilSmokerContainer;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModTileEntityTypes;
+import mod.alexndr.simplecorelib.content.VeryAbstractSmokerTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class MythrilSmokerTileEntity extends AbstractModFurnaceTileEntity
+public class MythrilSmokerTileEntity extends VeryAbstractSmokerTileEntity
 {
     public MythrilSmokerTileEntity() 
     {
-        super(ModTileEntityTypes.mythril_smoker.get(), IRecipeType.SMOKING);
-        
-        // because smoker, and attempt to reduce rounding errors.
-        if (MachinesConfig.mythrilFurnaceFuelMultiplier == 2.0)
-        {
-            fuelMultiplier = 1.0;
-        }
-        else {
-            fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier / 2.0; 
-        }
+        super(ModTileEntityTypes.mythril_smoker.get());
+        fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier; 
     }
 
 
