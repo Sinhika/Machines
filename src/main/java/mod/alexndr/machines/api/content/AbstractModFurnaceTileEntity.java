@@ -41,7 +41,13 @@ public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTi
         {
             int k = YieldAmount;
             if ((k + result.getCount()) < result.getMaxStackSize())
-            result.grow(k);
+            {
+                result.grow(k);
+            }
+            else if ((result.getMaxStackSize() - result.getCount()) > 0)
+            {
+                result.grow(result.getMaxStackSize() - result.getCount());
+            }
         }
         return Optional.of(result);
     } // end getResult()

@@ -15,7 +15,9 @@ public abstract class AbstractModSmokerTileEntity extends AbstractModFurnaceTile
     @Override
     protected int getBurnDuration(ItemStack fuelstack)
     {
-        return super.getBurnDuration(fuelstack) / 2;
+        int retval = super.getBurnDuration(fuelstack) / 2;
+//        LOGGER.debug("[" + getDisplayName().getString() + "]AbstractModSmokerTileEntity.getBurnDuration: returns " + retval + " for " + fuelstack.toString());
+        return retval;
     }
 
 } // end class
