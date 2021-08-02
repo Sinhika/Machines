@@ -14,16 +14,13 @@ import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 /**
  * Subscribe to events from the MOD EventBus that should be handled on the PHYSICAL CLIENT side in this class
  *
- * @author Cadiboo
  */
-@SuppressWarnings("deprecation")
 @EventBusSubscriber(modid = Machines.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientModEventSubscriber {
 
@@ -42,7 +39,7 @@ public final class ClientModEventSubscriber {
 	{
 		// Register ContainerType Screens
 		// ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
-		DeferredWorkQueue.runLater(() -> {
+		event.enqueueWork(() -> {
             ScreenManager.register(ModContainerTypes.mythril_furnace.get(), MythrilFurnaceScreen::new);
             ScreenManager.register(ModContainerTypes.mythril_blast_furnace.get(), 
                                           MythrilBlastFurnaceScreen::new);
