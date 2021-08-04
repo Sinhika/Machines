@@ -16,6 +16,7 @@ public class MythrilSmokerTileEntity extends VeryAbstractSmokerTileEntity
     public MythrilSmokerTileEntity() 
     {
         super(ModTileEntityTypes.mythril_smoker.get());
+        hasFuelMultiplier = true;
         fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier; 
     }
 

@@ -17,6 +17,7 @@ public class MythrilBlastFurnaceTileEntity extends VeryAbstractBlastFurnaceTileE
     public MythrilBlastFurnaceTileEntity()
     {
         super(ModTileEntityTypes.mythril_blast_furnace.get());
+        hasFuelMultiplier = true;
         fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier;
     }
 
