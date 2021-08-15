@@ -153,10 +153,9 @@ dependencies {
     implementation fg.deobf("simplecore-api:SimpleCoreLib:${simplecorelib_version}")
     implementation fg.deobf("simpleores:SimpleOres2:${simpleores_version}")
     // compile against the JEI API but do not include it at runtime
-    compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}:api")
+    // compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}")
-
+    // runtimeOnly fg.deobf("mezz.jei:jei-${version_mcjei}:${jei_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

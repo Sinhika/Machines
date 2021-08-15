@@ -1,15 +1,15 @@
 package mod.alexndr.machines.api.content;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public abstract class AbstractModBlastFurnaceTileEntity extends AbstractModFurnaceTileEntity
 {
 
-    public AbstractModBlastFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn)
+    public AbstractModBlastFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn)
     {
-        super(tileEntityTypeIn, IRecipeType.BLASTING);
+        super(tileEntityTypeIn, RecipeType.BLASTING);
     }
 
     @Override

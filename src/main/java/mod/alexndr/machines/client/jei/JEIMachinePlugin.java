@@ -6,8 +6,8 @@ import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.init.ModBlocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
 
 @JeiPlugin
 public class JEIMachinePlugin implements IModPlugin 

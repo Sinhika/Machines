@@ -11,7 +11,7 @@ import mod.alexndr.machines.client.gui.OnyxBlastFurnaceScreen;
 import mod.alexndr.machines.client.gui.OnyxFurnaceScreen;
 import mod.alexndr.machines.client.gui.OnyxSmokerScreen;
 import mod.alexndr.machines.init.ModContainerTypes;
-import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -40,14 +40,14 @@ public final class ClientModEventSubscriber {
 		// Register ContainerType Screens
 		// ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
 		event.enqueueWork(() -> {
-            ScreenManager.register(ModContainerTypes.mythril_furnace.get(), MythrilFurnaceScreen::new);
-            ScreenManager.register(ModContainerTypes.mythril_blast_furnace.get(), 
+            MenuScreens.register(ModContainerTypes.mythril_furnace.get(), MythrilFurnaceScreen::new);
+            MenuScreens.register(ModContainerTypes.mythril_blast_furnace.get(), 
                                           MythrilBlastFurnaceScreen::new);
-            ScreenManager.register(ModContainerTypes.mythril_smoker.get(), MythrilSmokerScreen::new);
-            ScreenManager.register(ModContainerTypes.onyx_furnace.get(), OnyxFurnaceScreen::new);
-            ScreenManager.register(ModContainerTypes.onyx_blast_furnace.get(), 
+            MenuScreens.register(ModContainerTypes.mythril_smoker.get(), MythrilSmokerScreen::new);
+            MenuScreens.register(ModContainerTypes.onyx_furnace.get(), OnyxFurnaceScreen::new);
+            MenuScreens.register(ModContainerTypes.onyx_blast_furnace.get(), 
                                           OnyxBlastFurnaceScreen::new);
-            ScreenManager.register(ModContainerTypes.onyx_smoker.get(), OnyxSmokerScreen::new);
+            MenuScreens.register(ModContainerTypes.onyx_smoker.get(), OnyxSmokerScreen::new);
 			LOGGER.debug("Registered ContainerType Screens");
 		});
 

@@ -4,11 +4,11 @@ import java.util.Optional;
 import java.util.Random;
 
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceTileEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTileEntity
 {
@@ -17,7 +17,7 @@ public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTi
     protected int YieldAmount = 0;
     protected Random generator = new Random();
 
-    public AbstractModFurnaceTileEntity(TileEntityType<?> tileEntityTypeIn, IRecipeType<? extends AbstractCookingRecipe> recipeTypeIn)
+    public AbstractModFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn, RecipeType<? extends AbstractCookingRecipe> recipeTypeIn)
     {
         super(tileEntityTypeIn, recipeTypeIn);
     }
@@ -27,7 +27,7 @@ public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTi
     {
         // Due to vanilla's code we need to pass an IInventory into RecipeManager#getRecipe and
         // AbstractCookingRecipe#getCraftingResult() so we make one here.
-        final Inventory dummyInventory = new Inventory(input);
+        final SimpleContainer dummyInventory = new SimpleContainer(input);
         Optional<ItemStack> maybe_result = getRecipe(dummyInventory).map(recipe -> recipe.assemble(dummyInventory));
         
         // enhanced yield processing.

@@ -1,15 +1,15 @@
 package mod.alexndr.machines.api.content;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public abstract class AbstractModSmokerTileEntity extends AbstractModFurnaceTileEntity
 {
 
-    public AbstractModSmokerTileEntity(TileEntityType<?> tileEntityTypeIn)
+    public AbstractModSmokerTileEntity(BlockEntityType<?> tileEntityTypeIn)
     {
-        super(tileEntityTypeIn, IRecipeType.SMOKING);
+        super(tileEntityTypeIn, RecipeType.SMOKING);
     }
 
     @Override

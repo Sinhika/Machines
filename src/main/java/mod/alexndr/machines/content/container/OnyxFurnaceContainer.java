@@ -8,13 +8,13 @@ import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.play.server.SWindowPropertyPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.util.IntReferenceHolder;
 import net.minecraftforge.fml.network.IContainerFactory;
 
@@ -37,7 +37,7 @@ public class OnyxFurnaceContainer extends VeryAbstractFurnaceContainer<OnyxFurna
 	 * Logical-client-side constructor, called from {@link ContainerType#create(IContainerFactory)}
 	 * Calls the logical-server-side constructor with the TileEntity at the pos in the PacketBuffer
 	 */
-	public OnyxFurnaceContainer(final int windowId, final PlayerInventory playerInventory, final PacketBuffer data) 
+	public OnyxFurnaceContainer(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) 
 	{
 		this(windowId, playerInventory, OnyxFurnaceContainer.getTileEntity(playerInventory, data));
 	}
@@ -46,16 +46,16 @@ public class OnyxFurnaceContainer extends VeryAbstractFurnaceContainer<OnyxFurna
 	 * Constructor called logical-server-side from {@link OnyxFurnaceTileEntity#createMenu}
 	 * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
 	 */
-	public OnyxFurnaceContainer(final int windowId, final PlayerInventory playerInventory, final OnyxFurnaceTileEntity tileEntity) 
+	public OnyxFurnaceContainer(final int windowId, final Inventory playerInventory, final OnyxFurnaceTileEntity tileEntity) 
 	{
 		super(ModContainerTypes.onyx_furnace.get(), windowId, playerInventory, tileEntity, ModBlocks.onyx_furnace);
 	} // end-server-side ctor
 
-	protected static OnyxFurnaceTileEntity getTileEntity(final PlayerInventory playerInventory, final PacketBuffer data) 
+	protected static OnyxFurnaceTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) 
 	{
 		Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
 		Objects.requireNonNull(data, "data cannot be null!");
-		final TileEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
+		final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
 		if (tileAtPos instanceof OnyxFurnaceTileEntity)
 			return (OnyxFurnaceTileEntity) tileAtPos;
 		throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);

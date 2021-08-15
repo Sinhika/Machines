@@ -5,11 +5,11 @@ import mod.alexndr.machines.content.container.MythrilBlastFurnaceContainer;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.content.VeryAbstractBlastFurnaceTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class MythrilBlastFurnaceTileEntity extends VeryAbstractBlastFurnaceTileEntity
 {
@@ -22,13 +22,13 @@ public class MythrilBlastFurnaceTileEntity extends VeryAbstractBlastFurnaceTileE
     }
 
     @Override
-    public ITextComponent getDisplayName()
+    public Component getDisplayName()
     {
-        return new TranslationTextComponent(ModBlocks.mythril_blast_furnace.get().getDescriptionId());
+        return new TranslatableComponent(ModBlocks.mythril_blast_furnace.get().getDescriptionId());
     }
 
     @Override
-    public Container createMenu(int windowId, PlayerInventory inventory, PlayerEntity player)
+    public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player)
     {
         return new MythrilBlastFurnaceContainer(windowId, inventory, this);    
     }

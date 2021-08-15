@@ -7,12 +7,12 @@ import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 /**
@@ -23,15 +23,15 @@ public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity
 
 	public OnyxFurnaceTileEntity() 
 	{
-		super(ModTileEntityTypes.onyx_furnace.get(), IRecipeType.SMELTING);
+		super(ModTileEntityTypes.onyx_furnace.get(), RecipeType.SMELTING);
 	    YieldChance = MachinesConfig.onyxFurnaceYieldChance;
 	    YieldAmount = MachinesConfig.onyxFurnaceYieldAmount;
 	}
 
     @Nonnull
 	@Override
-	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent(ModBlocks.onyx_furnace.get().getDescriptionId());
+	public Component getDisplayName() {
+		return new TranslatableComponent(ModBlocks.onyx_furnace.get().getDescriptionId());
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity
 	 */
 	@Nonnull
 	@Override
-	public Container createMenu(final int windowId, final PlayerInventory inventory, final PlayerEntity player) {
+	public AbstractContainerMenu createMenu(final int windowId, final Inventory inventory, final Player player) {
 		return new OnyxFurnaceContainer(windowId, inventory, this);
 	}
 

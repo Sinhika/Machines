@@ -3,14 +3,16 @@ package mod.alexndr.machines.api.content;
 import java.util.Random;
 
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public abstract class AbstractModBlastFurnaceBlock extends VeryAbstractFurnaceBlock
 {
@@ -21,14 +23,14 @@ public abstract class AbstractModBlastFurnaceBlock extends VeryAbstractFurnaceBl
     }
 
     @Override
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
     {
         if (stateIn.getValue(BlockStateProperties.LIT)) {
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY();
             double d2 = (double)pos.getZ() + 0.5D;
             if (rand.nextDouble() < 0.1D) {
-               worldIn.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+               worldIn.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
     
             Direction direction = stateIn.getValue(FACING);
