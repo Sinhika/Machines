@@ -1,4 +1,5 @@
 build/
+src/generated/resources/.cache/
 gradle/
 run/
 libs/
@@ -11,8 +12,8 @@ libs/
 .classpath
 gradlew
 gradlew.bat
+build.number
 bin/
 .gradle/
-build.number
+.idea/
 .project
-src/main/resources/assets/simple_machines/textures/block/blast_furnace_front_mask
