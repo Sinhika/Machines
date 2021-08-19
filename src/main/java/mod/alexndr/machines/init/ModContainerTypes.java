@@ -9,7 +9,7 @@ import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxSmokerContainer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

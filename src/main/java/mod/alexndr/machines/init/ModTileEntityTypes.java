@@ -1,6 +1,5 @@
 package mod.alexndr.machines.init;
 
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.content.tile.MythrilBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
@@ -8,7 +7,8 @@ import mod.alexndr.machines.content.tile.MythrilSmokerTileEntity;
 import mod.alexndr.machines.content.tile.OnyxBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

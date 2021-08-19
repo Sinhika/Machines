@@ -9,10 +9,9 @@ import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
 import mod.alexndr.machines.content.block.OnyxSmokerBlock;
 import mod.alexndr.simplecorelib.helpers.LightUtils;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.material.Material;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -36,39 +35,33 @@ public final class ModBlocks
     public static final RegistryObject<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
             () -> new OnyxFurnaceBlock(Block.Properties.of(Material.STONE)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
-                    .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))
-                    .harvestTool(ToolType.PICKAXE)));    
+                    .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));    
     public static final RegistryObject<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
             () -> new MythrilFurnaceBlock(Block.Properties.of(Material.STONE)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
-                    .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))
-                    .harvestTool(ToolType.PICKAXE)));
+                    .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     // blast furnaces
     public static final RegistryObject<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
             BLOCKS.register("mythril_blast_furnace",  
                             () -> new MythrilBlastFurnaceBlock(Block.Properties.of(Material.STONE)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
-                                                               .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))
-                                                               .harvestTool(ToolType.PICKAXE)));
+                                                               .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     public static final RegistryObject<OnyxBlastFurnaceBlock> onyx_blast_furnace = 
             BLOCKS.register("onyx_blast_furnace",  
                             () -> new OnyxBlastFurnaceBlock(Block.Properties.of(Material.STONE)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
-                                                               .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))
-                                                               .harvestTool(ToolType.PICKAXE)));
+                                                               .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     // smokers
     public static final RegistryObject<MythrilSmokerBlock> mythril_smoker = 
             BLOCKS.register("mythril_smoker",  
                             () -> new MythrilSmokerBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops()
                                                                .strength(3.5F, 12.0F)
-                                                       .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))
-                                                       .harvestTool(ToolType.PICKAXE)));
+                                                       .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     public static final RegistryObject<OnyxSmokerBlock> onyx_smoker = 
             BLOCKS.register("onyx_smoker",  
                             () -> new OnyxSmokerBlock(Block.Properties.of(Material.STONE)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
-                                                       .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))
-                                                       .harvestTool(ToolType.PICKAXE)));
+                                                       .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
 } // end class

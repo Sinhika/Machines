@@ -11,9 +11,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.IForgeRegistry;
 
 /**
@@ -56,7 +57,7 @@ public final class ModEventSubscriber {
 	 * This method will be called by Forge when a config changes.
 	 */
 	@SubscribeEvent
-	public static void onModConfigEvent(final ModConfig.ModConfigEvent event) 
+	public static void onModConfigEvent(final ModConfigEvent event) 
 	{
 		final ModConfig config = event.getConfig();
 		// Rebake the configs when they change
