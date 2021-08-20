@@ -38,7 +38,7 @@ Additional Credits:  mindy15963 (Korean translations), vanja-san (Russian), buru
 [[dependencies.simple_machines]]
     modId="simplecorelib"
     mandatory=true
-    versionRange="[1.17.1-3.0.0.4,1.17.1-3.1.0.0)"
+    versionRange="[1.17.1-3.0.0.5,1.17.1-3.1.0.0)"
     ordering="NONE"
     side="BOTH"
         
