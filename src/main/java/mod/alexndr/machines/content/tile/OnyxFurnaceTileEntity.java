@@ -11,6 +11,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -21,16 +23,16 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity 
 {
 
-	public OnyxFurnaceTileEntity() 
+	public OnyxFurnaceTileEntity(BlockPos blockpos, BlockState blockstate) 
 	{
-		super(ModTileEntityTypes.onyx_furnace.get(), RecipeType.SMELTING);
+		super(ModTileEntityTypes.onyx_furnace.get(), RecipeType.SMELTING, blockpos, blockstate);
 	    YieldChance = MachinesConfig.onyxFurnaceYieldChance;
 	    YieldAmount = MachinesConfig.onyxFurnaceYieldAmount;
 	}
 
     @Nonnull
 	@Override
-	public Component getDisplayName() {
+	public Component getDefaultName() {
 		return new TranslatableComponent(ModBlocks.onyx_furnace.get().getDescriptionId());
 	}
 
@@ -42,7 +44,7 @@ public class OnyxFurnaceTileEntity extends AbstractModFurnaceTileEntity
 	 */
 	@Nonnull
 	@Override
-	public AbstractContainerMenu createMenu(final int windowId, final Inventory inventory, final Player player) {
+	public AbstractContainerMenu createMenu(final int windowId, final Inventory inventory) {
 		return new OnyxFurnaceContainer(windowId, inventory, this);
 	}
 

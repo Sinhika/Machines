@@ -4,11 +4,13 @@ import java.util.Optional;
 import java.util.Random;
 
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceTileEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTileEntity
 {
@@ -17,9 +19,10 @@ public abstract class AbstractModFurnaceTileEntity extends VeryAbstractFurnaceTi
     protected int YieldAmount = 0;
     protected Random generator = new Random();
 
-    public AbstractModFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn, RecipeType<? extends AbstractCookingRecipe> recipeTypeIn)
+    public AbstractModFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn, 
+    		RecipeType<? extends AbstractCookingRecipe> recipeTypeIn, BlockPos blockpos, BlockState blockstate)
     {
-        super(tileEntityTypeIn, recipeTypeIn);
+        super(tileEntityTypeIn, blockpos, blockstate, recipeTypeIn);
     }
 
     @Override

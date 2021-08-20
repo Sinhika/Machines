@@ -8,15 +8,17 @@ import mod.alexndr.simplecorelib.content.VeryAbstractBlastFurnaceTileEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public class MythrilBlastFurnaceTileEntity extends VeryAbstractBlastFurnaceTileEntity
 {
 
-    public MythrilBlastFurnaceTileEntity()
+    public MythrilBlastFurnaceTileEntity( BlockPos blockpos, BlockState blockstate)
     {
-        super(ModTileEntityTypes.mythril_blast_furnace.get());
+        super(ModTileEntityTypes.mythril_blast_furnace.get(), blockpos, blockstate);
         hasFuelMultiplier = true;
         fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier;
     }
@@ -28,9 +30,15 @@ public class MythrilBlastFurnaceTileEntity extends VeryAbstractBlastFurnaceTileE
     }
 
     @Override
-    public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player)
+    public AbstractContainerMenu createMenu(int windowId, Inventory inventory)
     {
         return new MythrilBlastFurnaceContainer(windowId, inventory, this);    
     }
+
+	@Override
+	protected Component getDefaultName()
+	{
+		return new TranslatableComponent(ModBlocks.mythril_blast_furnace.get().getDescriptionId());
+	}
 
 } // end class

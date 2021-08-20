@@ -7,14 +7,14 @@ import mod.alexndr.machines.content.tile.MythrilBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.inventory.container.ContainerType;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceMenu;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fml.network.IContainerFactory;
+import net.minecraftforge.fmllegacy.network.IContainerFactory;
 
-public class MythrilBlastFurnaceContainer extends VeryAbstractFurnaceContainer<MythrilBlastFurnaceBlock>
+public class MythrilBlastFurnaceContainer extends VeryAbstractFurnaceMenu
 {
 
     /**
@@ -23,28 +23,18 @@ public class MythrilBlastFurnaceContainer extends VeryAbstractFurnaceContainer<M
      */
     public MythrilBlastFurnaceContainer(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) 
     {
-        this(windowId, playerInventory, MythrilBlastFurnaceContainer.getTileEntity(playerInventory, data));
+        super(ModContainerTypes.mythril_blast_furnace.get(), RecipeType.BLASTING, id, playerInventory);
     }
    
     /**
      * Constructor called logical-server-side from {@link MythrilFurnaceTileEntity#createMenu}
      * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
      */
-    public MythrilBlastFurnaceContainer(int id, Inventory playerInventory, 
-                                        MythrilBlastFurnaceTileEntity tileEntity)
+    public MythrilBlastFurnaceContainer(int id, Inventory playerInventory, MythrilBlastFurnaceTileEntity tileEntity)
     {
-        super(ModContainerTypes.mythril_blast_furnace.get(), id, playerInventory, tileEntity,
-              ModBlocks.mythril_blast_furnace);
+        super(ModContainerTypes.mythril_blast_furnace.get(), RecipeType.BLASTING, id, playerInventory, 
+        		tileEntity.inventory, tileEntity.dataAccess, tileEntity);
     }
 
-    protected static MythrilBlastFurnaceTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) 
-    {
-        Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
-        Objects.requireNonNull(data, "data cannot be null!");
-        final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
-        if (tileAtPos instanceof MythrilBlastFurnaceTileEntity)
-            return (MythrilBlastFurnaceTileEntity) tileAtPos;
-        throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
-    }
     
 } // end-class

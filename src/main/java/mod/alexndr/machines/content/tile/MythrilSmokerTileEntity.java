@@ -8,27 +8,29 @@ import mod.alexndr.simplecorelib.content.VeryAbstractSmokerTileEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public class MythrilSmokerTileEntity extends VeryAbstractSmokerTileEntity
 {
-    public MythrilSmokerTileEntity() 
+    public MythrilSmokerTileEntity(BlockPos blockpos, BlockState blockstate) 
     {
-        super(ModTileEntityTypes.mythril_smoker.get());
+        super(ModTileEntityTypes.mythril_smoker.get(), blockpos, blockstate);
         hasFuelMultiplier = true;
         fuelMultiplier = MachinesConfig.mythrilFurnaceFuelMultiplier; 
     }
 
 
     @Override
-    public Component getDisplayName()
+    public Component getDefaultName()
     {
         return new TranslatableComponent(ModBlocks.mythril_smoker.get().getDescriptionId());
     }
 
     @Override
-    public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player)
+    public AbstractContainerMenu createMenu(int windowId, Inventory inventory)
     {
         return new MythrilSmokerContainer(windowId, inventory, this);
     }

@@ -3,16 +3,14 @@ package mod.alexndr.machines.api.content;
 import java.util.Random;
 
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public abstract class AbstractModBlastFurnaceBlock extends VeryAbstractFurnaceBlock
 {

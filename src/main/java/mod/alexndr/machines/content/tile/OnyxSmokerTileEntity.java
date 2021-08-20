@@ -8,27 +8,29 @@ import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public class OnyxSmokerTileEntity extends AbstractModSmokerTileEntity
 {
 
-    public OnyxSmokerTileEntity()
+    public OnyxSmokerTileEntity(BlockPos blockpos, BlockState blockstate)
     {
-        super(ModTileEntityTypes.onyx_smoker.get());
+        super(ModTileEntityTypes.onyx_smoker.get(), blockpos, blockstate);
         YieldChance = MachinesConfig.onyxFurnaceYieldChance;
         YieldAmount = MachinesConfig.onyxFurnaceYieldAmount;
      }
 
     @Override
-    public Component getDisplayName()
+    public Component getDefaultName()
     {
         return new TranslatableComponent(ModBlocks.onyx_smoker.get().getDescriptionId());
     }
 
     @Override
-    public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player)
+    public AbstractContainerMenu createMenu(int windowId, Inventory inventory)
     {
         return new OnyxSmokerContainer(windowId, inventory, this);
     }
