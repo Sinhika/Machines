@@ -3,22 +3,17 @@ package mod.alexndr.machines.content.block;
 import mod.alexndr.machines.api.content.AbstractModSmokerBlock;
 import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Containers;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class OnyxSmokerBlock extends AbstractModSmokerBlock
 {
@@ -26,12 +21,6 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
     public OnyxSmokerBlock(Properties builder)
     {
         super(builder);
-    }
-
-    @Override
-    public BlockEntity createTileEntity(BlockState state, BlockGetter world)
-    {
-        return ModTileEntityTypes.onyx_smoker.get().create();
     }
 
     @SuppressWarnings("deprecation")
@@ -51,20 +40,29 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
         super.onRemove(oldState, worldIn, pos, newState, isMoving);
     } // end onReplaced
 
-    @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player,
-            InteractionHand handIn, BlockHitResult hit)
-    {
-        if (!worldIn.isClientSide) 
-        {
-            final BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if (tileEntity instanceof OnyxSmokerTileEntity)
-            {
-                NetworkHooks.openGui((ServerPlayer) player, (OnyxSmokerTileEntity) tileEntity, pos);
-                player.awardStat(Stats.INTERACT_WITH_SMOKER);
-            }
-        }
-        return InteractionResult.SUCCESS;
-    }
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType) 
+	{
+		return createFurnaceTicker(level, entityType, ModTileEntityTypes.onyx_smoker.get());
+	}
+
+
+	@Override
+	public BlockEntity newBlockEntity(BlockPos bpos, BlockState bstate) {
+		return new OnyxSmokerTileEntity(bpos, bstate);
+	}
+
+
+	@Override
+	protected void openContainer(Level level, BlockPos bpos, Player player) 
+	{
+		BlockEntity blockentity = level.getBlockEntity(bpos);
+		if (blockentity instanceof OnyxSmokerTileEntity)
+		{
+			player.openMenu((MenuProvider) blockentity);
+			player.awardStat(Stats.INTERACT_WITH_FURNACE);
+		}
+	}
+    
 
 } // end class

@@ -1,20 +1,15 @@
 package mod.alexndr.machines.content.container;
 
-import java.util.Objects;
-
-import mod.alexndr.machines.content.block.MythrilSmokerBlock;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.MythrilSmokerTileEntity;
-import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.inventory.container.ContainerType;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceMenu;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fml.network.IContainerFactory;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.fmllegacy.network.IContainerFactory;
 
-public class MythrilSmokerContainer extends VeryAbstractFurnaceContainer<MythrilSmokerBlock>
+public class MythrilSmokerContainer extends VeryAbstractFurnaceMenu
 {
     /**
      * Logical-client-side constructor, called from {@link ContainerType#create(IContainerFactory)}
@@ -22,7 +17,7 @@ public class MythrilSmokerContainer extends VeryAbstractFurnaceContainer<Mythril
      */
     public MythrilSmokerContainer(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) 
     {
-        this(windowId, playerInventory, MythrilSmokerContainer.getTileEntity(playerInventory, data));
+    	super(ModContainerTypes.mythril_smoker.get(), RecipeType.SMOKING, windowId, playerInventory);
     }
 
     /**
@@ -31,18 +26,8 @@ public class MythrilSmokerContainer extends VeryAbstractFurnaceContainer<Mythril
      */
     public MythrilSmokerContainer(final int windowId, final Inventory playerInventory, final MythrilSmokerTileEntity tileEntity) 
     {
-        super(ModContainerTypes.mythril_smoker.get(), windowId, playerInventory, tileEntity, ModBlocks.mythril_smoker);
+        super(ModContainerTypes.mythril_smoker.get(), RecipeType.SMOKING, windowId, playerInventory, tileEntity.inventory,
+        		tileEntity.dataAccess, tileEntity);
     } // end-server-side ctor
-
-    
-    protected static MythrilSmokerTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) 
-    {
-        Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
-        Objects.requireNonNull(data, "data cannot be null!");
-        final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
-        if (tileAtPos instanceof MythrilSmokerTileEntity)
-            return (MythrilSmokerTileEntity) tileAtPos;
-        throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
-    }
 
 } // end class

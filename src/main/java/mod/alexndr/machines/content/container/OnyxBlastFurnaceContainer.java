@@ -1,20 +1,15 @@
 package mod.alexndr.machines.content.container;
 
-import java.util.Objects;
-
-import mod.alexndr.machines.content.block.OnyxBlastFurnaceBlock;
 import mod.alexndr.machines.content.tile.OnyxBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
-import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.inventory.container.ContainerType;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceMenu;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fml.network.IContainerFactory;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.fmllegacy.network.IContainerFactory;
 
-public class OnyxBlastFurnaceContainer extends VeryAbstractFurnaceContainer<OnyxBlastFurnaceBlock>
+public class OnyxBlastFurnaceContainer extends VeryAbstractFurnaceMenu
 {
     //private static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
 
@@ -24,7 +19,7 @@ public class OnyxBlastFurnaceContainer extends VeryAbstractFurnaceContainer<Onyx
      */
     public OnyxBlastFurnaceContainer(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) 
     {
-        this(windowId, playerInventory, OnyxBlastFurnaceContainer.getTileEntity(playerInventory, data));
+    	super(ModContainerTypes.onyx_blast_furnace.get(), RecipeType.BLASTING, windowId, playerInventory);
     }
    
     /**
@@ -34,18 +29,9 @@ public class OnyxBlastFurnaceContainer extends VeryAbstractFurnaceContainer<Onyx
     public OnyxBlastFurnaceContainer(int id, Inventory playerInventory, 
                                         OnyxBlastFurnaceTileEntity tileEntity)
     {
-        super(ModContainerTypes.onyx_blast_furnace.get(), id, playerInventory, tileEntity,
-              ModBlocks.onyx_blast_furnace);
+        super(ModContainerTypes.onyx_blast_furnace.get(), RecipeType.BLASTING, id, playerInventory, tileEntity.inventory,
+        		tileEntity.dataAccess, tileEntity);
     }
 
-    protected static OnyxBlastFurnaceTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) 
-    {
-        Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
-        Objects.requireNonNull(data, "data cannot be null!");
-        final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
-        if (tileAtPos instanceof OnyxBlastFurnaceTileEntity)
-            return (OnyxBlastFurnaceTileEntity) tileAtPos;
-        throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
-    }
-    
+     
 } // end-class

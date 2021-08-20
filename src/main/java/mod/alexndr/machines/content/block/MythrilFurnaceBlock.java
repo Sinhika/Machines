@@ -1,26 +1,19 @@
 package mod.alexndr.machines.content.block;
 
-import javax.annotation.Nullable;
-
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Containers;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 /**
  * @author Cadiboo
@@ -31,14 +24,6 @@ public class MythrilFurnaceBlock extends VeryAbstractFurnaceBlock
 	public MythrilFurnaceBlock(final Properties properties) 
 	{
 		super(properties);
-	}
-
-	@Nullable
-	@Override
-	public BlockEntity createTileEntity(final BlockState state, final BlockGetter world) 
-	{
-		// Always use TileEntityType#create to allow registry overrides to work.
-		return ModTileEntityTypes.mythril_furnace.get().create();
 	}
 
 	/**
@@ -64,26 +49,28 @@ public class MythrilFurnaceBlock extends VeryAbstractFurnaceBlock
 		super.onRemove(oldState, worldIn, pos, newState, isMoving);
 	}
 
-	/**
-	 * Called when a player right clicks our block.
-	 * We use this method to open our gui.
-	 *
-	 * @deprecated Call via {@link BlockState#onBlockActivated(World, PlayerEntity, Hand, BlockRayTraceResult)} whenever possible.
-	 * Implementing/overriding is fine.
-	 */
+
 	@Override
-	public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) 
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType)
 	{
-		if (!worldIn.isClientSide) 
+		return createFurnaceTicker(level, entityType, ModTileEntityTypes.mythril_furnace.get());
+	}
+
+	@Override
+	public BlockEntity newBlockEntity(BlockPos bpos, BlockState bstate)
+	{
+		return new MythrilFurnaceTileEntity(bpos, bstate);
+	}
+
+	@Override
+	protected void openContainer(Level level, BlockPos bpos, Player player)
+	{
+		BlockEntity blockentity = level.getBlockEntity(bpos);
+		if (blockentity instanceof MythrilFurnaceTileEntity)
 		{
-			final BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-			if (tileEntity instanceof MythrilFurnaceTileEntity) 
-			{
-				NetworkHooks.openGui((ServerPlayer) player, (MythrilFurnaceTileEntity) tileEntity, pos);
-	            player.awardStat(Stats.INTERACT_WITH_FURNACE);
-			}
+			player.openMenu((MenuProvider) blockentity);
+			player.awardStat(Stats.INTERACT_WITH_FURNACE);
 		}
-		return InteractionResult.SUCCESS;
 	}
 	
 } // end class

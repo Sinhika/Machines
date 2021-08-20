@@ -26,7 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public final class ModTileEntityTypes {
 
 	public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITY_TYPES = 
-	        DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, Machines.MODID);
+	        DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Machines.MODID);
 
 	// mythril furnaces
 	public static RegistryObject<BlockEntityType<MythrilFurnaceTileEntity>> mythril_furnace = 
