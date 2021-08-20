@@ -1,22 +1,13 @@
 package mod.alexndr.machines.content.container;
 
-import java.util.Objects;
-
-import mod.alexndr.machines.content.block.MythrilFurnaceBlock;
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
-import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceContainer;
-import net.minecraft.client.network.play.ClientPlayNetHandler;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
+import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceMenu;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.play.server.SWindowPropertyPacket;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.util.IntReferenceHolder;
-import net.minecraftforge.fml.network.IContainerFactory;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.fmllegacy.network.IContainerFactory;
 
 /**
  * Smelt time is synced with
@@ -30,7 +21,7 @@ import net.minecraftforge.fml.network.IContainerFactory;
  *
  * @author Cadiboo
  */
-public class MythrilFurnaceContainer extends VeryAbstractFurnaceContainer<MythrilFurnaceBlock> 
+public class MythrilFurnaceContainer extends VeryAbstractFurnaceMenu 
 {
 
 	/**
@@ -39,7 +30,7 @@ public class MythrilFurnaceContainer extends VeryAbstractFurnaceContainer<Mythri
 	 */
 	public MythrilFurnaceContainer(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) 
 	{
-		this(windowId, playerInventory, MythrilFurnaceContainer.getTileEntity(playerInventory, data));
+		super(ModContainerTypes.mythril_furnace.get(), RecipeType.SMELTING, windowId, playerInventory);
 	}
 
 	/**
@@ -48,19 +39,10 @@ public class MythrilFurnaceContainer extends VeryAbstractFurnaceContainer<Mythri
 	 */
 	public MythrilFurnaceContainer(final int windowId, final Inventory playerInventory, final MythrilFurnaceTileEntity tileEntity) 
 	{
-		super(ModContainerTypes.mythril_furnace.get(), windowId, playerInventory, tileEntity, ModBlocks.mythril_furnace);
-		// Add all the slots for the tileEntity's inventory and the playerInventory to this container
+		super(ModContainerTypes.mythril_furnace.get(), RecipeType.SMELTING, windowId, playerInventory, tileEntity.inventory,  
+	        	  tileEntity.dataAccess, tileEntity);
 
 	} // end-server-side ctor
 
-    protected static MythrilFurnaceTileEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) 
-	{
-		Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
-		Objects.requireNonNull(data, "data cannot be null!");
-		final BlockEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
-		if (tileAtPos instanceof MythrilFurnaceTileEntity)
-			return (MythrilFurnaceTileEntity) tileAtPos;
-		throw new IllegalStateException("Tile entity is not correct! " + tileAtPos);
-	}
 
 } // end class

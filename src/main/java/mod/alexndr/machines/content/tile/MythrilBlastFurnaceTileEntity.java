@@ -5,13 +5,12 @@ import mod.alexndr.machines.content.container.MythrilBlastFurnaceContainer;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.content.VeryAbstractBlastFurnaceTileEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class MythrilBlastFurnaceTileEntity extends VeryAbstractBlastFurnaceTileEntity
 {
