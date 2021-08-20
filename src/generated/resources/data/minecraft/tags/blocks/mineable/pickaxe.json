@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "simple_machines:onyx_furnace",
+    "simple_machines:mythril_furnace",
+    "simple_machines:mythril_blast_furnace",
+    "simple_machines:onyx_blast_furnace",
+    "simple_machines:mythril_smoker",
+    "simple_machines:onyx_smoker"
+  ]
+}

@@ -3,7 +3,6 @@ package mod.alexndr.machines.datagen;
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.simpleores.datagen.ModBlockTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
