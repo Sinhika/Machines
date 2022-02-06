@@ -21,11 +21,11 @@ def getVersionAppendage() {
     return "DEV-" + proc.text.trim()
 }
 
-version = "${version_minecraft}-${version_mod}." + getVersionAppendage() + '-final'
+version = "${version_minecraft}-${version_mod}." + getVersionAppendage()
 group = 'mod.alexndr.machines'
 archivesBaseName = 'simple_machines'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
