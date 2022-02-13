@@ -7,7 +7,7 @@ import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraftforge.fmllegacy.network.IContainerFactory;
+import net.minecraftforge.network.IContainerFactory;
 
 public class OnyxBlastFurnaceContainer extends VeryAbstractFurnaceMenu
 {

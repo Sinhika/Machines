@@ -8,9 +8,9 @@ import mod.alexndr.machines.content.tile.OnyxBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 /**
  * Holds a list of all our {@link TileEntityType}s.

@@ -8,10 +8,10 @@ import mod.alexndr.machines.content.container.OnyxBlastFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxSmokerContainer;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 /**
  * Holds a list of all our {@link ContainerType}s.
@@ -31,23 +31,23 @@ public final class ModContainerTypes {
 	
 	// mythril furnaces
     public static final RegistryObject<MenuType<MythrilFurnaceContainer>> mythril_furnace 
-        = CONTAINER_TYPES.register("mythril_furnace", () -> IForgeContainerType.create(MythrilFurnaceContainer::new));
+        = CONTAINER_TYPES.register("mythril_furnace", () -> IForgeMenuType.create(MythrilFurnaceContainer::new));
     
     public static final RegistryObject<MenuType<MythrilBlastFurnaceContainer>> mythril_blast_furnace 
-        = CONTAINER_TYPES.register("mythril_blast_furnace", () -> IForgeContainerType.create(MythrilBlastFurnaceContainer::new));
+        = CONTAINER_TYPES.register("mythril_blast_furnace", () -> IForgeMenuType.create(MythrilBlastFurnaceContainer::new));
 
     public static final RegistryObject<MenuType<MythrilSmokerContainer>> mythril_smoker 
-        = CONTAINER_TYPES.register("mythril_smoker", () -> IForgeContainerType.create(MythrilSmokerContainer::new));
+        = CONTAINER_TYPES.register("mythril_smoker", () -> IForgeMenuType.create(MythrilSmokerContainer::new));
     
    // onyx furnaces
    public static final RegistryObject<MenuType<OnyxFurnaceContainer>> onyx_furnace 
-        = CONTAINER_TYPES.register("onyx_furnace", () -> IForgeContainerType.create(OnyxFurnaceContainer::new));
+        = CONTAINER_TYPES.register("onyx_furnace", () -> IForgeMenuType.create(OnyxFurnaceContainer::new));
    
    public static final RegistryObject<MenuType<OnyxBlastFurnaceContainer>> onyx_blast_furnace 
-       = CONTAINER_TYPES.register("onyx_blast_furnace", () -> IForgeContainerType.create(OnyxBlastFurnaceContainer::new));
+       = CONTAINER_TYPES.register("onyx_blast_furnace", () -> IForgeMenuType.create(OnyxBlastFurnaceContainer::new));
 
    public static final RegistryObject<MenuType<OnyxSmokerContainer>> onyx_smoker 
-       = CONTAINER_TYPES.register("onyx_smoker", () -> IForgeContainerType.create(OnyxSmokerContainer::new));
+       = CONTAINER_TYPES.register("onyx_smoker", () -> IForgeMenuType.create(OnyxSmokerContainer::new));
    
 
 } // end class

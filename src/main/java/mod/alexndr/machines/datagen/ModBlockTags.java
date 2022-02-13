@@ -18,10 +18,10 @@ public class ModBlockTags extends MiningBlockTags
 	@Override
 	protected void addTags()
 	{
-        registerMiningTags();
+        super.addTags();
 	}
 
-    private void registerMiningTags()
+    protected void registerMiningTags()
     {			
     	// (mineable, stone, iron, diamond, netherite)
     	this.registerMineableTags(
