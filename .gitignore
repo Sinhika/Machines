@@ -1,6 +1,5 @@
 build/
 src/generated/resources/.cache/
-gradle/
 run/
 libs/
 .settings/
@@ -10,8 +9,6 @@ libs/
 *.class
 *~
 .classpath
-gradlew
-gradlew.bat
 build.number
 bin/
 .gradle/
