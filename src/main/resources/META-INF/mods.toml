@@ -3,7 +3,7 @@
 modLoader="javafml" #mandatory
 
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[39,)" #mandatory
+loaderVersion="[40,)" #mandatory
 issueTrackerURL="https://github.com/Sinhika/Machines/issues"
 logoFile="machines.png"
 license="LGPL 3"
@@ -24,35 +24,35 @@ Additional Credits:  mindy15963 (Korean translations), vanja-san (Russian), buru
 [[dependencies.simple_machines]] #optional
     modId="forge"
     mandatory=true
-    versionRange="[39.0.18,40)"
+    versionRange="[40.0.0,41)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.simple_machines]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,1.19)"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.simple_machines]]
     modId="simplecorelib"
     mandatory=true
-    versionRange="[1.18.1-4.0.1.0,)"
+    versionRange="[1.18.2-4.3.0.5,1.18.2-4.4.0.0)"
     ordering="NONE"
     side="BOTH"
         
 [[dependencies.simple_machines]]
     modId="simpleores"
     mandatory=true
-    versionRange="[1.18.1-4.0,)"
+    versionRange="[1.18.2-4.1.2.0,1.18.2-4.2.0.0)"
     ordering="NONE"
     side="BOTH"
         
 [[dependencies.simple_machines]] #optional
     modId="jei"
     mandatory=false
-    versionRange="[1.18.1-9.0.0.0,)"
+    versionRange="[1.18.2-9.0.0.0,)"
     ordering="BEFORE"
     side="BOTH"
     
