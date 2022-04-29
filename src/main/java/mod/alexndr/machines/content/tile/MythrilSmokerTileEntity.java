@@ -2,7 +2,7 @@ package mod.alexndr.machines.content.tile;
 
 import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractSmokerTileEntity;
+import mod.alexndr.simplecorelib.api.content.VeryAbstractSmokerTileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 

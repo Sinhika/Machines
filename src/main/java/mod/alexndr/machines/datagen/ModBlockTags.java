@@ -4,7 +4,7 @@ import java.util.List;
 
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.init.ModBlocks;
-import mod.alexndr.simplecorelib.datagen.MiningBlockTags;
+import mod.alexndr.simplecorelib.api.datagen.MiningBlockTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -21,6 +21,7 @@ public class ModBlockTags extends MiningBlockTags
         super.addTags();
 	}
 
+    @Override
     protected void registerMiningTags()
     {			
     	// (mineable, stone, iron, diamond, netherite)

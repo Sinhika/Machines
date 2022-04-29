@@ -2,7 +2,7 @@ package mod.alexndr.machines.api.content;
 
 import java.util.Random;
 
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

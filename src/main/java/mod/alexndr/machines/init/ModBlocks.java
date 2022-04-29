@@ -7,7 +7,7 @@ import mod.alexndr.machines.content.block.MythrilSmokerBlock;
 import mod.alexndr.machines.content.block.OnyxBlastFurnaceBlock;
 import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
 import mod.alexndr.machines.content.block.OnyxSmokerBlock;
-import mod.alexndr.simplecorelib.helpers.LightUtils;
+import mod.alexndr.simplecorelib.api.helpers.LightUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
@@ -35,7 +35,8 @@ public final class ModBlocks
     public static final RegistryObject<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
             () -> new OnyxFurnaceBlock(Block.Properties.of(Material.STONE)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
-                    .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));    
+                    .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
+    
     public static final RegistryObject<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
             () -> new MythrilFurnaceBlock(Block.Properties.of(Material.STONE)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()

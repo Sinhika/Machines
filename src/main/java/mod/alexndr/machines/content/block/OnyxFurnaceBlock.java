@@ -3,7 +3,7 @@ package mod.alexndr.machines.content.block;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

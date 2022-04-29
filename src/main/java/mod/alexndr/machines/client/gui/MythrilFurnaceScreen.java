@@ -2,10 +2,10 @@ package mod.alexndr.machines.client.gui;
 
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.content.container.MythrilFurnaceContainer;
-import mod.alexndr.simplecorelib.client.gui.VeryAbstractFurnaceScreen;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
+import mod.alexndr.simplecorelib.api.client.gui.VeryAbstractFurnaceScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
 /**
  * @author Cadiboo

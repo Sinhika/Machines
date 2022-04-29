@@ -3,7 +3,7 @@ package mod.alexndr.machines.api.content;
 import java.util.Optional;
 import java.util.Random;
 
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceTileEntity;
+import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceTileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;

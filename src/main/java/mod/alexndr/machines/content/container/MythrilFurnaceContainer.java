@@ -2,7 +2,7 @@ package mod.alexndr.machines.content.container;
 
 import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.content.VeryAbstractFurnaceMenu;
+import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
