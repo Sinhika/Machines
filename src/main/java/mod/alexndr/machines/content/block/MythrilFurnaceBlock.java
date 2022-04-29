@@ -41,7 +41,8 @@ public class MythrilFurnaceBlock extends VeryAbstractFurnaceBlock
 	 * @deprecated Call via {@link BlockState#onReplaced(World, BlockPos, BlockState, boolean)}
 	 * Implementing/overriding is fine.
 	 */
-	@Override
+	@Deprecated
+    @Override
 	public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) 
 	{
 		if (oldState.getBlock() != newState.getBlock()) 

@@ -2,7 +2,7 @@ package mod.alexndr.machines.client.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.VanillaRecipeCategoryUid;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
@@ -37,48 +37,48 @@ public class JEIMachinePlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry)
     {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.mythril_furnace.get()), 
-                VanillaRecipeCategoryUid.FURNACE, VanillaRecipeCategoryUid.FUEL);
+                RecipeTypes.SMELTING, RecipeTypes.FUELING);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.mythril_blast_furnace.get()), 
-                VanillaRecipeCategoryUid.BLASTING, VanillaRecipeCategoryUid.FUEL);
+               RecipeTypes.BLASTING, RecipeTypes.FUELING);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.mythril_smoker.get()), 
-                VanillaRecipeCategoryUid.SMOKING, VanillaRecipeCategoryUid.FUEL);
+                RecipeTypes.SMOKING, RecipeTypes.FUELING);
         
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.onyx_furnace.get()), 
-                VanillaRecipeCategoryUid.FURNACE, VanillaRecipeCategoryUid.FUEL);
+                RecipeTypes.SMELTING, RecipeTypes.FUELING);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.onyx_blast_furnace.get()), 
-                VanillaRecipeCategoryUid.BLASTING, VanillaRecipeCategoryUid.FUEL);
+               RecipeTypes.BLASTING, RecipeTypes.FUELING);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.onyx_smoker.get()), 
-                VanillaRecipeCategoryUid.SMOKING, VanillaRecipeCategoryUid.FUEL);
+                RecipeTypes.SMOKING, RecipeTypes.FUELING);
     }
 
     
     @Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
-		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, VanillaRecipeCategoryUid.FURNACE, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, VanillaRecipeCategoryUid.SMOKING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class, VanillaRecipeCategoryUid.BLASTING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, VanillaRecipeCategoryUid.FURNACE, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, VanillaRecipeCategoryUid.SMOKING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class, VanillaRecipeCategoryUid.BLASTING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, RecipeTypes.SMELTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, RecipeTypes.SMOKING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class,RecipeTypes.BLASTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, RecipeTypes.SMELTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, RecipeTypes.SMOKING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class,RecipeTypes.BLASTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
 	}
 
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration)
 	{
-		registration.addRecipeClickArea(MythrilFurnaceScreen.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.FURNACE, VanillaRecipeCategoryUid.FUEL);
-		registration.addRecipeClickArea(MythrilSmokerScreen.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.SMOKING, VanillaRecipeCategoryUid.FUEL);
-		registration.addRecipeClickArea(MythrilBlastFurnaceScreen.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.BLASTING, VanillaRecipeCategoryUid.FUEL);
-		registration.addRecipeClickArea(OnyxFurnaceScreen.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.FURNACE, VanillaRecipeCategoryUid.FUEL);
-		registration.addRecipeClickArea(OnyxSmokerScreen.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.SMOKING, VanillaRecipeCategoryUid.FUEL);
-		registration.addRecipeClickArea(OnyxBlastFurnaceScreen.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.BLASTING, VanillaRecipeCategoryUid.FUEL);
+		registration.addRecipeClickArea(MythrilFurnaceScreen.class, 78, 32, 28, 23, RecipeTypes.SMELTING, RecipeTypes.FUELING);
+		registration.addRecipeClickArea(MythrilSmokerScreen.class, 78, 32, 28, 23, RecipeTypes.SMOKING, RecipeTypes.FUELING);
+		registration.addRecipeClickArea(MythrilBlastFurnaceScreen.class, 78, 32, 28, 23,RecipeTypes.BLASTING, RecipeTypes.FUELING);
+		registration.addRecipeClickArea(OnyxFurnaceScreen.class, 78, 32, 28, 23, RecipeTypes.SMELTING, RecipeTypes.FUELING);
+		registration.addRecipeClickArea(OnyxSmokerScreen.class, 78, 32, 28, 23, RecipeTypes.SMOKING, RecipeTypes.FUELING);
+		registration.addRecipeClickArea(OnyxBlastFurnaceScreen.class, 78, 32, 28, 23,RecipeTypes.BLASTING, RecipeTypes.FUELING);
 	}
 
 
