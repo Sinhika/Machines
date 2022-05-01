@@ -94,7 +94,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'simple_machines'
 
             mods {
-                simplecorelib {
+                simple_machines {
                     source sourceSets.main
                 }
             }
