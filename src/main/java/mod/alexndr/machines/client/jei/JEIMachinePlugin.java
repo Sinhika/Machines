@@ -3,8 +3,10 @@ package mod.alexndr.machines.client.jei;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.client.gui.MythrilBlastFurnaceScreen;
@@ -20,6 +22,7 @@ import mod.alexndr.machines.content.container.OnyxBlastFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxSmokerContainer;
 import mod.alexndr.machines.init.ModBlocks;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -27,6 +30,18 @@ import net.minecraft.world.item.ItemStack;
 public class JEIMachinePlugin implements IModPlugin 
 {
     private static final ResourceLocation ID = new ResourceLocation(Machines.MODID, "main");
+
+    
+    /** 
+     * Overridden so we can add info pages.
+     */
+    @Override
+    public void registerRecipes(IRecipeRegistration registration)
+    {
+        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_furnace.get().asItem()), VanillaTypes.ITEM, 
+                new TranslatableComponent("simple_machines.mythril_furnace.info"));
+    }
+
 
     /**
      * Register recipe catalysts.

@@ -1,11 +1,11 @@
 {
 	"itemGroup.simple_machines" : "Machines",
 	
-    "_comment": "Blocks",
-    "block.simple_machines.mythril_furnace": "Mythril Furnace",
+   "block.simple_machines.mythril_furnace": "Mythril Furnace",
     "block.simple_machines.mythril_blast_furnace": "Mythril Blast Furnace",
     "block.simple_machines.mythril_smoker": "Mythril Smoker",
     "block.simple_machines.onyx_furnace": "Onyx Furnace",
     "block.simple_machines.onyx_blast_furnace": "Onyx Blast Furnace",
-    "block.simple_machines.onyx_smoker": "Onyx Smoker"
+    "block.simple_machines.onyx_smoker": "Onyx Smoker",
+    "simple_machines.mythril_furnace.info" : "Mythril furnaces smelt items twice as fast, but don't burn fuel twice as fast. Thus, a mythril furnace smelts twice as many items per unit of fuel as a regular furnace"
 }
