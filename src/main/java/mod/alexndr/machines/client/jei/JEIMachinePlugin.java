@@ -40,7 +40,19 @@ public class JEIMachinePlugin implements IModPlugin
     {
         registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_furnace.get().asItem()), VanillaTypes.ITEM, 
                 new TranslatableComponent("simple_machines.mythril_furnace.info"));
-    }
+        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_blast_furnace.get().asItem()), VanillaTypes.ITEM, 
+                new TranslatableComponent("simple_machines.mythril_blast_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_smoker.get().asItem()), VanillaTypes.ITEM, 
+                new TranslatableComponent("simple_machines.mythril_smoker.info"));
+        
+        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_furnace.get().asItem()), VanillaTypes.ITEM, 
+                new TranslatableComponent("simple_machines.onyx_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_blast_furnace.get().asItem()), VanillaTypes.ITEM, 
+                new TranslatableComponent("simple_machines.onyx_blast_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_smoker.get().asItem()), VanillaTypes.ITEM, 
+                new TranslatableComponent("simple_machines.onyx_smoker.info"));
+        
+    } // end registerRecipes()
 
 
     /**

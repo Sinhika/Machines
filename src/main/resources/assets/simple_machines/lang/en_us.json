@@ -7,5 +7,10 @@
     "block.simple_machines.onyx_furnace": "Onyx Furnace",
     "block.simple_machines.onyx_blast_furnace": "Onyx Blast Furnace",
     "block.simple_machines.onyx_smoker": "Onyx Smoker",
-    "simple_machines.mythril_furnace.info" : "Mythril furnaces smelt items twice as fast, but don't burn fuel twice as fast. Thus, a mythril furnace smelts twice as many items per unit of fuel as a regular furnace"
+    "simple_machines.mythril_furnace.info" : "Mythril furnaces smelt items twice as fast, but don't burn fuel twice as fast. Thus, a mythril furnace smelts twice as many items per unit of fuel as a regular furnace",
+    "simple_machines.mythril_blast_furnace.info" : "Mythril blast furnaces smelt ores (and only ores, like a blast furnace) four times as fast, but only burn fuel twice as fast.",
+    "simple_machines.mythril_smoker.info" : "Mythril smokers cook food (and only food, like a smoker) four times as fast, but only burn fuel twice as fast.",
+    "simple_machines.onyx_furnace.info" : "Onyx furnaces harness the dark energy of the Nether to sometimes create duplicate outputs. They burn fuel at the normal rate.",
+   	"simple_machines.onyx_blast_furnace.info" : "Onyx blast furnaces smelt ores (and only ores, like a blast furnace) twice as fast, but burn fuel twice as fast as well. Like an onyx furnace, they have a chance to create duplicate outputs.",
+ 	"simple_machines.onyx_smoker.info" : "Onyx smokers cook food (and only food, like a smoker) twice as fast, but burn fuel twice as fast as well. Like an onyx furnace, they have a chance to create duplicate outputs."
 }
