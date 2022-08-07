@@ -1,6 +1,8 @@
 {
    "pack":{
-      "pack_format":9,
-      "description":"SimpleOres:Machines Resources, including new textures for 1.18.2 from Thombias"
+      "description":"SimpleOres:Machines Resources, including new textures for 1.18.2 from Thombias",
+        "pack_format": 9,
+        "forge:resource_pack_format": 9,
+        "forge:data_pack_format": 10
    }
 }
