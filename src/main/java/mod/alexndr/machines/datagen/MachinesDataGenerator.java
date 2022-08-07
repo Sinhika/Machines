@@ -24,10 +24,7 @@ public class MachinesDataGenerator
     public static void gatherData(GatherDataEvent event)
     {
         DataGenerator gen = event.getGenerator();
-        if (event.includeServer())
-        {
-        	gen.addProvider(new ModBlockTags(gen, event.getExistingFileHelper()));
-        }
+      	gen.addProvider(event.includeServer(), new ModBlockTags(gen, event.getExistingFileHelper()));
     } // end gatherData()
 
 } // end class

@@ -22,6 +22,7 @@ import mod.alexndr.machines.content.container.OnyxBlastFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxSmokerContainer;
 import mod.alexndr.machines.init.ModBlocks;
+import mod.alexndr.machines.init.ModContainerTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -82,18 +83,18 @@ public class JEIMachinePlugin implements IModPlugin
     @Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration)
 	{
-		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, RecipeTypes.SMELTING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, RecipeTypes.SMOKING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class,RecipeTypes.BLASTING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, RecipeTypes.SMELTING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, RecipeTypes.SMOKING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class,RecipeTypes.BLASTING, 0, 1, 3, 36);
-		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class, RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, ModContainerTypes.mythril_furnace.get(), RecipeTypes.SMELTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilFurnaceContainer.class, ModContainerTypes.mythril_furnace.get(), RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, ModContainerTypes.mythril_smoker.get(), RecipeTypes.SMOKING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilSmokerContainer.class, ModContainerTypes.mythril_smoker.get(), RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class, ModContainerTypes.mythril_blast_furnace.get(), RecipeTypes.BLASTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(MythrilBlastFurnaceContainer.class, ModContainerTypes.mythril_blast_furnace.get(), RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, ModContainerTypes.onyx_furnace.get(), RecipeTypes.SMELTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxFurnaceContainer.class, ModContainerTypes.onyx_furnace.get(),  RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, ModContainerTypes.onyx_smoker.get(),  RecipeTypes.SMOKING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxSmokerContainer.class, ModContainerTypes.onyx_smoker.get(),  RecipeTypes.FUELING, 1, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class, ModContainerTypes.onyx_blast_furnace.get(), RecipeTypes.BLASTING, 0, 1, 3, 36);
+		registration.addRecipeTransferHandler(OnyxBlastFurnaceContainer.class, ModContainerTypes.onyx_blast_furnace.get(), RecipeTypes.FUELING, 1, 1, 3, 36);
 	}
 
 

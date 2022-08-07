@@ -1,19 +1,16 @@
 package mod.alexndr.machines.api.content;
 
-import java.util.Random;
-
 import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public abstract class AbstractModSmokerBlock extends VeryAbstractFurnaceBlock
 {
@@ -25,7 +22,7 @@ public abstract class AbstractModSmokerBlock extends VeryAbstractFurnaceBlock
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand)
     {
         if (stateIn.getValue(BlockStateProperties.LIT)) {
             double d0 = (double)pos.getX() + 0.5D;
