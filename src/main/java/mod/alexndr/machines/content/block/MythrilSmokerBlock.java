@@ -22,6 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class MythrilSmokerBlock extends AbstractModSmokerBlock
 {
     private static final String DISPLAY_NAME = "block.simple_machines.mythril_smoker";
@@ -85,7 +87,7 @@ public class MythrilSmokerBlock extends AbstractModSmokerBlock
                     return new MythrilSmokerContainer(windowId, playerInventory, bpos, playerEntity);
                 }
             }; // end anonymous-class
-            NetworkHooks.openGui((ServerPlayer) player, containerProvider, be.getBlockPos());
+            NetworkHooks.openScreen((ServerPlayer) player, containerProvider, be.getBlockPos());
             player.awardStat(Stats.INTERACT_WITH_FURNACE);
         } // end-if
         else {

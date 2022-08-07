@@ -22,6 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 /**
  * @author Cadiboo
  */
@@ -89,7 +91,7 @@ public class MythrilFurnaceBlock extends VeryAbstractFurnaceBlock
                     return new MythrilFurnaceContainer(windowId, playerInventory, bpos, playerEntity);
                 }
             }; // end anonymous-class
-            NetworkHooks.openGui((ServerPlayer) player, containerProvider, be.getBlockPos());
+            NetworkHooks.openScreen((ServerPlayer) player, containerProvider, be.getBlockPos());
             player.awardStat(Stats.INTERACT_WITH_FURNACE);
         } // end-if
         else {
