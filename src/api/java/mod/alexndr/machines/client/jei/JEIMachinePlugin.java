@@ -22,7 +22,7 @@ import mod.alexndr.machines.content.container.OnyxBlastFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.content.container.OnyxSmokerContainer;
 import mod.alexndr.machines.init.ModBlocks;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -38,19 +38,19 @@ public class JEIMachinePlugin implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration registration)
     {
-        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_furnace.get().asItem()), VanillaTypes.ITEM, 
-                new TranslatableComponent("simple_machines.mythril_furnace.info"));
-        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_blast_furnace.get().asItem()), VanillaTypes.ITEM, 
-                new TranslatableComponent("simple_machines.mythril_blast_furnace.info"));
-        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_smoker.get().asItem()), VanillaTypes.ITEM, 
-                new TranslatableComponent("simple_machines.mythril_smoker.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
+                Component.translatable("simple_machines.mythril_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_blast_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
+                Component.translatable("simple_machines.mythril_blast_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_smoker.get().asItem()), VanillaTypes.ITEM_STACK, 
+                Component.translatable("simple_machines.mythril_smoker.info"));
         
-        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_furnace.get().asItem()), VanillaTypes.ITEM, 
-                new TranslatableComponent("simple_machines.onyx_furnace.info"));
-        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_blast_furnace.get().asItem()), VanillaTypes.ITEM, 
-                new TranslatableComponent("simple_machines.onyx_blast_furnace.info"));
-        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_smoker.get().asItem()), VanillaTypes.ITEM, 
-                new TranslatableComponent("simple_machines.onyx_smoker.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
+                Component.translatable("simple_machines.onyx_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_blast_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
+                Component.translatable("simple_machines.onyx_blast_furnace.info"));
+        registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_smoker.get().asItem()), VanillaTypes.ITEM_STACK, 
+                Component.translatable("simple_machines.onyx_smoker.info"));
         
     } // end registerRecipes()
 
