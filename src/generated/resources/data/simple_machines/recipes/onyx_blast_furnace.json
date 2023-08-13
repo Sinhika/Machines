@@ -1,22 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_stone"
+    },
+    "I": {
+      "tag": "forge:gems/onyx"
+    },
+    "X": {
+      "item": "minecraft:furnace"
+    }
+  },
   "pattern": [
     "III",
     "IXI",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:smooth_stone"
-    },
-    "X": {
-      "item": "minecraft:furnace"
-    },
-    "I": {
-      "tag" : "forge:gems/onyx"
-    }
-  },
   "result": {
     "item": "simple_machines:onyx_blast_furnace"
-  }
+  },
+  "show_notification": true
 }

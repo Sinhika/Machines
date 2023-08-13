@@ -40,6 +40,7 @@ public class MachinesDataGenerator
         // server-side
         ModBlockTags blockTagsProvider = new ModBlockTags(packOutput, lookupProvider, existingFileHelper);
       	gen.addProvider(event.includeServer(), blockTagsProvider);
+      	gen.addProvider(event.includeServer(), new MachinesRecipes(packOutput));
     	gen.addProvider(event.includeServer(), 
     			new SimpleLootTableProvider(packOutput, List.of(
     					new LootTableProvider.SubProviderEntry(MachinesBlockLootSubprovider::new, LootContextParamSets.BLOCK))));

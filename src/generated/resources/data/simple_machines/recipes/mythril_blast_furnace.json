@@ -1,22 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_stone"
+    },
+    "I": {
+      "tag": "forge:ingots/mythril"
+    },
+    "X": {
+      "item": "minecraft:furnace"
+    }
+  },
   "pattern": [
     "III",
     "IXI",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:smooth_stone"
-    },
-    "X": {
-      "item": "minecraft:furnace"
-    },
-    "I": {
-      "tag" : "forge:ingots/mythril"
-    }
-  },
   "result": {
     "item": "simple_machines:mythril_blast_furnace"
-  }
+  },
+  "show_notification": true
 }
