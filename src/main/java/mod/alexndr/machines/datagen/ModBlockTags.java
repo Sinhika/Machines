@@ -1,24 +1,28 @@
 package mod.alexndr.machines.datagen;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import mod.alexndr.machines.Machines;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.simplecorelib.api.datagen.MiningBlockTags;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockTags extends MiningBlockTags
 {
-	public ModBlockTags(DataGenerator gen, ExistingFileHelper existingFileHelper)
+	public ModBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
+			ExistingFileHelper existingFileHelper)
 	{
-		super(gen, Machines.MODID, existingFileHelper);
+		super(output, lookupProvider, Machines.MODID, existingFileHelper);
 	}
 
 	@Override
-	protected void addTags()
+	protected void addTags(Provider pProvider)
 	{
-        super.addTags();
+        super.addTags(pProvider);
 	}
 
     @Override

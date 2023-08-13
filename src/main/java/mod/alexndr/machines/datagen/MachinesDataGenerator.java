@@ -2,10 +2,15 @@ package mod.alexndr.machines.datagen;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 
+import java.util.concurrent.CompletableFuture;
+
 import mod.alexndr.machines.Machines;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 
 /**
@@ -24,7 +29,16 @@ public class MachinesDataGenerator
     public static void gatherData(GatherDataEvent event)
     {
         DataGenerator gen = event.getGenerator();
-      	gen.addProvider(event.includeServer(), new ModBlockTags(gen, event.getExistingFileHelper()));
-    } // end gatherData()
-
+        PackOutput packOutput = gen.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();		
+        
+        // server-side
+        ModBlockTags blockTagsProvider = new ModBlockTags(packOutput, lookupProvider, existingFileHelper);
+      	gen.addProvider(event.includeServer(), blockTagsProvider);
+      	
+      	// client-side
+       	gen.addProvider(event.includeClient(), new MachinesBlockStateProvider(packOutput, existingFileHelper));
+        
+    }
 } // end class

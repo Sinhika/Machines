@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import mod.alexndr.machines.config.ConfigHolder;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
+import mod.alexndr.machines.init.ModCreativeTabs;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 
 /**
@@ -31,6 +32,7 @@ public final class Machines {
 
 		// Register Deferred Registers (Does not need to be before Configs)
 		ModBlocks.BLOCKS.register(modEventBus);
+		ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 		ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 
