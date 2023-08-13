@@ -9,8 +9,9 @@ import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
 import mod.alexndr.machines.content.block.OnyxSmokerBlock;
 import mod.alexndr.simplecorelib.api.helpers.LightUtils;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -33,36 +34,36 @@ public final class ModBlocks
     
     // Furnaces
     public static final RegistryObject<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
-            () -> new OnyxFurnaceBlock(Block.Properties.of(Material.STONE)
+            () -> new OnyxFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                     .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     public static final RegistryObject<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
-            () -> new MythrilFurnaceBlock(Block.Properties.of(Material.STONE)
+            () -> new MythrilFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                     .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     // blast furnaces
     public static final RegistryObject<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
             BLOCKS.register("mythril_blast_furnace",  
-                            () -> new MythrilBlastFurnaceBlock(Block.Properties.of(Material.STONE)
+                            () -> new MythrilBlastFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                                                                .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     public static final RegistryObject<OnyxBlastFurnaceBlock> onyx_blast_furnace = 
             BLOCKS.register("onyx_blast_furnace",  
-                            () -> new OnyxBlastFurnaceBlock(Block.Properties.of(Material.STONE)
+                            () -> new OnyxBlastFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                                                                .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     // smokers
     public static final RegistryObject<MythrilSmokerBlock> mythril_smoker = 
             BLOCKS.register("mythril_smoker",  
-                            () -> new MythrilSmokerBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops()
+                            () -> new MythrilSmokerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).requiresCorrectToolForDrops()
                                                                .strength(3.5F, 12.0F)
                                                        .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     public static final RegistryObject<OnyxSmokerBlock> onyx_smoker = 
             BLOCKS.register("onyx_smoker",  
-                            () -> new OnyxSmokerBlock(Block.Properties.of(Material.STONE)
+                            () -> new OnyxSmokerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                                                        .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
 } // end class
