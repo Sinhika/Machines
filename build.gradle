@@ -63,6 +63,10 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
+            // required for bucket_lib dependency.
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -92,7 +96,7 @@ minecraft {
             workingDirectory project.file('run')
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), 
-            	'--existing-mod', 'simplecorelib', '--existing-mod', 'simpleores'
+                '--existing-mod', 'simplecorelib', '--existing-mod', 'simpleores'
         }
    }
 }
@@ -119,6 +123,10 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven { 
+        name = "BucketLib"
+        url = 'https://jitpack.io' 
+    }
 }
 
 dependencies {
@@ -128,6 +136,9 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("simplecore-api:SimpleCoreLib:${simplecorelib_version}") 
     implementation fg.deobf("simpleores:SimpleOres2:${simpleores_version}")
+
+    // compileOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}:api") 
+    runtimeOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}")
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${version_mcjei}-forge-api:${jei_version}")
@@ -155,6 +166,8 @@ tasks.named('processResources', ProcessResources).configure {
             simplecore_range: simplecore_range,
             simpleores_version : simpleores_version,
             simpleores_range: simpleores_range,
+            current_bucketlib_version : current_bucketlib_version,
+            buckletlib_range : buckletlib_range            
     ]
     inputs.properties replaceProperties
 
