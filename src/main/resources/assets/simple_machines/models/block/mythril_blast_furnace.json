@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "simple_machines:block/mythril_blast_furnace_top",
-        "front": "simple_machines:block/mythril_blast_furnace_front",
-        "side": "simple_machines:block/mythril_blast_furnace_side"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "simple_machines:block/onyx_smoker_top",
-        "front": "simple_machines:block/onyx_smoker_front",
-        "side": "simple_machines:block/onyx_smoker_side"
-    }
-}

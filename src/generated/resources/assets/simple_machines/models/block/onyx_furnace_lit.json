@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "simple_machines:block/onyx_furnace_front_lit",
+    "side": "simple_machines:block/onyx_furnace_side",
+    "top": "simple_machines:block/onyx_furnace_top"
+  }
+}

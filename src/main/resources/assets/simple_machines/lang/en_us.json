@@ -1,7 +1,6 @@
 {
-	"itemGroup.simple_machines" : "Machines",
-	
-   "block.simple_machines.mythril_furnace": "Mythril Furnace",
+	"item_group.simple_machines.tab" : "Machines",
+	"block.simple_machines.mythril_furnace": "Mythril Furnace",
     "block.simple_machines.mythril_blast_furnace": "Mythril Blast Furnace",
     "block.simple_machines.mythril_smoker": "Mythril Smoker",
     "block.simple_machines.onyx_furnace": "Onyx Furnace",
