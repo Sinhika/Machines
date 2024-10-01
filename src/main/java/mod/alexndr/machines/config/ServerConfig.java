@@ -1,7 +1,7 @@
 package mod.alexndr.machines.config;
 
 import mod.alexndr.machines.Machines;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 /**
  * For configuration settings that change the behaviour of code on the LOGICAL SERVER.
@@ -11,12 +11,12 @@ import net.minecraftforge.common.ForgeConfigSpec;
  */
 final class ServerConfig {
 
-    final ForgeConfigSpec.DoubleValue mythrilFurnaceFuelMultiplier;
-    final ForgeConfigSpec.IntValue onyxFurnaceYieldChance;
-    final ForgeConfigSpec.IntValue onyxFurnaceYieldAmount;
+    final NeoForgeConfigSpec.DoubleValue mythrilFurnaceFuelMultiplier;
+    final NeoForgeConfigSpec.IntValue onyxFurnaceYieldChance;
+    final NeoForgeConfigSpec.IntValue onyxFurnaceYieldAmount;
 
 
-	ServerConfig(final ForgeConfigSpec.Builder builder) 
+	ServerConfig(final NeoForgeConfigSpec.Builder builder) 
 	{
 		builder.push("general");
 		mythrilFurnaceFuelMultiplier = builder

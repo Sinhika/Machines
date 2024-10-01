@@ -13,8 +13,8 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.neoforged.neoforge.common.crafting.conditions.ICondition;
+import net.neoforged.neoforge.common.crafting.conditions.IConditionBuilder;
 
 public class MachinesRecipes extends RecipeProvider implements IConditionBuilder, ISimpleConditionBuilder 
 {

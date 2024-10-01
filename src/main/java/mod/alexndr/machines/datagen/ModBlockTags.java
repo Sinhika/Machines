@@ -9,7 +9,7 @@ import mod.alexndr.simplecorelib.api.datagen.MiningBlockTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModBlockTags extends MiningBlockTags
 {
@@ -25,7 +25,12 @@ public class ModBlockTags extends MiningBlockTags
         super.addTags(pProvider);
 	}
 
-    @Override
+	@Override protected void registerOreTags()
+	{
+
+	}
+
+	@Override
     protected void registerMiningTags()
     {			
     	// (mineable, stone, iron, diamond, netherite)

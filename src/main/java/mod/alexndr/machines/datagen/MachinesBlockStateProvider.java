@@ -5,8 +5,8 @@ import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.simplecorelib.api.datagen.SimpleBlockStateProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class MachinesBlockStateProvider extends SimpleBlockStateProvider 
 {

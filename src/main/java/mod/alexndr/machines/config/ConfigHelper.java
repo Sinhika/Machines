@@ -1,6 +1,6 @@
 package mod.alexndr.machines.config;
 
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.config.ModConfig;
 
 /**
  * This bakes the config values to normal fields
