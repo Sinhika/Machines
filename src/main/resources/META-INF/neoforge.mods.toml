@@ -22,29 +22,29 @@ Additional Credits:  mindy15963 (Korean translations), vanja-san (Russian), buru
 '''
 
 [[dependencies.${mod_id}]] #optional
-    modId="forge"
-    mandatory=true
-    versionRange="${forge_version_range}"
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="minecraft"
-    mandatory=true
+    type="required"
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="simplecorelib"
-    mandatory=true
+    type="required"
     versionRange="${simplecore_range}"
     ordering="NONE"
     side="BOTH"
         
 [[dependencies.${mod_id}]]
     modId="simpleores"
-    mandatory=true
+    type="required"
     versionRange="${simpleores_range}"
     ordering="NONE"
     side="BOTH"
