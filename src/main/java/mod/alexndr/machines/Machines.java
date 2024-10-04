@@ -1,34 +1,35 @@
 package mod.alexndr.machines;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import mod.alexndr.machines.config.ConfigHolder;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import mod.alexndr.machines.init.ModCreativeTabs;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModLoadingContext;
+import mod.alexndr.simplecorelib.ModEventSubscriber;
+import net.neoforged.bus.EventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Cadiboo
  */
 @Mod(Machines.MODID)
-public final class Machines {
+public final class Machines
+{
 
-	public static final String MODID = "simple_machines";
+	public static final String MODID = "simpleores_machines";
 
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 
-	public Machines() {
+	public Machines(EventBus modEventBus, ModContainer modContainer)
+	{
 		LOGGER.debug("Hello from Machines!");
 
-		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
-		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		// register event listeners.
+		modEventBus.addListener(ModEventSubscriber::onRegisterItems);
 
 		// Register Deferred Registers (Does not need to be before Configs)
 		ModBlocks.BLOCKS.register(modEventBus);
@@ -37,7 +38,7 @@ public final class Machines {
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 
 		// Register Configs (Does not need to be after Deferred Registers)
-		modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC);
+		modContainer.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC);
 	}
 
 } // end class
