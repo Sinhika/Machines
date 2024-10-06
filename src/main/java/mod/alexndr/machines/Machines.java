@@ -1,6 +1,6 @@
 package mod.alexndr.machines;
 
-import mod.alexndr.machines.config.ConfigHolder;
+import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import mod.alexndr.machines.init.ModCreativeTabs;
@@ -30,6 +30,7 @@ public final class Machines
 
 		// register event listeners.
 		modEventBus.addListener(ModEventSubscriber::onRegisterItems);
+		modEventBus.addListener(MachinesConfig::onLoad);
 
 		// Register Deferred Registers (Does not need to be before Configs)
 		ModBlocks.BLOCKS.register(modEventBus);
@@ -38,7 +39,7 @@ public final class Machines
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 
 		// Register Configs (Does not need to be after Deferred Registers)
-		modContainer.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC);
+		modContainer.registerConfig(ModConfig.Type.COMMON, MachinesConfig.SPEC);
 	}
 
 } // end class
