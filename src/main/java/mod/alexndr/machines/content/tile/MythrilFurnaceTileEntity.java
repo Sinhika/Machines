@@ -1,6 +1,6 @@
 package mod.alexndr.machines.content.tile;
 
-import mod.alexndr.machines.api.content.AbstractModFurnaceTileEntity;
+import mod.alexndr.machines.api.content.AbstractYieldEnhancingFurnaceBlockEntity;
 import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.core.BlockPos;
@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 /**
  *
  */
-public class MythrilFurnaceTileEntity extends AbstractModFurnaceTileEntity 
+public class MythrilFurnaceTileEntity extends AbstractYieldEnhancingFurnaceBlockEntity
 {
 	public MythrilFurnaceTileEntity(BlockPos blockpos, BlockState blockstate) 
 	{

@@ -1,17 +1,13 @@
 package mod.alexndr.machines.init;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.container.MythrilBlastFurnaceContainer;
-import mod.alexndr.machines.content.container.MythrilFurnaceContainer;
-import mod.alexndr.machines.content.container.MythrilSmokerContainer;
-import mod.alexndr.machines.content.container.OnyxBlastFurnaceContainer;
-import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
-import mod.alexndr.machines.content.container.OnyxSmokerContainer;
+import mod.alexndr.machines.content.container.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
-import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 /**
  * Holds a list of all our {@link ContainerType}s.
@@ -27,33 +23,33 @@ import net.neoforged.neoforge.registries.RegistryObject;
 public final class ModContainerTypes {
 
 	public static final DeferredRegister<MenuType<?>> CONTAINER_TYPES = 
-	        DeferredRegister.create(ForgeRegistries.MENU_TYPES, Machines.MODID);
+	        DeferredRegister.create(Registries.MENU, Machines.MODID);
 	
 	// mythril furnaces
-    public static final RegistryObject<MenuType<MythrilFurnaceContainer>> mythril_furnace 
-        = CONTAINER_TYPES.register("mythril_furnace", () -> IMenuTypeExtension.create((windowId, inv, data) 
-                -> new MythrilFurnaceContainer(windowId, inv, data.readBlockPos(), inv.player)));
+    public static final Supplier<MenuType<MythrilFurnaceContainer>> mythril_furnace 
+        = CONTAINER_TYPES.register("mythril_furnace", () -> new MenuType<>(
+                MythrilFurnaceContainer::new, FeatureFlags.DEFAULT_FLAGS));
     
-    public static final RegistryObject<MenuType<MythrilBlastFurnaceContainer>> mythril_blast_furnace 
-        = CONTAINER_TYPES.register("mythril_blast_furnace", () -> IMenuTypeExtension.create((windowId, inv, data) 
-                -> new MythrilBlastFurnaceContainer(windowId, inv, data.readBlockPos(), inv.player)));
+    public static final Supplier<MenuType<MythrilBlastFurnaceContainer>> mythril_blast_furnace 
+        = CONTAINER_TYPES.register("mythril_blast_furnace",() -> new MenuType<>(
+                MythrilBlastFurnaceContainer::new, FeatureFlags.DEFAULT_FLAGS));
 
-    public static final RegistryObject<MenuType<MythrilSmokerContainer>> mythril_smoker 
-        = CONTAINER_TYPES.register("mythril_smoker", () -> IMenuTypeExtension.create((windowId, inv, data) 
-                -> new MythrilSmokerContainer(windowId, inv, data.readBlockPos(), inv.player)));
+    public static final Supplier<MenuType<MythrilSmokerContainer>> mythril_smoker 
+        = CONTAINER_TYPES.register("mythril_smoker", () -> new MenuType<>(
+            MythrilSmokerContainer::new, FeatureFlags.DEFAULT_FLAGS));
     
    // onyx furnaces
-   public static final RegistryObject<MenuType<OnyxFurnaceContainer>> onyx_furnace 
-        = CONTAINER_TYPES.register("onyx_furnace", () -> IMenuTypeExtension.create((windowId, inv, data) 
-                -> new OnyxFurnaceContainer(windowId, inv, data.readBlockPos(), inv.player)));
+   public static final Supplier<MenuType<OnyxFurnaceContainer>> onyx_furnace
+        = CONTAINER_TYPES.register("onyx_furnace", () -> new MenuType<>(
+           OnyxFurnaceContainer::new, FeatureFlags.DEFAULT_FLAGS));
    
-   public static final RegistryObject<MenuType<OnyxBlastFurnaceContainer>> onyx_blast_furnace 
-       = CONTAINER_TYPES.register("onyx_blast_furnace", () -> IMenuTypeExtension.create((windowId, inv, data) 
-               -> new OnyxBlastFurnaceContainer(windowId, inv, data.readBlockPos(), inv.player)));
+   public static final Supplier<MenuType<OnyxBlastFurnaceContainer>> onyx_blast_furnace 
+       = CONTAINER_TYPES.register("onyx_blast_furnace", () -> new MenuType<>(
+           OnyxBlastFurnaceContainer::new, FeatureFlags.DEFAULT_FLAGS));
 
-   public static final RegistryObject<MenuType<OnyxSmokerContainer>> onyx_smoker 
-       = CONTAINER_TYPES.register("onyx_smoker", () -> IMenuTypeExtension.create((windowId, inv, data) 
-               -> new OnyxSmokerContainer(windowId, inv, data.readBlockPos(), inv.player)));
+   public static final Supplier<MenuType<OnyxSmokerContainer>> onyx_smoker 
+       = CONTAINER_TYPES.register("onyx_smoker", () -> new MenuType<>(
+           OnyxSmokerContainer::new, FeatureFlags.DEFAULT_FLAGS));
    
 
 } // end class

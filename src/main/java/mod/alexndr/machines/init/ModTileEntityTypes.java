@@ -1,16 +1,11 @@
 package mod.alexndr.machines.init;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.tile.MythrilBlastFurnaceTileEntity;
-import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
-import mod.alexndr.machines.content.tile.MythrilSmokerTileEntity;
-import mod.alexndr.machines.content.tile.OnyxBlastFurnaceTileEntity;
-import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
-import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
+import mod.alexndr.machines.content.tile.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 /**
  * Holds a list of all our {@link TileEntityType}s.
@@ -26,44 +21,38 @@ import net.neoforged.neoforge.registries.RegistryObject;
 public final class ModTileEntityTypes {
 
 	public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITY_TYPES = 
-	        DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Machines.MODID);
+	        DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Machines.MODID);
 
 	// mythril furnaces
-	public static RegistryObject<BlockEntityType<MythrilFurnaceTileEntity>> mythril_furnace = 
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<MythrilFurnaceTileEntity>> mythril_furnace =
 	        TILE_ENTITY_TYPES.register("mythril_furnace", 
-	                () -> BlockEntityType.Builder.of(MythrilFurnaceTileEntity::new, 
-	                                                    ModBlocks.mythril_furnace.get())
+	                () -> BlockEntityType.Builder.of(MythrilFurnaceTileEntity::new, ModBlocks.mythril_furnace.get())
                .build(null));
 
-    public static RegistryObject<BlockEntityType<MythrilBlastFurnaceTileEntity>> mythril_blast_furnace = 
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<MythrilBlastFurnaceTileEntity>> mythril_blast_furnace =
             TILE_ENTITY_TYPES.register("mythril_blast_furnace", 
-                    () -> BlockEntityType.Builder.of(MythrilBlastFurnaceTileEntity::new, 
-                                                        ModBlocks.mythril_blast_furnace.get())
+                    () -> BlockEntityType.Builder.of(MythrilBlastFurnaceTileEntity::new, ModBlocks.mythril_blast_furnace.get())
                .build(null));
 
-    public static RegistryObject<BlockEntityType<MythrilSmokerTileEntity>> mythril_smoker = 
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<MythrilSmokerTileEntity>> mythril_smoker =
             TILE_ENTITY_TYPES.register("mythril_smoker", 
-                    () -> BlockEntityType.Builder.of(MythrilSmokerTileEntity::new, 
-                                                        ModBlocks.mythril_smoker.get())
+                    () -> BlockEntityType.Builder.of(MythrilSmokerTileEntity::new, ModBlocks.mythril_smoker.get())
                .build(null));
 
     // onyx furnaces
-    public static RegistryObject<BlockEntityType<OnyxFurnaceTileEntity>> onyx_furnace = 
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<OnyxFurnaceTileEntity>> onyx_furnace =
             TILE_ENTITY_TYPES.register("onyx_furnace", 
-                            () -> BlockEntityType.Builder.of(OnyxFurnaceTileEntity::new, 
-                                                                ModBlocks.onyx_furnace.get())
+                            () -> BlockEntityType.Builder.of(OnyxFurnaceTileEntity::new, ModBlocks.onyx_furnace.get())
              .build(null));
 
-    public static RegistryObject<BlockEntityType<OnyxBlastFurnaceTileEntity>> onyx_blast_furnace = 
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<OnyxBlastFurnaceBlockEntity>> onyx_blast_furnace =
             TILE_ENTITY_TYPES.register("onyx_blast_furnace", 
-                    () -> BlockEntityType.Builder.of(OnyxBlastFurnaceTileEntity::new, 
-                                                        ModBlocks.onyx_blast_furnace.get())
+                    () -> BlockEntityType.Builder.of(OnyxBlastFurnaceBlockEntity::new, ModBlocks.onyx_blast_furnace.get())
                .build(null));
 
-    public static RegistryObject<BlockEntityType<OnyxSmokerTileEntity>> onyx_smoker = 
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<OnyxSmokerBlockEntity>> onyx_smoker =
             TILE_ENTITY_TYPES.register("onyx_smoker", 
-                    () -> BlockEntityType.Builder.of(OnyxSmokerTileEntity::new, 
-                                                        ModBlocks.onyx_smoker.get())
+                    () -> BlockEntityType.Builder.of(OnyxSmokerBlockEntity::new, ModBlocks.onyx_smoker.get())
                .build(null));
 
 } // end class

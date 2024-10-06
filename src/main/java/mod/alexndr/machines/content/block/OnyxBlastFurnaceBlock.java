@@ -2,7 +2,7 @@ package mod.alexndr.machines.content.block;
 
 import mod.alexndr.machines.api.content.AbstractModBlastFurnaceBlock;
 import mod.alexndr.machines.content.container.OnyxBlastFurnaceContainer;
-import mod.alexndr.machines.content.tile.OnyxBlastFurnaceTileEntity;
+import mod.alexndr.machines.content.tile.OnyxBlastFurnaceBlockEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -38,9 +38,9 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
         if (oldState.getBlock() != newState.getBlock()) 
         {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if (tileEntity instanceof OnyxBlastFurnaceTileEntity) 
+            if (tileEntity instanceof OnyxBlastFurnaceBlockEntity)
             {
-                final ItemStackHandler inventory = ((OnyxBlastFurnaceTileEntity) tileEntity).inventory;
+                final ItemStackHandler inventory = ((OnyxBlastFurnaceBlockEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
                     Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
             }
@@ -57,7 +57,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos bpos, BlockState bstate) {
-		return new OnyxBlastFurnaceTileEntity(bpos, bstate);
+		return new OnyxBlastFurnaceBlockEntity(bpos, bstate);
 	}
 
 
@@ -65,7 +65,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
 	protected void openContainer(Level level, BlockPos bpos, Player player) 
 	{
         BlockEntity be = level.getBlockEntity(bpos);
-        if (be instanceof OnyxBlastFurnaceTileEntity) 
+        if (be instanceof OnyxBlastFurnaceBlockEntity)
         {
             MenuProvider containerProvider = new MenuProvider() {
                 @Override

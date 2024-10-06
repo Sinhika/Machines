@@ -2,7 +2,7 @@ package mod.alexndr.machines.content.block;
 
 import mod.alexndr.machines.api.content.AbstractModSmokerBlock;
 import mod.alexndr.machines.content.container.OnyxSmokerContainer;
-import mod.alexndr.machines.content.tile.OnyxSmokerTileEntity;
+import mod.alexndr.machines.content.tile.OnyxSmokerBlockEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -37,9 +37,9 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
         if (oldState.getBlock() != newState.getBlock()) 
         {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if (tileEntity instanceof OnyxSmokerTileEntity) 
+            if (tileEntity instanceof OnyxSmokerBlockEntity)
             {
-                final ItemStackHandler inventory = ((OnyxSmokerTileEntity) tileEntity).inventory;
+                final ItemStackHandler inventory = ((OnyxSmokerBlockEntity) tileEntity).inventory;
                 for (int slot = 0; slot < inventory.getSlots(); ++slot)
                     Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
             }
@@ -56,7 +56,7 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos bpos, BlockState bstate) {
-		return new OnyxSmokerTileEntity(bpos, bstate);
+		return new OnyxSmokerBlockEntity(bpos, bstate);
 	}
 
 
@@ -64,7 +64,7 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
 	protected void openContainer(Level level, BlockPos bpos, Player player) 
 	{
         BlockEntity be = level.getBlockEntity(bpos);
-        if (be instanceof OnyxSmokerTileEntity) 
+        if (be instanceof OnyxSmokerBlockEntity)
         {
             MenuProvider containerProvider = new MenuProvider() {
                 @Override

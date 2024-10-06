@@ -1,20 +1,15 @@
 package mod.alexndr.machines.init;
 
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.content.block.MythrilBlastFurnaceBlock;
-import mod.alexndr.machines.content.block.MythrilFurnaceBlock;
-import mod.alexndr.machines.content.block.MythrilSmokerBlock;
-import mod.alexndr.machines.content.block.OnyxBlastFurnaceBlock;
-import mod.alexndr.machines.content.block.OnyxFurnaceBlock;
-import mod.alexndr.machines.content.block.OnyxSmokerBlock;
+import mod.alexndr.machines.content.block.*;
 import mod.alexndr.simplecorelib.api.helpers.LightUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
+
 
 /**
  * Holds a list of all our {@link Block}s.
@@ -29,39 +24,39 @@ import net.neoforged.neoforge.registries.RegistryObject;
  */
 public final class ModBlocks
 {
-    public static final DeferredRegister<Block> BLOCKS = 
-            DeferredRegister.create(ForgeRegistries.BLOCKS, Machines.MODID);
+    public static final DeferredRegister.Blocks BLOCKS =
+            DeferredRegister.createBlocks(Machines.MODID);
     
     // Furnaces
-    public static final RegistryObject<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
+    public static final DeferredBlock<OnyxFurnaceBlock> onyx_furnace = BLOCKS.register("onyx_furnace",
             () -> new OnyxFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                     .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
-    public static final RegistryObject<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
+    public static final DeferredBlock<MythrilFurnaceBlock> mythril_furnace = BLOCKS.register("mythril_furnace",
             () -> new MythrilFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE)
                     .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                     .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     // blast furnaces
-    public static final RegistryObject<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
+    public static final DeferredBlock<MythrilBlastFurnaceBlock> mythril_blast_furnace = 
             BLOCKS.register("mythril_blast_furnace",  
                             () -> new MythrilBlastFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                                                                .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
-    public static final RegistryObject<OnyxBlastFurnaceBlock> onyx_blast_furnace = 
+    public static final DeferredBlock<OnyxBlastFurnaceBlock> onyx_blast_furnace = 
             BLOCKS.register("onyx_blast_furnace",  
                             () -> new OnyxBlastFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()
                                                                .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
     
     // smokers
-    public static final RegistryObject<MythrilSmokerBlock> mythril_smoker = 
+    public static final DeferredBlock<MythrilSmokerBlock> mythril_smoker = 
             BLOCKS.register("mythril_smoker",  
                             () -> new MythrilSmokerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).requiresCorrectToolForDrops()
                                                                .strength(3.5F, 12.0F)
                                                        .lightLevel(LightUtils.setSwitchedLight(BlockStateProperties.LIT, 13))));
-    public static final RegistryObject<OnyxSmokerBlock> onyx_smoker = 
+    public static final DeferredBlock<OnyxSmokerBlock> onyx_smoker = 
             BLOCKS.register("onyx_smoker",  
                             () -> new OnyxSmokerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL)
                                                                .strength(3.5F, 12.0F).requiresCorrectToolForDrops()

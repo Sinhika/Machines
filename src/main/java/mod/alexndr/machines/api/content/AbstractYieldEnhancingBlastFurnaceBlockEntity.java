@@ -6,10 +6,10 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class AbstractModBlastFurnaceTileEntity extends AbstractModFurnaceTileEntity
+public abstract class AbstractYieldEnhancingBlastFurnaceBlockEntity extends AbstractYieldEnhancingFurnaceBlockEntity
 {
 
-    public AbstractModBlastFurnaceTileEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos blockpos, BlockState blockstate)
+    public AbstractYieldEnhancingBlastFurnaceBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos blockpos, BlockState blockstate)
     {
         super(tileEntityTypeIn, RecipeType.BLASTING, blockpos, blockstate);
     }

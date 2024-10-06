@@ -1,65 +1,42 @@
 package mod.alexndr.machines.content.block;
 
-import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
+import com.mojang.serialization.MapCodec;
 import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.SomewhatAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.network.NetworkHooks;
 
 /**
  * @author Cadiboo
  */
-public class OnyxFurnaceBlock extends VeryAbstractFurnaceBlock 
+public class OnyxFurnaceBlock extends SomewhatAbstractFurnaceBlock
 {
-    private static final String DISPLAY_NAME = "block.simple_machines.onyx_furnace";
+    // private static final String DISPLAY_NAME = "block.simple_machines.onyx_furnace";
+	public static final MapCodec<OnyxFurnaceBlock> CODEC = simpleCodec(OnyxFurnaceBlock::new);
 
 	public OnyxFurnaceBlock(final Properties properties) 
 	{
 		super(properties);
 	}
 
-	/**
-	 * Called on the logical server when a BlockState with a TileEntity is replaced by another BlockState.
-	 * We use this method to drop all the items from our tile entity's inventory and update comparators near our block.
-	 *
-	 * @deprecated Call via {@link BlockState#onReplaced(World, BlockPos, BlockState, boolean)}
-	 * Implementing/overriding is fine.
-	 */
-	@Deprecated
-    @Override
-	public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) 
+	@Override protected MapCodec<? extends AbstractFurnaceBlock> codec()
 	{
-		if (oldState.getBlock() != newState.getBlock()) 
-		{
-			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-			if (tileEntity instanceof OnyxFurnaceTileEntity) {
-				final ItemStackHandler inventory = ((OnyxFurnaceTileEntity) tileEntity).inventory;
-				for (int slot = 0; slot < inventory.getSlots(); ++slot)
-					Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(slot));
-			}
-		}
-		super.onRemove(oldState, worldIn, pos, newState, isMoving);
-	} // end onReplaced()
+		return CODEC;
+	}
 
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType)
 	{
-		return createFurnaceTicker(level, entityType, ModTileEntityTypes.onyx_furnace.get());
+		return SomewhatAbstractFurnaceBlock.createCustomFurnaceTicker(level, entityType, ModTileEntityTypes.onyx_furnace.get());
 	}
 
 	@Override
@@ -71,28 +48,11 @@ public class OnyxFurnaceBlock extends VeryAbstractFurnaceBlock
 	@Override
 	protected void openContainer(Level level, BlockPos bpos, Player player)
 	{
-        BlockEntity be = level.getBlockEntity(bpos);
-        if (be instanceof OnyxFurnaceTileEntity) 
-        {
-            MenuProvider containerProvider = new MenuProvider() {
-                @Override
-                public Component getDisplayName() {
-                    return Component.translatable(DISPLAY_NAME);
-                }
-                
-                @Override
-                public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity)
-                {
-                    return new OnyxFurnaceContainer(windowId, playerInventory, bpos, playerEntity);
-                }
-            }; // end anonymous-class
-            NetworkHooks.openScreen((ServerPlayer) player, containerProvider, be.getBlockPos());
-            player.awardStat(Stats.INTERACT_WITH_FURNACE);
-        } // end-if
-        else {
-            throw new IllegalStateException("Our named container provider is missing!");
-        }
-
+		BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+		if (blockentity instanceof OnyxFurnaceTileEntity) {
+			pPlayer.openMenu((MenuProvider)blockentity);
+			pPlayer.awardStat(Stats.INTERACT_WITH_FURNACE);
+		}
 	}
 
 } // end class

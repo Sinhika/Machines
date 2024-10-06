@@ -6,10 +6,10 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class AbstractModSmokerTileEntity extends AbstractModFurnaceTileEntity
+public abstract class AbstractYieldEnhancingSmokerBlockEntity extends AbstractYieldEnhancingFurnaceBlockEntity
 {
 
-    public AbstractModSmokerTileEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos blockpos, BlockState blockstate)
+    public AbstractYieldEnhancingSmokerBlockEntity(BlockEntityType<?> tileEntityTypeIn, BlockPos blockpos, BlockState blockstate)
     {
         super(tileEntityTypeIn, RecipeType.SMOKING, blockpos, blockstate);
     }
