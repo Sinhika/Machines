@@ -1,11 +1,10 @@
 package mod.alexndr.machines.content.block;
 
 import com.mojang.serialization.MapCodec;
-import mod.alexndr.machines.api.content.AbstractModSmokerBlock;
-import mod.alexndr.machines.content.block_entity.MythrilBlastFurnaceTileEntity;
 import mod.alexndr.machines.content.block_entity.MythrilSmokerTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.api.content.SomewhatAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.block.AbstractModSmokerBlock;
+import mod.alexndr.simplecorelib.api.content.block.SomewhatAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.MenuProvider;

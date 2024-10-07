@@ -3,7 +3,7 @@ package mod.alexndr.machines.content.block_entity;
 import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.content.container.MythrilSmokerContainer;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.api.content.SomewhatAbstractFurnaceBlockEntity;
+import mod.alexndr.simplecorelib.api.content.block_entity.SomewhatAbstractFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;

@@ -1,9 +1,9 @@
 package mod.alexndr.machines.content.block_entity;
 
-import mod.alexndr.machines.api.content.AbstractYieldEnhancingFurnaceBlockEntity;
 import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.content.container.OnyxFurnaceContainer;
 import mod.alexndr.machines.init.ModTileEntityTypes;
+import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
