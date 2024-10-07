@@ -1,6 +1,6 @@
 package mod.alexndr.machines.api.content;
 
-import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.SomewhatAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-public abstract class AbstractModSmokerBlock extends VeryAbstractFurnaceBlock
+public abstract class AbstractModSmokerBlock extends SomewhatAbstractFurnaceBlock
 {
 
     public AbstractModSmokerBlock(Properties builder)

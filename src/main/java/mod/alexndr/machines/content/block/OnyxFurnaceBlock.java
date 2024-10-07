@@ -1,7 +1,7 @@
 package mod.alexndr.machines.content.block;
 
 import com.mojang.serialization.MapCodec;
-import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
+import mod.alexndr.machines.content.block_entity.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.api.content.SomewhatAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
@@ -48,10 +48,10 @@ public class OnyxFurnaceBlock extends SomewhatAbstractFurnaceBlock
 	@Override
 	protected void openContainer(Level level, BlockPos bpos, Player player)
 	{
-		BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+		BlockEntity blockentity = level.getBlockEntity(bpos);
 		if (blockentity instanceof OnyxFurnaceTileEntity) {
-			pPlayer.openMenu((MenuProvider)blockentity);
-			pPlayer.awardStat(Stats.INTERACT_WITH_FURNACE);
+			player.openMenu((MenuProvider)blockentity);
+			player.awardStat(Stats.INTERACT_WITH_FURNACE);
 		}
 	}
 

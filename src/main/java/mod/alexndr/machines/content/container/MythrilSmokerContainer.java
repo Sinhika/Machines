@@ -1,22 +1,25 @@
 package mod.alexndr.machines.content.container;
 
-import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceMenu;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractFurnaceMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class MythrilSmokerContainer extends VeryAbstractFurnaceMenu
+public class MythrilSmokerContainer extends AbstractFurnaceMenu
 {
-    /**
-     * Constructor called logical-server-side from {@link MythrilFurnaceTileEntity#createMenu}
-     * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
-     */
-    public MythrilSmokerContainer(final int windowId, final Inventory playerInventory, final BlockPos pos, Player playerEntity) 
-    {
-        super(ModContainerTypes.mythril_smoker.get(), windowId, pos, playerInventory, playerEntity, RecipeType.SMOKING);
-    } // end-server-side ctor
 
+    public MythrilSmokerContainer(int containerId, Inventory playerInventory)
+    {
+        super(ModContainerTypes.mythril_smoker.get(), RecipeType.SMOKING, RecipeBookType.SMOKER, containerId,
+                playerInventory);
+    }
+
+    public MythrilSmokerContainer( int containerId, Inventory playerInventory, Container container, ContainerData data)
+    {
+        super(ModContainerTypes.mythril_smoker.get(), RecipeType.SMOKING, RecipeBookType.SMOKER,
+                containerId, playerInventory, container, data);
+    }
 } // end class

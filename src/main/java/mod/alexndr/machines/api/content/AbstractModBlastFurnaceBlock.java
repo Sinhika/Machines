@@ -1,6 +1,6 @@
 package mod.alexndr.machines.api.content;
 
-import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.SomewhatAbstractFurnaceBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public abstract class AbstractModBlastFurnaceBlock extends VeryAbstractFurnaceBlock
+public abstract class AbstractModBlastFurnaceBlock extends SomewhatAbstractFurnaceBlock
 {
 
     public AbstractModBlastFurnaceBlock(Properties builder)

@@ -1,24 +1,25 @@
 package mod.alexndr.machines.content.container;
 
-import mod.alexndr.machines.content.tile.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceMenu;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractFurnaceMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class MythrilBlastFurnaceContainer extends VeryAbstractFurnaceMenu
+public class MythrilBlastFurnaceContainer extends AbstractFurnaceMenu
 {
-
-    /**
-     * Constructor called logical-server-side from {@link MythrilFurnaceTileEntity#createMenu}
-     * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
-     */
-    public MythrilBlastFurnaceContainer(final int windowId, final Inventory playerInventory, final BlockPos pos, Player playerEntity)
+    public MythrilBlastFurnaceContainer(int containerId, Inventory playerInventory)
     {
-        super(ModContainerTypes.mythril_blast_furnace.get(), windowId, pos, playerInventory, playerEntity, RecipeType.BLASTING);
+        super(ModContainerTypes.mythril_blast_furnace.get(), RecipeType.BLASTING, RecipeBookType.BLAST_FURNACE,
+                containerId, playerInventory);
     }
 
-    
+    public MythrilBlastFurnaceContainer(int containerId, Inventory playerInventory, Container container,
+                                        ContainerData data)
+    {
+        super(ModContainerTypes.mythril_blast_furnace.get(), RecipeType.BLASTING, RecipeBookType.BLAST_FURNACE,
+                containerId, playerInventory, container, data);
+    }
 } // end-class

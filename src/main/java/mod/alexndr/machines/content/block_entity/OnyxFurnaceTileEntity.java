@@ -1,4 +1,4 @@
-package mod.alexndr.machines.content.tile;
+package mod.alexndr.machines.content.block_entity;
 
 import mod.alexndr.machines.api.content.AbstractYieldEnhancingFurnaceBlockEntity;
 import mod.alexndr.machines.config.MachinesConfig;

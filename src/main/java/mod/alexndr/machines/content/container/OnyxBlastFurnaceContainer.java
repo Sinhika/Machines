@@ -1,25 +1,25 @@
 package mod.alexndr.machines.content.container;
 
-import mod.alexndr.machines.content.tile.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModContainerTypes;
-import mod.alexndr.simplecorelib.api.content.VeryAbstractFurnaceMenu;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractFurnaceMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public class OnyxBlastFurnaceContainer extends VeryAbstractFurnaceMenu
+public class OnyxBlastFurnaceContainer extends AbstractFurnaceMenu
 {
-    //private static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
 
-    /**
-     * Constructor called logical-server-side from {@link OnyxFurnaceTileEntity#createMenu}
-     * and logical-client-side from {@link #ModFurnaceContainer(int, PlayerInventory, PacketBuffer)}
-     */
-    public OnyxBlastFurnaceContainer(final int windowId, final Inventory playerInventory, final BlockPos pos, Player playerEntity)
+    public OnyxBlastFurnaceContainer( int containerId, Inventory playerInventory)
     {
-        super(ModContainerTypes.onyx_blast_furnace.get(), windowId, pos, playerInventory, playerEntity, RecipeType.BLASTING);
+        super(ModContainerTypes.onyx_blast_furnace.get(), RecipeType.BLASTING, RecipeBookType.BLAST_FURNACE,
+                containerId, playerInventory);
     }
 
-     
+    public OnyxBlastFurnaceContainer(int containerId, Inventory playerInventory,Container container, ContainerData data)
+    {
+        super(ModContainerTypes.onyx_blast_furnace.get(), RecipeType.BLASTING, RecipeBookType.BLAST_FURNACE,
+                containerId, playerInventory, container, data);
+    }
 } // end-class
