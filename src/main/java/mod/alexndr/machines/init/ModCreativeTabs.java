@@ -5,8 +5,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 /**
  * This class holds all our ItemGroups (Formerly called CreativeTabs).
@@ -23,13 +23,13 @@ public final class ModCreativeTabs {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = 
 			DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Machines.MODID);
 	
-	public static final RegistryObject<CreativeModeTab> MACHINES_TAB = CREATIVE_MODE_TABS.register("machines_tab",
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MACHINES_TAB = CREATIVE_MODE_TABS.register("machines_tab",
 			() -> CreativeModeTab.builder()
 				.title(Component.translatable("item_group." + Machines.MODID + ".tab"))
 				.icon(() -> new ItemStack(ModBlocks.mythril_furnace.get().asItem()))
 				.displayItems((parameters, output) -> {
 					output.acceptAll(ModBlocks.BLOCKS.getEntries().stream()
-										.map(RegistryObject::get)
+										.map(DeferredHolder::get)
 										.map(b -> (new ItemStack(b.asItem())))
 										.toList()
 										);

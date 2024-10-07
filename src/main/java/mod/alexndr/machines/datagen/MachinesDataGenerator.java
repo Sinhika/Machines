@@ -1,10 +1,5 @@
 package mod.alexndr.machines.datagen;
 
-import static net.neoforged.fml.common.Mod.EventBusSubscriber.Bus.MOD;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
 import mod.alexndr.machines.Machines;
 import mod.alexndr.simplecorelib.api.datagen.SimpleLootTableProvider;
 import net.minecraft.core.HolderLookup;
@@ -13,16 +8,20 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 
 /**
  * bundles up the GatherDataEvent handler and all the necessary data providers for
  * data generation.
  * @author Sinhika
  */
-@EventBusSubscriber(modid = Machines.MODID, bus = MOD)
+@EventBusSubscriber(modid = Machines.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class MachinesDataGenerator
 {
     /**
@@ -40,10 +39,11 @@ public class MachinesDataGenerator
         // server-side
         ModBlockTags blockTagsProvider = new ModBlockTags(packOutput, lookupProvider, existingFileHelper);
       	gen.addProvider(event.includeServer(), blockTagsProvider);
-      	gen.addProvider(event.includeServer(), new MachinesRecipes(packOutput));
+      	gen.addProvider(event.includeServer(), new MachinesRecipeProvider(packOutput, lookupProvider));
     	gen.addProvider(event.includeServer(), 
     			new SimpleLootTableProvider(packOutput, List.of(
-    					new LootTableProvider.SubProviderEntry(MachinesBlockLootSubprovider::new, LootContextParamSets.BLOCK))));
+    					new LootTableProvider.SubProviderEntry(MachinesBlockLootSubprovider::new, LootContextParamSets.BLOCK)),
+                        lookupProvider));
     	
       	// client-side
        	gen.addProvider(event.includeClient(), new MachinesBlockStateProvider(packOutput, existingFileHelper));

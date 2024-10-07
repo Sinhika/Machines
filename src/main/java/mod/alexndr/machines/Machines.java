@@ -1,15 +1,16 @@
 package mod.alexndr.machines;
 
+import mod.alexndr.machines.client.ClientModEventSubscriber;
 import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.init.ModBlocks;
 import mod.alexndr.machines.init.ModContainerTypes;
 import mod.alexndr.machines.init.ModCreativeTabs;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.ModEventSubscriber;
 import net.neoforged.bus.EventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +32,9 @@ public final class Machines
 		// register event listeners.
 		modEventBus.addListener(ModEventSubscriber::onRegisterItems);
 		modEventBus.addListener(MachinesConfig::onLoad);
+
+		// client events
+		modEventBus.addListener( RegisterMenuScreensEvent.class, ClientModEventSubscriber::onRegisterScreens);
 
 		// Register Deferred Registers (Does not need to be before Configs)
 		ModBlocks.BLOCKS.register(modEventBus);

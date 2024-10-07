@@ -1,34 +1,31 @@
 package mod.alexndr.machines.datagen;
 
-import java.util.function.Consumer;
-
 import mod.alexndr.machines.Machines;
-import mod.alexndr.machines.config.MachinesConfig;
 import mod.alexndr.machines.init.ModBlocks;
-import mod.alexndr.simplecorelib.api.datagen.ISimpleConditionBuilder;
+import mod.alexndr.simplecorelib.api.datagen.SimpleRecipeProvider;
 import mod.alexndr.simplecorelib.api.helpers.TagUtils;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.crafting.conditions.ICondition;
-import net.neoforged.neoforge.common.crafting.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 
-public class MachinesRecipes extends RecipeProvider implements IConditionBuilder, ISimpleConditionBuilder 
+import java.util.concurrent.CompletableFuture;
+
+public class MachinesRecipeProvider extends SimpleRecipeProvider
 {
- 	public MachinesRecipes(PackOutput pOutput) {
-		super(pOutput);
- 	}
 
-	@Override
-	public ICondition flag(String arg0) {
-		return impl_flag(Machines.MODID, MachinesConfig.INSTANCE, arg0);
+
+	public MachinesRecipeProvider(PackOutput pOutput,
+								  CompletableFuture<HolderLookup.Provider> pRegistries)
+	{
+		super(pOutput, pRegistries, Machines.MODID);
 	}
 
 	@Override
-	protected void buildRecipes(Consumer<FinishedRecipe> consumer) 
+	protected void buildRecipes(@NotNull RecipeOutput consumer)
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.mythril_blast_furnace.get())
 			.define('#', Blocks.SMOOTH_STONE)
