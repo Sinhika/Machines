@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "simpleores_machines:block/mythril_furnace_front",
+    "side": "simpleores_machines:block/mythril_furnace_side",
+    "top": "simpleores_machines:block/mythril_furnace_top"
+  }
+}

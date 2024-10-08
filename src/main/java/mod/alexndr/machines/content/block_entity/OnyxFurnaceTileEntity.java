@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class OnyxFurnaceTileEntity extends AbstractYieldEnhancingFurnaceBlockEntity
 {
-	private static final String DISPLAY_NAME = "block.simple_machines.onyx_furnace";
+	private static final String DISPLAY_NAME = "block.simpleores_machines.onyx_furnace";
 
 	public OnyxFurnaceTileEntity(BlockPos blockpos, BlockState blockstate) 
 	{

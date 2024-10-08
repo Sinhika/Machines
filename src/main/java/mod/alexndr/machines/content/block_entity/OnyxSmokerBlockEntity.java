@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class OnyxSmokerBlockEntity extends AbstractYieldEnhancingSmokerBlockEntity
 {
-    private static final String DISPLAY_NAME = "block.simple_machines.onyx_smoker";
+    private static final String DISPLAY_NAME = "block.simpleores_machines.onyx_smoker";
 
     public OnyxSmokerBlockEntity(BlockPos blockpos, BlockState blockstate)
     {

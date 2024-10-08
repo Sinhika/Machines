@@ -9,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +31,7 @@ public class MachinesRecipeProvider extends SimpleRecipeProvider
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.mythril_blast_furnace.get())
 			.define('#', Blocks.SMOOTH_STONE)
 			.define('X', Blocks.FURNACE)
-			.define('I', TagUtils.forgeTag("ingots/mythril"))
+			.define('I', TagUtils.cTag("ingots/mythril"))
 			.pattern("III")
 			.pattern("IXI")
 			.pattern("###")
@@ -39,16 +40,16 @@ public class MachinesRecipeProvider extends SimpleRecipeProvider
 					
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.mythril_furnace.get())
 			.define('X', Blocks.FURNACE)
-			.define('I', TagUtils.forgeTag("ingots/mythril"))
+			.define('I', TagUtils.cTag("ingots/mythril"))
 			.pattern("III")
 			.pattern("IXI")
 			.pattern("III")
-			.unlockedBy("has_item", has(TagUtils.forgeTag("ingots/mythril")))
+			.unlockedBy("has_item", has(TagUtils.cTag("ingots/mythril")))
 			.save(consumer);					
 				
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.mythril_smoker.get())
 			.define('X', ModBlocks.mythril_furnace.get())
-			.define('#', TagUtils.modTag("minecraft", "logs"))
+			.define('#', ItemTags.LOGS)
 			.pattern(" # ")
 			.pattern("#X#")
 			.pattern(" # ")
@@ -58,7 +59,7 @@ public class MachinesRecipeProvider extends SimpleRecipeProvider
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.onyx_blast_furnace.get())
 			.define('#', Blocks.SMOOTH_STONE)
 			.define('X', Blocks.FURNACE)
-			.define('I', TagUtils.forgeTag("gems/onyx"))
+			.define('I', TagUtils.cTag("gems/onyx"))
 			.pattern("III")
 			.pattern("IXI")
 			.pattern("###")
@@ -67,16 +68,16 @@ public class MachinesRecipeProvider extends SimpleRecipeProvider
 				
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.onyx_furnace.get())
 			.define('X', Blocks.FURNACE)
-			.define('I', TagUtils.forgeTag("gems/onyx"))
+			.define('I', TagUtils.cTag("gems/onyx"))
 			.pattern("III")
 			.pattern("IXI")
 			.pattern("III")
-			.unlockedBy("has_item", has(TagUtils.forgeTag("ingots/onyx")))
+			.unlockedBy("has_item", has(TagUtils.cTag("ingots/onyx")))
 			.save(consumer);					
 				
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.onyx_smoker.get())
 			.define('X', ModBlocks.onyx_furnace.get())
-			.define('#', TagUtils.modTag("minecraft", "logs"))
+			.define('#', ItemTags.LOGS)
 			.pattern(" # ")
 			.pattern("#X#")
 			.pattern(" # ")

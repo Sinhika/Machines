@@ -40,18 +40,18 @@ public class JEIMachinePlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration registration)
     {
         registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
-                Component.translatable("simple_machines.mythril_furnace.info"));
+                Component.translatable("simpleores_machines.mythril_furnace.info"));
         registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_blast_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
-                Component.translatable("simple_machines.mythril_blast_furnace.info"));
+                Component.translatable("simpleores_machines.mythril_blast_furnace.info"));
         registration.addIngredientInfo(new ItemStack(ModBlocks.mythril_smoker.get().asItem()), VanillaTypes.ITEM_STACK, 
-                Component.translatable("simple_machines.mythril_smoker.info"));
+                Component.translatable("simpleores_machines.mythril_smoker.info"));
         
         registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
-                Component.translatable("simple_machines.onyx_furnace.info"));
+                Component.translatable("simpleores_machines.onyx_furnace.info"));
         registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_blast_furnace.get().asItem()), VanillaTypes.ITEM_STACK, 
-                Component.translatable("simple_machines.onyx_blast_furnace.info"));
+                Component.translatable("simpleores_machines.onyx_blast_furnace.info"));
         registration.addIngredientInfo(new ItemStack(ModBlocks.onyx_smoker.get().asItem()), VanillaTypes.ITEM_STACK, 
-                Component.translatable("simple_machines.onyx_smoker.info"));
+                Component.translatable("simpleores_machines.onyx_smoker.info"));
         
     } // end registerRecipes()
 

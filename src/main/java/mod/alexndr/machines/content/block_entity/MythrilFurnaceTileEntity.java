@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MythrilFurnaceTileEntity extends SomewhatAbstractFurnaceBlockEntity
 {
-	private static final String DISPLAY_NAME = "block.simple_machines.mythril_furnace";
+	private static final String DISPLAY_NAME = "block.simpleores_machines.mythril_furnace";
 
 	public MythrilFurnaceTileEntity(BlockPos blockpos, BlockState blockstate) 
 	{

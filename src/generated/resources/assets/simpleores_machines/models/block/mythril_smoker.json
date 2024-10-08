@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "simpleores_machines:block/mythril_smoker_front",
+    "side": "simpleores_machines:block/mythril_smoker_side",
+    "top": "simpleores_machines:block/mythril_smoker_top"
+  }
+}

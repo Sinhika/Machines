@@ -7,6 +7,7 @@ import mod.alexndr.machines.init.ModContainerTypes;
 import mod.alexndr.machines.init.ModCreativeTabs;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import net.neoforged.bus.EventBus;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
@@ -25,7 +26,7 @@ public final class Machines
 
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
 
-	public Machines(EventBus modEventBus, ModContainer modContainer)
+	public Machines(IEventBus modEventBus, ModContainer modContainer)
 	{
 		LOGGER.debug("Hello from Machines!");
 

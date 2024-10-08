@@ -1,0 +1,11 @@
+{
+	  "itemGroup.simpleores_machines" : "Machines",
+	
+    "_comment": "Блоки",
+    "block.simpleores_machines.mythril_furnace": "Мифриловая печь",
+    "block.simpleores_machines.mythril_blast_furnace": "Мифриловая доменная печь",
+    "block.simpleores_machines.mythril_smoker": "Мифриловый курильщик",
+    "block.simpleores_machines.onyx_furnace": "Ониксовая печь",
+    "block.simpleores_machines.onyx_blast_furnace": "Ониксовая доменная печь",
+    "block.simpleores_machines.onyx_smoker": "Ониксовый курильщик"
+}

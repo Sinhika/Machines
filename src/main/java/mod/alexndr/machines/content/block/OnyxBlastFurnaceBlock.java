@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
 {
-   // private static final String DISPLAY_NAME = "block.simple_machines.onyx_blast_furnace";
+   // private static final String DISPLAY_NAME = "block.simpleores_machines.onyx_blast_furnace";
     // public static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
     public static final MapCodec<OnyxBlastFurnaceBlock> CODEC = simpleCodec(OnyxBlastFurnaceBlock::new);
 

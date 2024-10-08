@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class MythrilBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
 {
-   //  private static final String DISPLAY_NAME = "block.simple_machines.mythril_blast_furnace";
+   //  private static final String DISPLAY_NAME = "block.simpleores_machines.mythril_blast_furnace";
    public static final MapCodec<MythrilBlastFurnaceBlock> CODEC = simpleCodec(MythrilBlastFurnaceBlock::new);
 
     public MythrilBlastFurnaceBlock(final Properties properties)

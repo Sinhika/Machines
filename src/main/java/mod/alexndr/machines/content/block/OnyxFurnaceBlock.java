@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public class OnyxFurnaceBlock extends SomewhatAbstractFurnaceBlock
 {
-    // private static final String DISPLAY_NAME = "block.simple_machines.onyx_furnace";
+    // private static final String DISPLAY_NAME = "block.simpleores_machines.onyx_furnace";
 	public static final MapCodec<OnyxFurnaceBlock> CODEC = simpleCodec(OnyxFurnaceBlock::new);
 
 	public OnyxFurnaceBlock(final Properties properties) 

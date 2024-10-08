@@ -1,0 +1,7 @@
+{
+ 	"itemGroup.simpleores_machines" : "Machines",
+ 	
+    "_comment": "blocks",
+    "block.simpleores_machines.mythril_furnace": "Fourneau de Mythril",
+    "block.simpleores_machines.onyx_furnace": "Fourneau d'Onyx"
+}

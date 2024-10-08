@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class OnyxBlastFurnaceBlockEntity extends AbstractYieldEnhancingBlastFurnaceBlockEntity
 {
     // private static final Logger LOGGER = LogManager.getLogger(Machines.MODID);
-    private static final String DISPLAY_NAME = "block.simple_machines.onyx_blast_furnace";
+    private static final String DISPLAY_NAME = "block.simpleores_machines.onyx_blast_furnace";
 
     public OnyxBlastFurnaceBlockEntity(BlockPos blockpos, BlockState blockstate)
     {
