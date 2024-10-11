@@ -13,13 +13,14 @@ Forge 1.15.2 port enabled thanks to Cadiboo's LGPL-licensed example code https:/
 **Very much a Work-in-Progress!**
 
 ### New TO-DO list
+ * Fix onyx blast furnace--it's <s>not enhancing yield and</s> it consumes 2x as much fuel as it is supposed to.
  * <s>create Mythril Blast Furnace</s>
  * <s>create Mythril Smoker</s>
  * <s>create Onyx Blast Furnace</s>
  * <s>create Onyx Smoker</s>
  * there are textures for Tin Fusion Furnace and Adamantinum Fusion Furnace. What should they do?
  * <s>fix progress arrow acting weird</s> - this is a feature. 
- * fix furnaces burn time being a tick or so shorter than it should be.
+ * <s>fix furnaces burn time being a tick or so shorter than it should be.</s>
  * add rails made from Simple Ores metals.
  
 ### Old TO-DO list

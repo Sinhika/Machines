@@ -44,7 +44,7 @@ public final class Machines
 		ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
 
 		// Register Configs (Does not need to be after Deferred Registers)
-		modContainer.registerConfig(ModConfig.Type.COMMON, MachinesConfig.SPEC);
+		modContainer.registerConfig(ModConfig.Type.STARTUP, MachinesConfig.SPEC);
 	}
 
 } // end class

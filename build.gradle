@@ -131,7 +131,7 @@ dependencies {
     implementation "simpleores:SimpleOres2:${simpleores_version}"
 
     // compileOnly fg.deobf("com.github.cech12:BucketLib:${current_bucketlib_version}:api") 
-    localRuntime "com.github.cech12:BucketLib:${current_bucketlib_version}"
+    localRuntime "com.github.cech12.BucketLib:neoforge:${current_bucketlib_version}"
 
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"

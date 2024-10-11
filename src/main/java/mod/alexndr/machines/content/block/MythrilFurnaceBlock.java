@@ -1,6 +1,7 @@
 package mod.alexndr.machines.content.block;
 
 import com.mojang.serialization.MapCodec;
+import mod.alexndr.machines.api.content.AbstractModFurnaceBlock;
 import mod.alexndr.machines.content.block_entity.MythrilFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.api.content.block.SomewhatAbstractFurnaceBlock;
@@ -18,9 +19,8 @@ import net.minecraft.world.level.block.state.BlockState;
 /**
  * @author Cadiboo
  */
-public class MythrilFurnaceBlock extends SomewhatAbstractFurnaceBlock
+public class MythrilFurnaceBlock extends AbstractModFurnaceBlock
 {
-    //private static final String DISPLAY_NAME = "block.simpleores_machines.mythril_furnace";
 	public static final MapCodec<MythrilFurnaceBlock> CODEC = simpleCodec(MythrilFurnaceBlock::new);
 
 	public MythrilFurnaceBlock(final Properties properties) 

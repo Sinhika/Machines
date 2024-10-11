@@ -5,6 +5,8 @@ import mod.alexndr.machines.content.block_entity.OnyxBlastFurnaceBlockEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.api.content.block.AbstractModBlastFurnaceBlock;
 import mod.alexndr.simplecorelib.api.content.block.SomewhatAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingFurnaceBlockEntity;
+import mod.alexndr.simplecorelib.api.content.block_entity.SomewhatAbstractFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.MenuProvider;
@@ -15,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nullable;
 
 public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
 {
@@ -35,7 +39,7 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType)
     {
-        return SomewhatAbstractFurnaceBlock.createCustomFurnaceTicker(level, entityType,
+        return OnyxBlastFurnaceBlock.createOnyxFurnaceTicker(level, entityType,
                 ModTileEntityTypes.onyx_blast_furnace.get());
     }
 
@@ -53,6 +57,16 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
             player.openMenu((MenuProvider)blockentity);
             player.awardStat(Stats.INTERACT_WITH_FURNACE);
         }
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createOnyxFurnaceTicker(
+            Level level, BlockEntityType<T> serverType,
+            BlockEntityType<? extends AbstractYieldEnhancingFurnaceBlockEntity> clientType)
+    {
+        return level.isClientSide
+               ? null
+               : createTickerHelper(serverType, clientType, AbstractYieldEnhancingFurnaceBlockEntity::serverTick);
     }
 
 } // end class

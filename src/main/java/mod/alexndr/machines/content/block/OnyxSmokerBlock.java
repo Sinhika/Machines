@@ -5,6 +5,8 @@ import mod.alexndr.machines.content.block_entity.OnyxSmokerBlockEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.api.content.block.AbstractModSmokerBlock;
 import mod.alexndr.simplecorelib.api.content.block.SomewhatAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingFurnaceBlockEntity;
+import mod.alexndr.simplecorelib.api.content.block_entity.SomewhatAbstractFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.MenuProvider;
@@ -15,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nullable;
 
 public class OnyxSmokerBlock extends AbstractModSmokerBlock
 {
@@ -33,7 +37,7 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState bstate, BlockEntityType<T> entityType)
     {
-        return SomewhatAbstractFurnaceBlock.createCustomFurnaceTicker(level, entityType,
+        return OnyxSmokerBlock.createOnyxFurnaceTicker(level, entityType,
                 ModTileEntityTypes.onyx_smoker.get());
     }
 
@@ -51,6 +55,16 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
             player.openMenu((MenuProvider)blockentity);
             player.awardStat(Stats.INTERACT_WITH_FURNACE);
         }
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createOnyxFurnaceTicker (
+            Level level, BlockEntityType<T> serverType,
+            BlockEntityType<? extends AbstractYieldEnhancingFurnaceBlockEntity> clientType)
+    {
+        return level.isClientSide
+               ? null
+               : createTickerHelper(serverType, clientType, AbstractYieldEnhancingFurnaceBlockEntity::serverTick);
     }
 
 } // end class
