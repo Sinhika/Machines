@@ -5,6 +5,7 @@ import mod.alexndr.machines.content.block_entity.OnyxBlastFurnaceBlockEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.api.content.block.AbstractModBlastFurnaceBlock;
 import mod.alexndr.simplecorelib.api.content.block.SomewhatAbstractFurnaceBlock;
+import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingBlastFurnaceBlockEntity;
 import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingFurnaceBlockEntity;
 import mod.alexndr.simplecorelib.api.content.block_entity.SomewhatAbstractFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -62,11 +63,11 @@ public class OnyxBlastFurnaceBlock extends AbstractModBlastFurnaceBlock
     @Nullable
     protected static <T extends BlockEntity> BlockEntityTicker<T> createOnyxFurnaceTicker(
             Level level, BlockEntityType<T> serverType,
-            BlockEntityType<? extends AbstractYieldEnhancingFurnaceBlockEntity> clientType)
+            BlockEntityType<? extends AbstractYieldEnhancingBlastFurnaceBlockEntity> clientType)
     {
         return level.isClientSide
                ? null
-               : createTickerHelper(serverType, clientType, AbstractYieldEnhancingFurnaceBlockEntity::serverTick);
+               : createTickerHelper(serverType, clientType, AbstractYieldEnhancingBlastFurnaceBlockEntity::serverTick);
     }
 
 } // end class

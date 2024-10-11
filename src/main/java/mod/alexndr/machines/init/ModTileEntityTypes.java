@@ -8,12 +8,12 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Holds a list of all our {@link TileEntityType}s.
- * Suppliers that create TileEntityTypes are added to the DeferredRegister.
+ * Holds a list of all our {@link BlockEntityType}s.
+ * Suppliers that create BlockEntityType are added to the DeferredRegister.
  * The DeferredRegister is then added to our mod event bus in our constructor.
- * When the TileEntityType Registry Event is fired by Forge and it is time for the mod to
- * register its TileEntityTypes, our TileEntityTypes are created and registered by the DeferredRegister.
- * The TileEntityType Registry Event will always be called after the Block and Item registries are filled.
+ * When the BlockEntityType Registry Event is fired by Forge and it is time for the mod to
+ * register its BlockEntityType, our BlockEntityType are created and registered by the DeferredRegister.
+ * The BlockEntityType Registry Event will always be called after the Block and Item registries are filled.
  * Note: This supports registry overrides.
  *
  * @author Cadiboo
