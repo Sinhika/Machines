@@ -4,8 +4,6 @@ import com.mojang.serialization.MapCodec;
 import mod.alexndr.machines.api.content.AbstractModFurnaceBlock;
 import mod.alexndr.machines.content.block_entity.OnyxFurnaceTileEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
-import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingFurnaceBlockEntity;
-import mod.alexndr.simplecorelib.api.content.block_entity.SomewhatAbstractFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.MenuProvider;
@@ -59,13 +57,23 @@ public class OnyxFurnaceBlock extends AbstractModFurnaceBlock
 		}
 	}
 
+	/**
+	 * custom createFurnaceTicker. If you don't restrict the client type to the exact BlockEntity you want,
+	 * type-erasure will bite you on the ass.
+	 *
+	 * @param level
+	 * @param serverType
+	 * @param clientType
+	 * @return
+	 * @param <T>
+	 */
 	@Nullable
 	protected static <T extends BlockEntity> BlockEntityTicker<T> createOnyxFurnaceTicker(
 			Level level, BlockEntityType<T> serverType,
-			BlockEntityType<? extends AbstractYieldEnhancingFurnaceBlockEntity> clientType)
+			BlockEntityType<? extends OnyxFurnaceTileEntity> clientType)
 	{
 		return level.isClientSide
 			   ? null
-			   : createTickerHelper(serverType, clientType, AbstractYieldEnhancingFurnaceBlockEntity::serverTick);
+			   : createTickerHelper(serverType, clientType, OnyxFurnaceTileEntity::serverTick);
 	}
 } // end class

@@ -4,10 +4,6 @@ import com.mojang.serialization.MapCodec;
 import mod.alexndr.machines.content.block_entity.OnyxSmokerBlockEntity;
 import mod.alexndr.machines.init.ModTileEntityTypes;
 import mod.alexndr.simplecorelib.api.content.block.AbstractModSmokerBlock;
-import mod.alexndr.simplecorelib.api.content.block.SomewhatAbstractFurnaceBlock;
-import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingFurnaceBlockEntity;
-import mod.alexndr.simplecorelib.api.content.block_entity.AbstractYieldEnhancingSmokerBlockEntity;
-import mod.alexndr.simplecorelib.api.content.block_entity.SomewhatAbstractFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.MenuProvider;
@@ -58,14 +54,24 @@ public class OnyxSmokerBlock extends AbstractModSmokerBlock
         }
     }
 
+    /**
+     * custom createFurnaceTicker. If you don't restrict the client type to the exact BlockEntity you want,
+     * type-erasure will bite you on the ass.
+     *
+     * @param level
+     * @param serverType
+     * @param clientType
+     * @return
+     * @param <T>
+     */
     @Nullable
     protected static <T extends BlockEntity> BlockEntityTicker<T> createOnyxFurnaceTicker (
             Level level, BlockEntityType<T> serverType,
-            BlockEntityType<? extends AbstractYieldEnhancingSmokerBlockEntity> clientType)
+            BlockEntityType<? extends OnyxSmokerBlockEntity> clientType)
     {
         return level.isClientSide
                ? null
-               : createTickerHelper(serverType, clientType, AbstractYieldEnhancingSmokerBlockEntity::serverTick);
+               : createTickerHelper(serverType, clientType, OnyxSmokerBlockEntity::serverTick);
     }
 
 } // end class
